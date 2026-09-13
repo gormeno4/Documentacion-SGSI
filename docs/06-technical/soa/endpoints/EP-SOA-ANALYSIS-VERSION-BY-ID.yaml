@@ -1,0 +1,15 @@
+id: EP-SOA-ANALYSIS-VERSION-BY-ID
+type: endpoint
+method: GET
+path: /soa/analysis/version/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:43
+controller: api-sgsi/src/controllers/soa.ts#getVersionById
+model: api-sgsi/src/models/soa.ts#getVersionById
+function: FN-SOA-ANALYSIS-GET-VERSION-BY-ID
+status: CONFIRMED
+notes: >
+  El model enriquece la respuesta con el historial de aprobación real llamando
+  getProcessByEntity('SOA', id, customerId) de models/doc-flow.ts (dominio externo
+  doc-flow, no documentado aquí), y sanitiza los pasos según el rol/participación del
+  usuario (utils/approval-sanitizer.ts) antes de responder.

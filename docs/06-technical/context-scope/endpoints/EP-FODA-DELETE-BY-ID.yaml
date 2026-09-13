@@ -1,0 +1,10 @@
+id: EP-FODA-DELETE-BY-ID
+type: endpoint
+method: DELETE
+path: /foda/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/foda.ts:19
+controller: api-sgsi/src/controllers/foda.ts#deleteById
+model: api-sgsi/src/models/foda.ts#deleteById
+function: FN-V2-FODA-DELETE-BY-ID
+status: CONFIRMED

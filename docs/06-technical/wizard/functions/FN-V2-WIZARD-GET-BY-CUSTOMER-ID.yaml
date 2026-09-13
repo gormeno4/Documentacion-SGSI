@@ -1,0 +1,20 @@
+id: FN-V2-WIZARD-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_wizard_get_by_customer_id
+definedIn: funciones_sgsi.sql
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.wizard_progress, access: READ }
+  - { table: sgsi.wizard_general_info, access: READ }
+  - { table: sgsi.wizard_tech_inventory, access: READ }
+  - { table: sgsi.wizard_tech_infrastructure, access: READ }
+  - { table: sgsi.wizard_identity_access, access: READ }
+  - { table: sgsi.wizard_specialized_infra, access: READ }
+  - { table: sgsi.wizard_digital_exposure, access: READ }
+  - { table: sgsi.wizard_dev_processes, access: READ }
+  - { table: sgsi.wizard_compliance, access: READ }
+notes: >
+  Consulta todas las tablas de datos del Wizard para un customer dado.
+  Retorna JSONB con estructura { progress: {...}, data: {...} }.
+  Invocada por FLOW-WIZ-001 para cargar y mostrar progreso actual.

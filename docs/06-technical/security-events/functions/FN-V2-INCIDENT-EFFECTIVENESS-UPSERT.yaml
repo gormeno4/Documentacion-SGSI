@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-EFFECTIVENESS-UPSERT
+type: db-function
+name: sgsi.v2_incident_effectiveness_upsert
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_effectiveness, access: WRITE }
+notes: "UPSERT pattern for effectiveness monitoring. Allows multiple evaluations in same observation period without deleting prior ones."

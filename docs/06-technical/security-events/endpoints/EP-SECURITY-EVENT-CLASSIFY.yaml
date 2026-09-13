@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-CLASSIFY
+type: endpoint
+method: POST
+path: /security-events/classify
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:41
+controller: api-sgsi/src/controllers/securityEvent.ts#classify
+model: api-sgsi/src/models/securityEvent.ts#classify
+function: FN-V2-SECURITY-EVENT-CLASSIFY
+status: CONFIRMED

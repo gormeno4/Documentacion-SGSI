@@ -1,0 +1,31 @@
+id: FN-DOC-FLOW-PUBLISH
+type: db-function
+name: sgsi.doc_flow_publish
+definedIn: funciones_sgsi.sql:2217-2491
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: WRITE }
+  - { table: sgsi.doc_versions, access: WRITE }
+  - { table: sgsi.stake_holder_analysis, access: WRITE }
+  - { table: sgsi.scope, access: WRITE }
+  - { table: sgsi.kpi_analysis, access: WRITE }
+  - { table: sgsi.strategic_objective_analysis, access: WRITE }
+  - { table: sgsi.pestel_analysis, access: WRITE }
+  - { table: sgsi.foda_analysis, access: WRITE }
+  - { table: sgsi.soa_analysis, access: WRITE }
+  - { table: sgsi.executive_summary, access: WRITE }
+  - { table: sgsi.communications_matrix_analysis, access: WRITE }
+  - { table: sgsi.document_flow_steps, access: READ }
+notes: >
+  DIVERGENCIA MATERIAL vs. lo estimado en Checkpoint B: la función es polimórfica por
+  entity_type y, más allá de DOCUMENT, escribe DIRECTAMENTE (branches internos con
+  UPDATE) sobre 9 tablas físicas de otros dominios aún no documentados —
+  Partes Interesadas (STAKEHOLDER), Contexto y Alcance (SCOPE, KPI,
+  STRATEGIC_OBJECTIVE, PESTEL, FODA, EXECUTIVE_SUMMARY, COMMUNICATIONS_MATRIX) y SoA
+  (SOA, aquí solo flags is_active/is_complete — la publicación funcional de SoA en sí
+  la hace FN-DOC-FLOW-PUBLISH, no una function de DOM-SOA). El patrón general (salvo
+  DOCUMENT) es: desactivar la versión anterior activa (is_active/is_current = false) y
+  marcar la nueva como activa+completa. Para CARGO/ASSET_INVENTORY/ORGANIGRAMA, la
+  generación del documento formal ocurre ANTES de esta función, en Node
+  (controllers/doc-flow.ts#handlePublishProcess, misma transacción) — ver
+  FLOW-DOCFLOW-006 y docs/00-catalog/docflow.md.

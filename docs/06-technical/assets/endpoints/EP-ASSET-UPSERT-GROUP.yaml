@@ -1,0 +1,10 @@
+id: EP-ASSET-UPSERT-GROUP
+type: endpoint
+method: POST
+path: /asset/upsertGroup
+access: admin-or-usuario
+router: api-sgsi/src/routers/asset.ts:30
+controller: api-sgsi/src/controllers/asset.ts#upsertGroup
+model: api-sgsi/src/models/asset.ts#upsertGroup
+function: FN-V2-ASSET-GROUP-UPSERT
+status: CONFIRMED

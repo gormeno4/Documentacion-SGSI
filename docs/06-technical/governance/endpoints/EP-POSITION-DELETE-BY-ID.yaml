@@ -1,0 +1,14 @@
+id: EP-POSITION-DELETE-BY-ID
+type: endpoint
+method: POST
+path: /position/deleteById/:id
+access: admin-only
+router: api-sgsi/src/routers/position.ts:24
+controller: api-sgsi/src/controllers/position.ts#deleteById
+model: api-sgsi/src/models/position.ts#deleteById
+function: FN-V2-POSITION-DELETE-BY-ID
+status: CONFIRMED
+notes: >
+  Ruta con verifyAdminOnly. El controller traduce el P0001 de la funcion (dependencias activas) a
+  un 409. Efecto cross-domain: la funcion tambien da de baja el activo TA-13 vinculado (ver
+  FN-V2-POSITION-DELETE-BY-ID).

@@ -1,0 +1,10 @@
+id: EP-DOC-GET-DOCUMENT-DETAIL
+type: endpoint
+method: GET
+path: /document-flow/documents/versions/:versionId
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:58
+controller: api-sgsi/src/controllers/doc-documents.ts#handleGetDocumentDetail
+model: api-sgsi/src/models/doc-documents.ts#getDocumentDetail
+function: FN-DOC-GET-DETAIL
+status: CONFIRMED

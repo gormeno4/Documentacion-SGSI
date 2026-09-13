@@ -1,0 +1,16 @@
+id: FN-V2-ASSET-GROUP-ACTIVATE-BY-ID
+type: db-function
+name: sgsi.v2_asset_group_activate_by_id
+definedIn: funciones_sgsi.sql:10321-10376
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-REACTIVATE-BY-ID   # en cascada, una vez por cada activo dado de baja del grupo
+  - FN-V2-ASSET-GROUP-GET-BY-ID    # RETURN final
+tables:
+  - { table: sgsi.asset_group, access: WRITE }
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.asset_group_history, access: WRITE }
+notes: >
+  Marca el grupo como active=true y, en cascada, reactiva cada activo no vigente del
+  grupo invocando FN-V2-ASSET-REACTIVATE-BY-ID individualmente. Fallos por activo
+  individual se capturan y se listan en el summary sin abortar la activación del grupo.

@@ -1,0 +1,10 @@
+id: FN-GROUP-RISK-TREATMENT-ACTION-EVIDENCE-DELETE
+type: db-function
+name: sgsi.group_risk_treatment_action_evidence_delete
+definedIn: funciones_sgsi.sql:5824-5859
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.group_risk_treatment_action_evidence, access: WRITE }
+  - { table: sgsi.group_risk_treatment_action_progress, access: READ }
+notes: RAISE EXCEPTION 'GROUP_RISK_TREATMENT:ACTION_LOCKED' si la acción ya está al 100%.

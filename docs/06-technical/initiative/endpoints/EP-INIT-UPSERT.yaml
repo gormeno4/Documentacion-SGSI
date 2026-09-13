@@ -1,0 +1,60 @@
+id: EP-INIT-UPSERT
+type: endpoint
+method: POST
+path: /initiative/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/initiative.ts:7
+controller: api-sgsi/src/controllers/initiative.ts#upsert
+model: api-sgsi/src/models/initiative.ts#upsert
+function: FN-INIT-UPSERT
+status: CONFIRMED
+
+requestBody:
+  type: object
+  required: [title, companyId]
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "If null/empty, create; if present, update"
+    companyId:
+      type: string
+      format: uuid
+    title:
+      type: string
+      minLength: 1
+    status:
+      type: string
+      enum: ["planificada", "en_curso", "completada", "cancelada"]
+      default: "planificada"
+    progress:
+      type: integer
+      minimum: 0
+      maximum: 100
+    completedAt:
+      type: string
+      format: date-time
+    linkRiskId:
+      type: string
+      format: uuid
+      description: "Optional FK to risk"
+    linkControlId:
+      type: string
+      format: uuid
+      description: "Optional FK to control"
+    leadResponsibleId:
+      type: string
+      format: uuid
+      description: "Optional FK to person"
+    estimatedBudget:
+      type: number
+    infrastructureTools:
+      type: string
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/IInitiative"
+
+securityRules:
+  - "Tenant isolation via companyId in payload"

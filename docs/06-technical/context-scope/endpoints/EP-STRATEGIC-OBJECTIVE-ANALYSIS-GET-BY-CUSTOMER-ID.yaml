@@ -1,0 +1,10 @@
+id: EP-STRATEGIC-OBJECTIVE-ANALYSIS-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /strategic-objective/analysis
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:21
+controller: api-sgsi/src/controllers/strategicObjective.ts#getAnalysis
+model: api-sgsi/src/models/strategicObjective.ts#getAnalysisByCustomerId
+function: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-GET-BY-CUSTOMER-ID
+status: CONFIRMED

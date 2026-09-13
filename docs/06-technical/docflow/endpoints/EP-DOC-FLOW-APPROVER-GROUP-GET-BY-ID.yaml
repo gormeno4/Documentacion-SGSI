@@ -1,0 +1,10 @@
+id: EP-DOC-FLOW-APPROVER-GROUP-GET-BY-ID
+type: endpoint
+method: GET
+path: /document-flow-approver-group/getById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow-approver-group.ts:13
+controller: api-sgsi/src/controllers/doc-flow-approver-group.ts#getById
+model: api-sgsi/src/models/doc-flow-approver-group.ts#getById (línea 39)
+function: FN-V2-DOC-FLOW-APPROVER-GROUP-GET-BY-ID
+status: CONFIRMED

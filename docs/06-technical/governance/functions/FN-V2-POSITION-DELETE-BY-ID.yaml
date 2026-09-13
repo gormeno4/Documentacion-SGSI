@@ -1,0 +1,19 @@
+id: FN-V2-POSITION-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_position_delete_by_id
+definedIn: funciones_sgsi.sql:22916-22981
+status: CONFIRMED
+calls:
+  - FN-CHECK-POSITION-DEPENDENCIES
+  - FN-V2-POSITION-GET-BY-CUSTOMERID
+tables:
+  - { table: sgsi.position, access: WRITE }
+  - { table: sgsi.asset, access: WRITE }
+  - { table: sgsi.asset_history, access: WRITE }
+notes: >
+  EFECTO CROSS-DOMAIN CONFIRMADO (DOM-GOV -> DOM-ACT), simetrico al de v2_position_upsert: tras el
+  soft delete del cargo da de baja el activo de informacion vinculado (WHERE position_id = ... AND
+  customer_id = ...) y registra sgsi.asset_history con action='delete'. Valida dependencias
+  primero via check_position_dependencies y lanza excepcion si existen. El UPDATE del cargo esta
+  scoped por customer_id, y si no afecta filas lanza una excepcion que enumera las razones
+  posibles.

@@ -1,0 +1,13 @@
+id: FN-DOC-GET-DOCUMENT-BY-ORGANIGRAMA
+type: db-function
+name: sgsi.doc_get_document_by_organigrama
+definedIn: funciones_sgsi.sql:3344-3362
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Igual patrón que FN-DOC-GET-DOCUMENT-BY-INVENTORY pero para sourceType='ORGANIGRAMA'.
+  Invocada desde models/doc-documents.ts#upsertPublishedOrganigramaDocument, a su vez
+  invocada desde handlePublishProcess cuando entity_type = 'ORGANIGRAMA'.

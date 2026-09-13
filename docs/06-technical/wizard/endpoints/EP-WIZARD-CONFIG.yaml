@@ -1,0 +1,15 @@
+id: EP-WIZARD-CONFIG
+type: endpoint
+method: GET
+path: /wizard-config
+access: admin-or-usuario
+router: api-sgsi/src/routers/wizard-config.ts:7
+controller: api-sgsi/src/controllers/wizard-config.ts#getConfig
+model: api-sgsi/src/models/wizard-config.ts#getConfig
+function: FN-V2-WIZARD-CONFIG-GET
+status: CONFIRMED
+notes: >
+  Helper técnico/infraestructura. Carga maestros estáticos de configuración
+  del Wizard (fases, pasos, secciones, campos, dependencias, opciones).
+  No es FLOW directo. Invocado automáticamente en layout.tsx para
+  configurar estructura de validaciones y rendering del UI.

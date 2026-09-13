@@ -1,0 +1,7 @@
+id: FN-V2-FODA-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_foda_delete_by_id
+definedIn: funciones_sgsi.sql:18122-18169
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda, access: WRITE }

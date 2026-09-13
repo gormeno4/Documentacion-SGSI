@@ -1,0 +1,10 @@
+id: EP-PESTEL-DELETE-BY-ID
+type: endpoint
+method: DELETE
+path: /pestel/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:19
+controller: api-sgsi/src/controllers/pestel.ts#deleteById
+model: api-sgsi/src/models/pestel.ts#deleteById
+function: FN-V2-PESTEL-DELETE-BY-ID
+status: CONFIRMED

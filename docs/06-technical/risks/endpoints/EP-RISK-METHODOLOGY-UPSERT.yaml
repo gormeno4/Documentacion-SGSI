@@ -1,0 +1,10 @@
+id: EP-RISK-METHODOLOGY-UPSERT
+type: endpoint
+method: POST
+path: /risk-methodology/upsert
+access: admin-only
+router: api-sgsi/src/routers/riskMethodology.ts
+controller: api-sgsi/src/controllers/riskMethodology.ts#upsert
+model: api-sgsi/src/models/riskMethodology.ts#upsert
+function: FN-V2-RISK-METHODOLOGY-UPSERT
+status: CONFIRMED

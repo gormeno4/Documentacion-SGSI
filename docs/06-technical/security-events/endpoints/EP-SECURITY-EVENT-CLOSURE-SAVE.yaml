@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-CLOSURE-SAVE
+type: endpoint
+method: POST
+path: /security-events/closure
+access: reviewer
+router: api-sgsi/src/routers/securityEvent.ts:57
+controller: api-sgsi/src/controllers/securityEvent.ts#saveClosure
+model: api-sgsi/src/models/securityEvent.ts#saveClosure
+function: FN-V2-INCIDENT-CLOSURE-SAVE-TRANSACTION
+status: CONFIRMED
+middleware: validateClosurePermission

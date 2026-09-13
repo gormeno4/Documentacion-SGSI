@@ -1,0 +1,10 @@
+id: FN-V2-INCIDENT-VALIDATION-GET-BY-EVENT-ID
+type: db-function
+name: sgsi.v2_incident_validation_get_by_event_id
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_validations, access: READ }
+  - { table: sgsi.incident_validation_checks, access: READ }
+notes: "Read validation records for an event."

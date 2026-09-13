@@ -1,0 +1,10 @@
+id: EP-ORGANIZATIONAL-RISK-CATALOG
+type: endpoint
+method: GET
+path: /organizational-risk/catalog
+access: admin-only
+router: api-sgsi/src/routers/organizationalRisk.ts
+controller: api-sgsi/src/controllers/organizationalRisk.ts#getCatalog
+model: api-sgsi/src/models/organizationalRisk.ts#getCatalog
+function: FN-V2-RISK-SCENARIO-CATALOG-GET-ALL
+status: CONFIRMED

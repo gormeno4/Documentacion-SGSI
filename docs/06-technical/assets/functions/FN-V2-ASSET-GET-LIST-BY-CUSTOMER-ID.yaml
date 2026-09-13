@@ -1,0 +1,15 @@
+id: FN-V2-ASSET-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_asset_get_list_by_customer_id
+definedIn: funciones_sgsi.sql:9906-10120
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset, access: READ }
+  - { table: corvus.area, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.cia_level, access: READ }
+  - { table: sgsi.base_asset_type, access: READ }
+  - { table: sgsi.asset_threat_risk, access: READ }

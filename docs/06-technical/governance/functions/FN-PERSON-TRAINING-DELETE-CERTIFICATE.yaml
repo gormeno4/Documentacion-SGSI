@@ -1,0 +1,13 @@
+id: FN-PERSON-TRAINING-DELETE-CERTIFICATE
+type: db-function
+name: sgsi.person_training_delete_certificate
+definedIn: funciones_sgsi.sql:6949-6991
+status: CONFIRMED
+calls:
+  - FN-V2-TRAINING-DOCUMENT-GET-BY-TRAINING-ID
+tables:
+  - { table: sgsi.person_training, access: WRITE }
+notes: >
+  Limpia las columnas de certificado de la fila person_training (no borra la asignacion). El
+  borrado del archivo fisico lo hace el modelo en Node antes de llamar aqui, resolviendo la ruta
+  con person_training_get_certificate_path.

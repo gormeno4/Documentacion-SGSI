@@ -1,0 +1,10 @@
+id: EP-STRATEGIC-OBJECTIVE-ANALYSIS-CREATE-NEW-VERSION
+type: endpoint
+method: POST
+path: /strategic-objective/analysis/new-version
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:24
+controller: api-sgsi/src/controllers/strategicObjective.ts#createNewVersion
+model: api-sgsi/src/models/strategicObjective.ts#createNewVersion
+function: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-CREATE-NEW-VERSION
+status: CONFIRMED

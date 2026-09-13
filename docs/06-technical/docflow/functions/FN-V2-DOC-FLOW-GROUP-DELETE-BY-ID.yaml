@@ -1,0 +1,12 @@
+id: FN-V2-DOC-FLOW-GROUP-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_doc_flow_group_delete_by_id
+definedIn: funciones_sgsi.sql:15744-15772
+status: CONFIRMED
+calls:
+  - FN-V2-DOC-FLOW-GROUP-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.doc_flow_group, access: WRITE }
+notes: >
+  Soft delete (deleted_at/deleted_by). Retorna la lista actualizada del cliente vía
+  FN-V2-DOC-FLOW-GROUP-GET-LIST-BY-CUSTOMER-ID.

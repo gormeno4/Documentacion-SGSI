@@ -1,0 +1,13 @@
+id: FN-DOC-GET-SEND-TO-EDITING-EMAIL-CONTEXT
+type: db-function
+name: sgsi.doc_get_send_to_editing_email_context
+definedIn: funciones_sgsi.sql:3851-3893
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Invocada desde el controller (handleSendToEditing) para notificar al editor recién
+  asignado — dependencia externa `email`.

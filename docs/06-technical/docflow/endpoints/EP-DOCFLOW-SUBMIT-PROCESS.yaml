@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-SUBMIT-PROCESS
+type: endpoint
+method: POST
+path: /document-flow/process/:processId/submit
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:27
+controller: api-sgsi/src/controllers/doc-flow.ts#handleSubmitProcess
+model: api-sgsi/src/models/doc-flow.ts#submitProcess
+function: FN-DOC-FLOW-SUBMIT
+status: CONFIRMED

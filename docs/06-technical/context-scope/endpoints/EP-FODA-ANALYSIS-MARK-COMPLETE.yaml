@@ -1,0 +1,10 @@
+id: EP-FODA-ANALYSIS-MARK-COMPLETE
+type: endpoint
+method: POST
+path: /foda/analysis/complete
+access: admin-or-usuario
+router: api-sgsi/src/routers/foda.ts:22
+controller: api-sgsi/src/controllers/foda.ts#markComplete
+model: api-sgsi/src/models/foda.ts#markComplete
+function: FN-V2-FODA-ANALYSIS-MARK-COMPLETE
+status: CONFIRMED

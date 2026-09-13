@@ -1,0 +1,14 @@
+id: FN-DOC-FLOW-REJECT-STEP
+type: db-function
+name: sgsi.doc_flow_reject_step
+definedIn: funciones_sgsi.sql:2629-2746
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: WRITE }
+  - { table: sgsi.document_flow_steps, access: WRITE }
+  - { table: sgsi.doc_versions, access: WRITE }
+notes: >
+  Exige justificación no vacía. Marca el step RECHAZADO, los demás steps PENDIENTE de
+  esa iteración como NO_APLICA, el proceso pasa a DEVUELTO con current_iteration + 1,
+  y clona la lista completa de revisores como nuevos steps PENDIENTE en la nueva
+  iteración (mismo orden). Si entity_type='DOCUMENT', la versión pasa a DEVUELTO.

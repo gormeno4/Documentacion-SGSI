@@ -1,0 +1,28 @@
+id: EP-DOCFLOW-PUBLISH-PROCESS
+type: endpoint
+method: POST
+path: /document-flow/process/:processId/publish
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:43
+controller: api-sgsi/src/controllers/doc-flow.ts#handlePublishProcess
+model: api-sgsi/src/models/doc-flow.ts#publishProcess
+function: FN-DOC-FLOW-PUBLISH
+status: CONFIRMED
+notes: >
+  El controller ejecuta la publicación dentro de una transacción explícita
+  (BEGIN/COMMIT/ROLLBACK, api-sgsi/src/controllers/doc-flow.ts:296-406) con lock
+  pesimista sobre sgsi.document_flow_processes (FOR UPDATE). Antes de llamar a
+  FN-DOC-FLOW-PUBLISH, según snapshot.entity_type, el controller invoca (todas dentro
+  de la misma transacción, en Node, no en la función SQL): upsertPublishedCargoDocument
+  (CARGO), upsertPublishedAssetInventoryDocument (ASSET_INVENTORY), o
+  upsertPublishedOrganigramaDocument (ORGANIGRAMA) — ver FLOW-DOCFLOW-006 y
+  docs/00-catalog/docflow.md para el detalle de esta generación automática cross-domain.
+
+  Precisión para entity_type='CARGO' (aportada por Gobierno del SGSI, Fase 9): ANTES de
+  generar el documento, el controller ejecuta models/position.ts#upsert
+  (controllers/doc-flow.ts:343) con los datos del snapshot, dentro de la misma transacción.
+  Eso reescribe sgsi.position (y position_profile/_function/_responsibility) y dispara la
+  sincronización ya existente hacia sgsi.asset + sgsi.asset_history vía
+  FN-V2-POSITION-UPSERT. Es una escritura cross-domain hecha en Node, no en
+  sgsi.doc_flow_publish (que no tiene rama CARGO); queda representada aquí y en la prosa de
+  FLOW-DOCFLOW-006 / FLOW-GOV-009, sin introducir un tipo de relación nuevo en el modelo.

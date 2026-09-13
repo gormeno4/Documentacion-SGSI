@@ -1,0 +1,20 @@
+id: FN-V2-ASSET-GROUP-THREAT-RISK-GET-LIST-BY-GROUP-ID
+type: db-function
+name: sgsi.v2_asset_group_threat_risk_get_list_by_group_id
+definedIn: funciones_sgsi.sql:10679-10795
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.base_asset_type, access: READ }
+  - { table: sgsi.base_rel_vuln_threat, access: READ }
+  - { table: sgsi.base_threat, access: READ }
+  - { table: sgsi.base_vulnerability_asset_type, access: READ }
+  - { table: sgsi.probability_impact_level, access: READ }
+  - { table: sgsi.asset_group_threat_risk, access: READ }
+notes: >
+  Combina dos ramas (UNION ALL): "base" (catálogo determinista ISO 27001 por
+  Tipo de Activo del grupo, con override de la fila guardada si existe) y
+  "custom" (filas agregadas manualmente vía el modal "Añadir amenaza" que no
+  calzan con el catálogo del tipo de activo). Es la función que retorna
+  sgsi.v2_asset_group_threat_risk_upsert tras cada guardado.

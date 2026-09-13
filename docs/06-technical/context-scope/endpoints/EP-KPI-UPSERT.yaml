@@ -1,0 +1,14 @@
+id: EP-KPI-UPSERT
+type: endpoint
+method: POST
+path: /kpi/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:21
+controller: api-sgsi/src/controllers/kpi.ts#upsert
+model: api-sgsi/src/models/kpi.ts#upsert
+function: FN-V2-KPI-UPSERT
+status: CONFIRMED
+notes: >
+  Reemplaza el set completo de sgsi.kpi_strategic_objective del KPI en cada
+  guardado (DELETE + INSERT, funciones_sgsi.sql:21451-21461) — el vínculo N:N
+  a Objetivos Estratégicos no es incremental.

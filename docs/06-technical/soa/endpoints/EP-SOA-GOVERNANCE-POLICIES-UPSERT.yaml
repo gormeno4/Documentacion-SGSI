@@ -1,0 +1,10 @@
+id: EP-SOA-GOVERNANCE-POLICIES-UPSERT
+type: endpoint
+method: POST
+path: /soa/governance-policies/upsert
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:36
+controller: api-sgsi/src/controllers/soa.ts#upsertGovernancePolicies
+model: api-sgsi/src/models/soa.ts#upsertGovernancePolicies
+function: FN-V2-CONTROL-SOA-GOVERNANCE-POLICIES-UPSERT
+status: CONFIRMED

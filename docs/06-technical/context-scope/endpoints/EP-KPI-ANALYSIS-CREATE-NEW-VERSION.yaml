@@ -1,0 +1,10 @@
+id: EP-KPI-ANALYSIS-CREATE-NEW-VERSION
+type: endpoint
+method: POST
+path: /kpi/analysis/new-version
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:25
+controller: api-sgsi/src/controllers/kpi.ts#createNewVersion
+model: api-sgsi/src/models/kpi.ts#createNewVersion
+function: FN-V2-KPI-ANALYSIS-CREATE-NEW-VERSION
+status: CONFIRMED

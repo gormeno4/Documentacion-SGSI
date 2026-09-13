@@ -1,0 +1,11 @@
+id: FN-V2-KPI-ANALYSIS-MARK-COMPLETE
+type: db-function
+name: sgsi.v2_kpi_analysis_mark_complete
+definedIn: funciones_sgsi.sql:20791-20865
+status: CONFIRMED
+tables:
+  - { table: sgsi.kpi_analysis, access: WRITE }
+notes: >
+  Solo fija is_complete=true — el flip de is_active ocurre exclusivamente
+  dentro de sgsi.doc_flow_publish (FLOW-DOCFLOW-006), no existe una
+  "v2_kpi_analysis_publish" local.

@@ -1,0 +1,10 @@
+id: FN-V2-INCIDENT-CLOSURE-SAVE-TRANSACTION
+type: db-function
+name: sgsi.v2_incident_closure_save_transaction
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_closures, access: WRITE }
+  - { table: sgsi.incident_details, access: WRITE }
+notes: "Transaction: INSERT closure record AND UPDATE incident status to 'closed' (TERMINAL). Both succeed or both fail (ACID)."

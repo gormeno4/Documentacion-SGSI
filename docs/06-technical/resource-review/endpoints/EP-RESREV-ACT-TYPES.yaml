@@ -1,0 +1,30 @@
+id: EP-RESREV-ACT-TYPES
+type: endpoint
+method: GET
+path: /resource-review/act-types
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:15
+controller: api-sgsi/src/controllers/resourceReview.ts#getActTypes
+model: api-sgsi/src/models/resourceReview.ts#getActTypes
+function: FN-RESREV-ACT-TYPES
+status: CONFIRMED
+description: "SUPPORT endpoint. Get catalog of activity types (comité, asamblea, etc.)"
+
+responseBody:
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      code:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      colorTag:
+        type: string
+
+notes: "Catálogo. No requiere tenant filtering."

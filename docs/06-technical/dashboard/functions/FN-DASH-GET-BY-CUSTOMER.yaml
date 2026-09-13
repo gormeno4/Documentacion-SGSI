@@ -1,0 +1,149 @@
+id: FN-DASH-GET-BY-CUSTOMER
+type: db-function
+schema: sgsi
+name: v2_dashboard_get_by_customer_id
+signature: "v2_dashboard_get_by_customer_id(p_customer_id uuid, p_person_id uuid) RETURNS jsonb"
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/v2_dashboard_get_by_customer_id.sql
+status: CONFIRMED
+description: "Agregación completa del dashboard: perfiles, documentos, KPIs, riesgos, metodología, iniciativas, datos de implementación/madurez, y datos de SoA"
+
+parameters:
+  - name: p_customer_id
+    type: uuid
+    description: "Customer identifier (tenant)"
+  - name: p_person_id
+    type: uuid
+    description: "Person identifier (user for profile)"
+
+returns:
+  type: jsonb
+  description: "Dashboard object with profileData, documentsData, kpiData, riskData, methodology, initiativesData, implementationData, maturityData, soaData"
+
+tables:
+  - table: corvus.customer
+    access: READ
+    operations: "Reads customer name for profile"
+  - table: corvus.customer_person
+    access: READ
+    operations: "Links person to customer"
+  - table: corvus.person
+    access: READ
+    operations: "Reads person name, paternal/maternal lastname for profile"
+  - table: sgsi.position
+    access: READ
+    operations: "Reads user position/role name for profile"
+  - table: sgsi.doc_documents
+    access: READ
+    operations: "Reads document list"
+  - table: sgsi.doc_versions
+    access: READ
+    operations: "Reads document publication status, title, owner, dates"
+  - table: sgsi.base_document_type
+    access: READ
+    operations: "Reads document type name"
+  - table: sgsi.document_type
+    access: READ
+    operations: "Reads document type code"
+  - table: corvus.area
+    access: READ
+    operations: "Reads area/department context for documents"
+  - table: sgsi.kpi
+    access: READ
+    operations: "Reads KPI definitions, formula, responsible person"
+  - table: sgsi.kpi_analysis
+    access: READ
+    operations: "Filters active KPI analyses"
+  - table: sgsi.base_kpi
+    access: READ
+    operations: "Reads KPI measure unit"
+  - table: sgsi.frequency
+    access: READ
+    operations: "Reads measurement frequency name"
+  - table: sgsi.monitoring_result_monthly
+    access: READ
+    operations: "Reads latest monthly KPI measurement"
+  - table: sgsi.monitoring_result_periodic
+    access: READ
+    operations: "Reads latest periodic KPI measurement"
+  - table: sgsi.strategic_objective
+    access: READ
+    operations: "Reads strategic objective title linked to KPI"
+  - table: sgsi.asset_group
+    access: READ
+    operations: "Reads asset group name for risk matrix"
+  - table: sgsi.asset_group_threat_risk
+    access: READ
+    operations: "Reads threat-risk scenarios for asset groups"
+  - table: sgsi.asset_threat_risk_evaluation
+    access: READ
+    operations: "Reads probability/impact evaluations"
+  - table: sgsi.probability_impact_level
+    access: READ
+    operations: "Maps probability/impact IDs to level values"
+  - table: sgsi.cia_level
+    access: READ
+    operations: "Reads CIA (confidentiality, integrity, availability) levels"
+  - table: sgsi.group_risk_treatment
+    access: READ
+    operations: "Reads treatment strategy and residual levels"
+  - table: sgsi.organizational_risk
+    access: READ
+    operations: "Reads organizational/contextual risks"
+  - table: sgsi.risk_treatment
+    access: READ
+    operations: "Reads risk treatment strategies"
+  - table: sgsi.risk_scenario_catalog
+    access: READ
+    operations: "Reads scenario catalog for organizational risks"
+  - table: sgsi.initiative
+    access: READ
+    operations: "Reads initiative title, status, progress, linked risks/controls, lead responsible"
+  - table: sgsi.initiative_status_log
+    access: READ
+    operations: "Reads latest status justification"
+  - table: sgsi.ai_asset_risk_suggestions
+    access: READ
+    operations: "Reads AI-suggested risks linked to initiatives"
+  - table: sgsi.base_control_clauses
+    access: READ
+    operations: "Reads control code/title linked to initiatives"
+
+businessRules:
+  - "profileData: Single row with user's position, name, and company"
+  - "documentsData: All published/draft documents for customer"
+  - "kpiData: All active KPIs with latest measurements"
+  - "riskData: Aggregated by asset with threats, vulnerabilities, and evaluations"
+  - "methodology: Retrieved via v2_risk_methodology_get() call"
+  - "initiativesData: All initiatives with status and linked risks/controls"
+  - "All data is read-only; no mutations"
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Asset group data for risk matrix"
+  - domain: DOM-CTX
+    reason: "KPI and frequency data"
+  - domain: DOM-RSK
+    reason: "Risk evaluations, treatments, probability/impact levels"
+  - domain: DOM-DOCFLOW
+    reason: "Document metadata and publication status"
+  - domain: DOM-INIT
+    reason: "Initiative status, progress, linked risks and controls"
+  - domain: DOM-GOV
+    reason: "Position and person names for profile/ownership"
+  - domain: DOM-SOA
+    reason: "Control clauses linked to initiatives"
+
+notes: |
+  PRIMARY dashboard function. Called on every dashboard render.
+  Combines data from 7 FROZEN domains into single jsonb response.
+
+  LEGACY DEBT:
+  - Reads corvus.person.position_id and corvus.customer_person.position_id (marked for DROP)
+  - Will break when sprint5/3_2026-09-07_drops_columnas_obsoletas.sql is executed
+  - See: docs/00-catalog/gobierno.md#Hallazgos
+
+  No mutations, no state changes. Safe to call multiple times (idempotent).
+
+security:
+  - type: parameter
+    requirement: "Both p_customer_id and p_person_id must not be NULL"

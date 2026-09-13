@@ -1,0 +1,10 @@
+id: EP-DOC-GET-MY-DOCUMENTS
+type: endpoint
+method: GET
+path: /document-flow/documents/my-documents
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:62
+controller: api-sgsi/src/controllers/doc-documents.ts#handleGetMyDocuments
+model: api-sgsi/src/models/doc-documents.ts#getMyDocuments
+function: FN-DOC-GET-MY-DOCUMENTS
+status: CONFIRMED

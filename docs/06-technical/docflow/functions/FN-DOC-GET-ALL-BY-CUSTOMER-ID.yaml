@@ -1,0 +1,14 @@
+id: FN-DOC-GET-ALL-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.doc_get_all_by_customer_id
+definedIn: funciones_sgsi.sql:2941-2991
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.base_document_type, access: READ }
+  - { table: sgsi.document_type, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Listado de "Documentos vigentes": una fila por documento, con la versión más
+  representativa (prioriza VIGENTE > EN_EDICION > BORRADOR > OBSOLETO).

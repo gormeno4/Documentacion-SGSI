@@ -1,0 +1,15 @@
+id: FN-INBOX-OPERATIVE-RISK-MATRIX
+type: db-function
+name: sgsi.get_operative_risk_matrix
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/get_operative_risk_matrix.sql:3-101
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS
+tables:
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.probability_impact_level, access: READ }
+notes: >
+  Called conditionally by FN-INBOX-GET-MAIN only if user is asset_group owner (group_owner).
+  Returns JSONB with matrices (3x3/4x4/5x5-alias) and risk items for owned asset groups.
+  Calls FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS (documented in DOM-RSK) for threat
+  scenarios. No mutations. Read-only aggregation from risk domain.

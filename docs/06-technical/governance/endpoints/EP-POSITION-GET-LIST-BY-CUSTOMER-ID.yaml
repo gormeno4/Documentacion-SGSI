@@ -1,0 +1,14 @@
+id: EP-POSITION-GET-LIST-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /position/getPositionListByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/position.ts:17
+controller: api-sgsi/src/controllers/position.ts#getPositionListByCustomerId
+model: api-sgsi/src/models/position.ts#getPositionListByCustomerId
+function: FN-V2-POSITION-GET-BY-CUSTOMERID
+status: CONFIRMED
+notes: >
+  verifyAdminOrUsuario explicito. Convergencia: Cargos (FLOW-GOV-009), Organigrama (FLOW-GOV-010),
+  Registro de Comunicaciones (FLOW-GOV-012, para el selector de emisor), Roles y Responsabilidades
+  (FLOW-GOV-003) y el Wizard.

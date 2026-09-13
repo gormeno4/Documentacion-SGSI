@@ -1,0 +1,15 @@
+id: FN-V2-STRATEGIC-OBJECTIVE-GET-ACTIVE-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_strategic_objective_get_active_by_customer_id
+definedIn: funciones_sgsi.sql:28195-28252
+status: CONFIRMED
+tables:
+  - { table: sgsi.strategic_objective, access: READ }
+  - { table: sgsi.strategic_objective_analysis, access: READ }
+notes: >
+  Invocada por el mismo controller/endpoint que
+  FN-V2-STRATEGIC-OBJECTIVE-GET-BY-CUSTOMER-ID (EP-STRATEGIC-OBJECTIVE-GET-BY-CUSTOMER-ID),
+  cuando el request trae ?onlyActive=true (usado por kpi.tsx para poblar el
+  selector de objetivos). El esquema de este grafo no modela ramas de un mismo
+  endpoint por query param como aristas separadas — documentado aquí en prosa
+  en vez de generar un segundo nodo endpoint para el mismo path físico.

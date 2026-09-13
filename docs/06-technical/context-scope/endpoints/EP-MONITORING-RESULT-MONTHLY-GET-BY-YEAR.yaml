@@ -1,0 +1,10 @@
+id: EP-MONITORING-RESULT-MONTHLY-GET-BY-YEAR
+type: endpoint
+method: GET
+path: /monitoring-result/monthly/year/:year
+access: admin-or-usuario
+router: api-sgsi/src/routers/monitoringResult.ts:7
+controller: api-sgsi/src/controllers/monitoringResult.ts#getMonthlyByYear
+model: api-sgsi/src/models/monitoringResult.ts#getMonthlyByCustomerYear
+function: FN-V2-MONITORING-RESULT-MONTHLY-GET-BY-CUSTOMER-YEAR
+status: CONFIRMED

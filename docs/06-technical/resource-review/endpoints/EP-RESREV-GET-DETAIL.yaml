@@ -1,0 +1,51 @@
+id: EP-RESREV-GET-DETAIL
+type: endpoint
+method: GET
+path: /resource-review/{id}
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:19
+controller: api-sgsi/src/controllers/resourceReview.ts#getById
+function: FN-RESREV-GET-DETAIL
+status: CONFIRMED
+description: "SUPPORT endpoint. Get review detail by ID"
+
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+
+responseBody:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+    code:
+      type: string
+    fechaSesion:
+      type: string
+      format: date
+    tipoActoId:
+      type: string
+      format: uuid
+    tipoActoName:
+      type: string
+    participantPersonIds:
+      type: array
+      items:
+        type: string
+        format: uuid
+    resumenDecisiones:
+      type: string
+    estadoSuficiencia:
+      type: string
+    evidenciaPath:
+      type: string
+    evidenciaFileName:
+      type: string
+
+securityRules:
+  - "tenant isolation: validates review belongs to customer"

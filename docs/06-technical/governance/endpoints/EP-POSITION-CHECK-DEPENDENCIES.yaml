@@ -1,0 +1,13 @@
+id: EP-POSITION-CHECK-DEPENDENCIES
+type: endpoint
+method: GET
+path: /position/dependencies/:id
+access: admin-only
+router: api-sgsi/src/routers/position.ts:25
+controller: api-sgsi/src/controllers/position.ts#checkDependencies
+model: api-sgsi/src/models/position.ts#checkDependencies
+function: FN-CHECK-POSITION-DEPENDENCIES
+status: CONFIRMED
+notes: >
+  Ruta con verifyAdminOnly. El controller SI pasa dataUser(req).customerId a la funcion
+  (controllers/position.ts:125-128), que es de 2 argumentos desde sprint5.

@@ -1,0 +1,14 @@
+id: EP-COMMUNICATIONS-MATRIX-ROW-UPSERT
+type: endpoint
+method: POST
+path: /communications-matrix/row/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:16
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#rowUpsert
+model: api-sgsi/src/models/communicationsMatrix.ts#rowUpsert
+function: FN-V2-COMMUNICATIONS-MATRIX-ROW-UPSERT
+status: CONFIRMED
+notes: >
+  HALLAZGO DE SEGURIDAD (authorization, no corregido): router montado admin-or-usuario (app.ts:95)
+  y ruta sin verifyAdminOnly, sin ningun consumidor no-admin. Un usuario sin rol Admin puede crear
+  o editar filas del plan de difusion.

@@ -1,0 +1,13 @@
+id: FN-DOC-VERSIONS-SET-PUBLISHED
+type: db-function
+name: sgsi.doc_versions_set_published
+definedIn: funciones_sgsi.sql:4832-4843
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: WRITE }
+notes: >
+  Marca la versión indicada como VIGENTE con publication_date = hoy. Invocada desde
+  los 3 modelos upsertPublished*Document (Cargo/Inventario/Organigrama), como paso
+  final de la generación automática de documento al publicar — nótese que es un
+  camino de publicación DISTINTO al de FN-DOC-FLOW-PUBLISH para entity_type='DOCUMENT'
+  (que usa su propio UPDATE inline).

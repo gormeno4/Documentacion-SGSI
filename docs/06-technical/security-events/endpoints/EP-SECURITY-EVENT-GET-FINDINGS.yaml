@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-GET-FINDINGS
+type: endpoint
+method: GET
+path: /security-events/findings/:eventId
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:47
+controller: api-sgsi/src/controllers/securityEvent.ts#getFindingsByEventId
+model: api-sgsi/src/models/securityEvent.ts#getFindingsByEventId
+function: FN-V2-INCIDENT-FINDINGS-GET-BY-EVENT-ID
+status: CONFIRMED
+notes: "Read findings for an event. Technical dependency, not a FLOW."

@@ -1,0 +1,11 @@
+id: FN-V2-PESTEL-UPSERT
+type: db-function
+name: sgsi.v2_pestel_upsert
+definedIn: funciones_sgsi.sql:22716-22787
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel, access: WRITE }
+  - { table: sgsi.pestel_analysis, access: WRITE }
+notes: >
+  Auto-siembra sgsi.pestel_analysis al guardar el primer ítem de alguna de las
+  6 dimensiones (política, económica, social, tecnológica, ecológica, legal).

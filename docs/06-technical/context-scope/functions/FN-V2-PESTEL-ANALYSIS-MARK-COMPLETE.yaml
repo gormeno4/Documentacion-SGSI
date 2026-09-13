@@ -1,0 +1,7 @@
+id: FN-V2-PESTEL-ANALYSIS-MARK-COMPLETE
+type: db-function
+name: sgsi.v2_pestel_analysis_mark_complete
+definedIn: funciones_sgsi.sql:22515-22563
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel_analysis, access: WRITE }

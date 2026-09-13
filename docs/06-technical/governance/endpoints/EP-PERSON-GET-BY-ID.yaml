@@ -1,0 +1,14 @@
+id: EP-PERSON-GET-BY-ID
+type: endpoint
+method: GET
+path: /person/getById
+access: admin-or-usuario
+router: api-sgsi/src/routers/person.ts:21
+controller: api-sgsi/src/controllers/person.ts#getById
+model: api-sgsi/src/models/person.ts#getById
+function: FN-V2-PERSON-GET-BY-ID
+status: CONFIRMED
+notes: >
+  El id viaja como query param opcional; el modelo si pasa customerId y applicationId del token,
+  por lo que la lectura queda scoped. Acceso admin-or-usuario INTENCIONAL: lo consume /profile
+  (profile/SecurityProfileSection.tsx:79), accesible para usuarios no admin.

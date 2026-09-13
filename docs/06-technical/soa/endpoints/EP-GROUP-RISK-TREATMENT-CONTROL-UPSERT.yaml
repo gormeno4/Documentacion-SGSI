@@ -1,0 +1,16 @@
+id: EP-GROUP-RISK-TREATMENT-CONTROL-UPSERT
+type: endpoint
+method: POST
+path: /group-risk-treatment-control/
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentControlRouter.ts:7
+controller: api-sgsi/src/controllers/groupRiskTreatmentControl.ts#upsert
+model: api-sgsi/src/models/groupRiskTreatmentControl.ts#upsert
+function: FN-V2-GROUP-RISK-TREATMENT-CONTROL-UPSERT
+status: CONFIRMED
+notes: >
+  El nombre del método de store frontend (linkControlsBatch) sugiere un endpoint de
+  batch real; este endpoint solo acepta un par {groupRiskTreatmentId, idBaseControlClause}
+  por llamada — el "batch" es enteramente client-side (Promise.all de N llamadas
+  individuales a este mismo endpoint). Distinto de EP-GROUP-RISK-TREATMENT-UPSERT
+  (DOM-RSK, router /group-risk-treatment/) pese al nombre similar.

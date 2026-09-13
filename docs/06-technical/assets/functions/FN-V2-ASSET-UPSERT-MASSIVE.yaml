@@ -1,0 +1,13 @@
+id: FN-V2-ASSET-UPSERT-MASSIVE
+type: db-function
+name: sgsi.v2_asset_upsert_massive
+definedIn: funciones_sgsi.sql:12621-12680
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-UPSERT               # una vez por cada fila del arreglo, dentro de un LOOP
+  - FN-V2-ASSET-GET-LIST-BY-CUSTOMER-ID   # RETURN incluye la lista actualizada de activos
+tables: []
+notes: >
+  No accede a tablas directamente. Delega fila por fila en sgsi.v2_asset_upsert (mismo
+  camino que Crear/Editar activo); los errores por fila se capturan individualmente
+  (BEGIN/EXCEPTION) y no abortan el resto del lote.

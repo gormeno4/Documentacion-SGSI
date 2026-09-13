@@ -1,0 +1,15 @@
+id: FN-GROUP-RISK-TREATMENT-ACTION-UPSERT
+type: db-function
+name: sgsi.group_risk_treatment_action_upsert
+definedIn: funciones_sgsi.sql:6102-6174
+status: CONFIRMED
+calls:
+  - FN-GROUP-RISK-TREATMENT-ACTION-GET-LIST
+tables:
+  - { table: sgsi.group_risk_treatment_action, access: WRITE }
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: sgsi.group_risk_treatment_action_progress, access: READ }
+notes: >
+  RAISE EXCEPTION 'GROUP_RISK_TREATMENT: TARGET_DATE_REQUIRED' al crear sin
+  fecha objetivo; 'TREATMENT_NOT_FOUND' si el escenario no tiene tratamiento
+  creado todavía; 'ACTION_LOCKED' al editar una acción con progreso ya al 100%.

@@ -1,0 +1,15 @@
+id: EP-GOVERNMENT-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /government/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/government.ts:8
+controller: api-sgsi/src/controllers/government.ts#getByCustomerId
+model: api-sgsi/src/models/government.ts#getByCustomerId
+function: FN-V2-GOVERNMENT-GET-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  Lectura correctamente scoped por customerId + applicationId del token. Sin verifyAdminOnly y sin
+  consumidor no-admin identificado: clasificado AMBIGUOUS en la revision de seguridad, no como
+  vulnerabilidad. El controller deja un console.log('[DEBUG]...') con el payload completo en
+  codigo desplegado (controllers/government.ts:21).

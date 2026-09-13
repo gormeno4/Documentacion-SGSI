@@ -1,0 +1,8 @@
+id: FN-V2-PESTEL-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_pestel_get_by_customer_id
+definedIn: funciones_sgsi.sql:22648-22711
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel, access: READ }
+  - { table: sgsi.pestel_analysis, access: READ }

@@ -1,0 +1,23 @@
+id: EP-TRAIN-LIST
+type: endpoint
+method: GET
+path: /training/getListByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/training.ts:10
+controller: api-sgsi/src/controllers/training.ts#getListByCustomerId
+model: api-sgsi/src/models/training.ts#getListByCustomerId
+query: api-sgsi/src/queries/training.ts#_getListByCustomerId
+function: FN-TRAIN-GET-LIST
+status: CONFIRMED
+description: "Listar todas las capacitaciones del cliente autenticado"
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/ITraining"
+
+securityRules:
+  - "tenant isolation: automatic from dataUser(req).customerId"
+
+notes: |
+  SUPPORT endpoint. No es FLOW propio, es invocado tras FLOW-TRAIN-001 y FLOW-TRAIN-002 para refrescar lista.

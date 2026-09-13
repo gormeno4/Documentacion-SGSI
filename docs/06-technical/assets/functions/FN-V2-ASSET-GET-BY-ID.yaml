@@ -1,0 +1,18 @@
+id: FN-V2-ASSET-GET-BY-ID
+type: db-function
+name: sgsi.v2_asset_get_by_id
+definedIn: funciones_sgsi.sql:9622-9829
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset, access: READ }
+  - { table: corvus.area, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.cia_level, access: READ }
+  - { table: sgsi.base_asset_type, access: READ }
+  - { table: sgsi.asset_threat_risk, access: READ }
+notes: >
+  Es también el "return value" de sgsi.v2_asset_upsert (ver FN-V2-ASSET-UPSERT.calls),
+  no solo del endpoint de consulta directa.

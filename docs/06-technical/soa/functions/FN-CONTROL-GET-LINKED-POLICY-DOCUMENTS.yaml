@@ -1,0 +1,19 @@
+id: FN-CONTROL-GET-LINKED-POLICY-DOCUMENTS
+type: db-function
+name: sgsi.control_get_linked_policy_documents
+definedIn: funciones_sgsi.sql:452-510
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.doc_version_controls, access: READ }
+  - { table: sgsi.base_document_type, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Viva únicamente de forma interna — invocada por FN-V2-SOA-GET-ALL-CONTROLS,
+  FN-V2-CONTROL-SOA-GET-ONE y FN-V2-SOA-GET-ALL-CONTROLS-BY-ANALYSIS. Retorna los
+  documentos tipo "Política" (base_document_type.code = 'POLITICA') vigentes que tienen
+  ese control vinculado (sgsi.doc_version_controls.asset_control_id) — nombre de
+  parámetro heredado (asset_control_id) aunque en este módulo el vínculo real es con
+  base_control_clauses de SOA, no con sgsi.asset_control (catálogo "Controles" legado).
+  Sin endpoint HTTP propio.

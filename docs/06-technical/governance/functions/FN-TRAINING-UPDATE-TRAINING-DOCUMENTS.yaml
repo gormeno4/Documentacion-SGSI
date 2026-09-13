@@ -1,0 +1,20 @@
+id: FN-TRAINING-UPDATE-TRAINING-DOCUMENTS
+type: db-function
+name: sgsi.training_update_training_documents
+definedIn: funciones_sgsi.sql:9330-9402
+status: CONFIRMED
+calls:
+  - FN-V2-TRAINING-DOCUMENT-GET-BY-TRAINING-ID
+tables:
+  - { table: sgsi.person_training, access: WRITE }
+notes: >
+  Actualiza la fila de sgsi.person_training con el certificado y su resultado (archivo, mime,
+  tamano, estado, asistencia, porcentaje de aprobacion, fecha de completitud). NO crea la
+  asignacion: la fila person_training la crea el modulo Capacitaciones (dependencia externa
+  training). El archivo se registra ademas en sgsi.file desde Node
+  (entity_type='training-certificate', dependencia externa file).
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): el controller
+  (controllers/person.ts:303-367) no valida que personTrainingId pertenezca al cliente
+  autenticado, pese a que el modelo si tiene el helper person_training_get_customer_id - usado
+  solo en el borrado.

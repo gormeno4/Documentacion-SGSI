@@ -1,0 +1,16 @@
+id: FN-DOC-FLOW-GET-READY-TO-PUBLISH-EMAIL-CONTEXT
+type: db-function
+name: sgsi.doc_flow_get_ready_to_publish_email_context
+definedIn: funciones_sgsi.sql:1940-1991
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+notes: >
+  Invocada desde el controller (handleApproveStep) solo cuando no queda próximo
+  aprobador pendiente — notifica al creador/publicador que el proceso quedó
+  PENDIENTE_PUBLICAR — dependencia externa `email`.

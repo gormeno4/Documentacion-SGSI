@@ -1,0 +1,14 @@
+id: FN-V2-CONTROL-SOA-GET-APPLICABLE
+type: db-function
+name: sgsi.v2_control_soa_get_applicable
+definedIn: funciones_sgsi.sql:14119-14149
+status: CONFIRMED
+calls:
+  - FN-V2-SOA-ANALYSIS-GET-ACTIVE
+tables:
+  - { table: sgsi.control_soa, access: READ }
+  - { table: sgsi.base_control_clauses, access: READ }
+notes: >
+  Retorna solo los controles con applies=true de la Declaración activa — consumida por
+  FLOW-SOA-006 (selector del vínculo de controles a riesgos), reutilizando esta misma
+  function/endpoint sin duplicarla.

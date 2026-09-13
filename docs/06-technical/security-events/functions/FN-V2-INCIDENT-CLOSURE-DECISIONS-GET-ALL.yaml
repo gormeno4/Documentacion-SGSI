@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-CLOSURE-DECISIONS-GET-ALL
+type: db-function
+name: sgsi.v2_incident_closure_decisions_get_all
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_severities, access: READ }
+notes: "Catalog read: closure decision types (Resolved, Accepted, Postponed, etc.)."

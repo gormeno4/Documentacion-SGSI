@@ -1,0 +1,69 @@
+id: EP-RESREV-UPSERT
+type: endpoint
+method: POST
+path: /resource-review/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:20
+controller: api-sgsi/src/controllers/resourceReview.ts#upsert
+model: api-sgsi/src/models/resourceReview.ts#upsert
+function: FN-RESREV-UPSERT
+status: CONFIRMED
+
+requestBody:
+  type: object
+  required: [fechaSesion, tipoActoId, customerId]
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "If null, create; if present, update"
+    customerId:
+      type: string
+      format: uuid
+    fechaSesion:
+      type: string
+      format: date
+      description: "Session date (ISO 8601)"
+    tipoActoId:
+      type: string
+      format: uuid
+      description: "Activity type (comité, asamblea, etc.)"
+    participantPersonIds:
+      type: array
+      items:
+        type: string
+        format: uuid
+      description: "Participant person IDs"
+    resumenDecisiones:
+      type: string
+      description: "Summary of decisions"
+    estadoSuficiencia:
+      type: string
+      default: "suficiente"
+      description: "Sufficiency status"
+    evidenciaPath:
+      type: string
+    evidenciaFileName:
+      type: string
+    evidenciaMimeType:
+      type: string
+    evidenciaSizeBytes:
+      type: integer
+
+responseBody:
+  type: object
+  properties:
+    list:
+      type: array
+      items:
+        $ref: "#/components/schemas/IResourceReview"
+    id:
+      type: string
+      format: uuid
+      description: "Created/updated review ID"
+
+autoGeneration:
+  code: "REV-YYYY-NNN"
+  example: "REV-2026-001"
+  sequenceBy: "year + customer"
+  uniqueness: "guaranteed within customer/year"

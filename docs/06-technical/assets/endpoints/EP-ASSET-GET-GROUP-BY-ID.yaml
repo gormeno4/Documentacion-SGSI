@@ -1,0 +1,10 @@
+id: EP-ASSET-GET-GROUP-BY-ID
+type: endpoint
+method: GET
+path: /asset/getGroupById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/asset.ts:29
+controller: api-sgsi/src/controllers/asset.ts#getGroupById
+model: api-sgsi/src/models/asset.ts#getGroupById
+function: FN-V2-ASSET-GROUP-GET-BY-ID
+status: CONFIRMED

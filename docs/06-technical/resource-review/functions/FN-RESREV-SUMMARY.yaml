@@ -1,0 +1,13 @@
+id: FN-RESREV-SUMMARY
+type: db-function
+schema: sgsi
+name: resource_review_get_summary
+signature: "resource_review_get_summary(p_customer_id uuid) RETURNS json"
+status: CONFIRMED
+description: "Get aggregate summary"
+
+tables:
+  - table: sgsi.resource_review
+    access: READ
+
+notes: "Support function. Dashboard aggregates."

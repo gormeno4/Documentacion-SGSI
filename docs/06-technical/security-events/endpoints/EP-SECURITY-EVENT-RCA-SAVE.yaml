@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-RCA-SAVE
+type: endpoint
+method: POST
+path: /security-events/rca
+access: investigator
+router: api-sgsi/src/routers/securityEvent.ts:62
+controller: api-sgsi/src/controllers/securityEvent.ts#upsertRca
+model: api-sgsi/src/models/securityEvent.ts#upsertRca
+function: FN-V2-INCIDENT-RCA-UPSERT
+status: CONFIRMED

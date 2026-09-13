@@ -1,0 +1,12 @@
+id: FN-V2-FREQUENCY-GET-ALL
+type: db-function
+name: sgsi.v2_frequency_get_all
+definedIn: funciones_sgsi.sql:18370-18396
+status: CONFIRMED
+tables:
+  - { table: sgsi.frequency, access: READ }
+notes: >
+  Catálogo global (misma lista para todos los clientes). Alcanzada por 2
+  endpoints físicos con el mismo handler (GET /kpi/frequencies y el alias
+  huérfano GET /kpi/frequencies/listByCustomerId) — solo el primero tiene
+  consumidor real en app-sgsi.

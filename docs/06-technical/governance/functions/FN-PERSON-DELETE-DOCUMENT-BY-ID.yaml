@@ -1,0 +1,12 @@
+id: FN-PERSON-DELETE-DOCUMENT-BY-ID
+type: db-function
+name: sgsi.person_delete_document_by_id
+definedIn: funciones_sgsi.sql:6769-6795
+status: CONFIRMED
+calls:
+  - FN-V2-PERSON-DOCUMENT-GET-BY-PERSON-ID
+tables:
+  - { table: sgsi.person_document, access: WRITE }
+notes: >
+  Soft delete con RETURNING person_id, para poder devolver el listado restante en la misma
+  llamada. No borra el archivo del disco.

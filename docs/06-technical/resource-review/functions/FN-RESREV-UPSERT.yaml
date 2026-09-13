@@ -1,0 +1,33 @@
+id: FN-RESREV-UPSERT
+type: db-function
+schema: sgsi
+name: resource_review_upsert
+signature: "resource_review_upsert(p_json_data jsonb, p_user_connected_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:7912-8005
+status: CONFIRMED
+description: "Create or update resource review, auto-generating code if new"
+
+tables:
+  - table: sgsi.resource_review
+    access: WRITE
+    operations: "INSERT (with auto-generated code), UPDATE"
+  - table: sgsi.resource_review_act_type
+    access: READ
+    operations: "FK validation (not enforced in function)"
+
+autoGeneration:
+  field: code
+  format: "REV-YYYY-NNN"
+  sequenceBy: "year + customer"
+  algorithm: "SELECT MAX(number) WHERE code LIKE 'REV-YYYY-%' + 1"
+
+businessRules:
+  - "title is required"
+  - "tipoActoId is required"
+  - "estadoSuficiencia defaults to 'suficiente'"
+  - "No validation that tipoActoId exists"
+
+notes: |
+  Code is guaranteed unique within customer/year.
+  Participants are stored as uuid array.
+  Evidencia fields are optional and can be updated independently.

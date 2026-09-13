@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-UPSERT
+type: endpoint
+method: POST
+path: /security-events/upsert
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:7
+controller: api-sgsi/src/controllers/securityEvent.ts#upsert
+model: api-sgsi/src/models/securityEvent.ts#upsert
+function: FN-V2-SECURITY-EVENT-UPSERT
+status: CONFIRMED

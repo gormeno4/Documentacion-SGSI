@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-ACTION-PLANS-UPSERT-BULK
+type: db-function
+name: sgsi.v2_incident_action_plans_upsert_bulk
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_action_plans, access: WRITE }
+notes: "Bulk insert of corrective actions. Accepts array of action objects and stores them atomically."

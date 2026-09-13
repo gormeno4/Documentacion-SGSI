@@ -1,0 +1,40 @@
+id: EP-INIT-CHANGE-STATUS
+type: endpoint
+method: POST
+path: /initiative/changeStatus
+access: admin-or-usuario
+router: api-sgsi/src/routers/initiative.ts:8
+controller: api-sgsi/src/controllers/initiative.ts#changeStatus
+model: api-sgsi/src/models/initiative.ts#changeStatus
+function: FN-INIT-CHANGE-STATUS
+status: CONFIRMED
+
+requestBody:
+  type: object
+  required: [initiativeId, newStatus, justification]
+  properties:
+    initiativeId:
+      type: string
+      format: uuid
+    newStatus:
+      type: string
+      enum: ["planificada", "en_curso", "completada", "cancelada"]
+    justification:
+      type: string
+      minLength: 1
+      description: "Required non-empty reason for state change"
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/IInitiative"
+
+stateValidation:
+  planificada: ["en_curso", "cancelada"]
+  en_curso: ["completada", "cancelada"]
+  completada: []
+  cancelada: []
+
+auditLog:
+  table: sgsi.initiative_status_log
+  fields: [initiative_id, from_status, to_status, justification, created_by]

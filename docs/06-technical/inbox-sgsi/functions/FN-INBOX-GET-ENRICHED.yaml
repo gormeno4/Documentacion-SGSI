@@ -1,0 +1,22 @@
+id: FN-INBOX-GET-ENRICHED
+type: db-function
+name: sgsi.v2_inbox_get_enriched_activity
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/v2_inbox_get_enriched_activity.sql:3-47
+status: CONFIRMED
+calls:
+  - FN-INBOX-ACTIVITY
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.doc_document_groups, access: READ }
+  - { table: sgsi.doc_flow_group, access: READ }
+  - { table: corvus.area, access: READ }
+  - { table: sgsi.base_document_type, access: READ }
+notes: >
+  Secondary aggregator function for GET /inbox/enriched-activity endpoint (consumed by /profile).
+  Filters inbox activities to HISTORIAL only. Enriches with area_id, area_name, base_type_name,
+  base_type_code, group_name for compliance/audit display. No mutations. Calls FN-INBOX-ACTIVITY
+  for core items, filters to completed state.

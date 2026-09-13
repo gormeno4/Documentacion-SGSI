@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-GET-CLOSURE
+type: endpoint
+method: GET
+path: /security-events/closure/:eventId
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:58
+controller: api-sgsi/src/controllers/securityEvent.ts#getClosureByEventId
+model: api-sgsi/src/models/securityEvent.ts#getClosureByEventId
+function: FN-V2-INCIDENT-CLOSURE-GET-BY-EVENT-ID
+status: CONFIRMED
+notes: "Read closure record for an event. Technical dependency, not a FLOW."

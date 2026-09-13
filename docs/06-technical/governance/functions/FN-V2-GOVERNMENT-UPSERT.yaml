@@ -1,0 +1,22 @@
+id: FN-V2-GOVERNMENT-UPSERT
+type: db-function
+name: sgsi.v2_government_upsert
+definedIn: funciones_sgsi.sql:18496-18630
+status: CONFIRMED
+calls:
+  - FN-V2-GOVERNMENT-GET-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.staff, access: WRITE }
+  - { table: sgsi.person_staff, access: WRITE }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.user_rol, access: READ }
+  - { table: corvus.rol, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Auto-siembra los dos staff de sistema ('RESP_SGSI', 'ALTA_DIR') con ON CONFLICT (company_id,
+  code) si no existen. Validacion zero-trust: el responsable debe tener rol Admin para ese
+  customer + application (o rol Admin app-agnostico con application_id NULL) y pertenecer al
+  customer via corvus.customer_person; si no, lanza P0001 que el controller traduce a 409. La Alta
+  Direccion se reemplaza por completo: soft-delete de TODAS las filas del staff ALTA_DIR y
+  reinsercion del array recibido.

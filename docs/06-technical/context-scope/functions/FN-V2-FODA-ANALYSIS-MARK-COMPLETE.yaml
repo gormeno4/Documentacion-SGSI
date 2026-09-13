@@ -1,0 +1,7 @@
+id: FN-V2-FODA-ANALYSIS-MARK-COMPLETE
+type: db-function
+name: sgsi.v2_foda_analysis_mark_complete
+definedIn: funciones_sgsi.sql:18034-18071
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda_analysis, access: WRITE }

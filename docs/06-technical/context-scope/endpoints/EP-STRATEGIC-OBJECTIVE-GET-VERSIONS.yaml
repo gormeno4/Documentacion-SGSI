@@ -1,0 +1,10 @@
+id: EP-STRATEGIC-OBJECTIVE-GET-VERSIONS
+type: endpoint
+method: GET
+path: /strategic-objective/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:25
+controller: api-sgsi/src/controllers/strategicObjective.ts#getVersions
+model: api-sgsi/src/models/strategicObjective.ts#getVersions
+function: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-GET-VERSIONS
+status: CONFIRMED

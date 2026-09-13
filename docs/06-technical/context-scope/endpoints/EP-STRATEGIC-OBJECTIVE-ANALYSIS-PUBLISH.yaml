@@ -1,0 +1,17 @@
+id: EP-STRATEGIC-OBJECTIVE-ANALYSIS-PUBLISH
+type: endpoint
+method: POST
+path: /strategic-objective/analysis/publish
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:23
+controller: api-sgsi/src/controllers/strategicObjective.ts#publish
+model: api-sgsi/src/models/strategicObjective.ts#publish
+function: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-PUBLISH
+status: CONFIRMED
+notes: >
+  Orden invertido respecto a FODA/PESTEL (Technical Debt, ver
+  docs/00-catalog/contexto-alcance.md § Hallazgos): la UI llama primero a este
+  endpoint (api-sgsi/src/components/functional/context-scope/strategic-objective/strategic-objective.tsx:397,
+  hace el trabajo real: guard is_complete=false aún vigente) y recién después
+  a Doc-Flow, que repite el mismo flip is_active/is_complete sin guard —
+  redundante pero no destructivo.

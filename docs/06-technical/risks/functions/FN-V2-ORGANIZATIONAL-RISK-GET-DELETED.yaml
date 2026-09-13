@@ -1,0 +1,11 @@
+id: FN-V2-ORGANIZATIONAL-RISK-GET-DELETED
+type: db-function
+name: sgsi.v2_organizational_risk_get_deleted
+definedIn: funciones_sgsi.sql:22040-22082
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.organizational_risk, access: READ }
+  - { table: sgsi.organizational_risk_control, access: READ }
+  - { table: sgsi.base_control_clauses, access: READ }
+notes: Papelera — solo filas con deleted_at IS NOT NULL.

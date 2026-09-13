@@ -1,0 +1,17 @@
+id: FN-DOC-FLOW-GET-REJECT-EMAIL-CONTEXT
+type: db-function
+name: sgsi.doc_flow_get_reject_email_context
+definedIn: funciones_sgsi.sql:1996-2075
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+notes: >
+  Invocada desde el controller (handleRejectStep) para notificar al editor/creador
+  del proceso que su documento/entidad fue rechazado, con la justificación del
+  rechazo — dependencia externa `email`.

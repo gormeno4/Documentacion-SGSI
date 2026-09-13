@@ -1,0 +1,12 @@
+id: FN-STK-VERSION-GET
+type: db-function
+name: sgsi.v2_stakeholder_analysis_get_version_by_id
+domain: DOM-STK
+status: CONFIRMED
+tables:
+  - { table: sgsi.stake_holder_analysis, access: READ }
+  - { table: sgsi.stake_holder, access: READ }
+  - { table: sgsi.stake_holder_needs, access: READ }
+  - { table: sgsi.stake_holder_expectations, access: READ }
+  - { table: sgsi.stake_holder_information_security, access: READ }
+  - { table: sgsi.stake_holder_legal_regulatory, access: READ }

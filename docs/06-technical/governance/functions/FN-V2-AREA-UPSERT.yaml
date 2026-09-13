@@ -1,0 +1,15 @@
+id: FN-V2-AREA-UPSERT
+type: db-function
+name: corvus.v2_area_upsert
+definedIn: funciones_corvus.sql:23301-23373
+status: CONFIRMED
+calls:
+  - FN-V2-AREA-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: corvus.area, access: WRITE }
+notes: >
+  Crea o edita un area, scoped por company_id = p_customer_id en ambas ramas. HALLAZGO: la rama
+  UPDATE setea deleted_at = NULL y deleted_by = NULL, es decir RESUCITA un area dada de baja si se
+  reutiliza su id. Cuando no viene code, lo autogenera con corvus.generate_sgsi_code('AREA', ...)
+  - funcion utilitaria compartida, no nodalizada (mismo criterio que FN-V2-ASSET-UPSERT en
+  DOM-ACT).

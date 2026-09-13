@@ -1,0 +1,10 @@
+id: EP-THRESHOLD-GOAL-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /threshold-goal/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/thresholdGoal.ts:7
+controller: api-sgsi/src/controllers/thresholdGoal.ts#getByCustomerId
+model: api-sgsi/src/models/thresholdGoal.ts#getByCustomerId
+function: FN-V2-THRESHOLD-GOAL-GET-BY-CUSTOMER-ID
+status: CONFIRMED

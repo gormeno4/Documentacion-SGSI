@@ -1,0 +1,14 @@
+id: FN-DOC-FLOW-BACKFILL-SNAPSHOT-VERSION-ID
+type: db-function
+name: sgsi.doc_flow_backfill_snapshot_version_id
+definedIn: funciones_sgsi.sql:774-785
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_snapshots, access: WRITE }
+notes: >
+  Rellena version_id en todos los snapshots del proceso que aún no lo tienen — para
+  que el historial (rechazo + aprobación) quede asociado a la misma versión de
+  documento generada. Invocada desde controllers/doc-flow.ts#handlePublishProcess
+  (modelo updateSnapshotVersionId/backfillSnapshotVersionId), dentro de la misma
+  transacción de publicación, para las 4 ramas con generación/actualización de
+  documento (CARGO, ASSET_INVENTORY, ORGANIGRAMA, STAKEHOLDER).

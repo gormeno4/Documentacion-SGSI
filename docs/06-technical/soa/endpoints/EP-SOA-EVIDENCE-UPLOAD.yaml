@@ -1,0 +1,15 @@
+id: EP-SOA-EVIDENCE-UPLOAD
+type: endpoint
+method: POST
+path: /soa/evidence/upload
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:32
+controller: api-sgsi/src/controllers/soa.ts#uploadEvidenceFile
+model: api-sgsi/src/models/file.ts#upsert
+status: CONFIRMED
+notes: >
+  No ejecuta ninguna function propia de DOM-SOA: solo sube el archivo físico y crea el
+  registro en sgsi.file vía sgsi.file_upsert (dominio externo "file", no documentado
+  aquí). El vínculo real control_soa_evidence se crea después, con el file_id retornado
+  por este endpoint, vía EP-SOA-EVIDENCE-UPSERT (FN-V2-CONTROL-SOA-EVIDENCE-UPSERT).
+  Middleware adicional: multer (uploadSoaEvidence.single("file")).

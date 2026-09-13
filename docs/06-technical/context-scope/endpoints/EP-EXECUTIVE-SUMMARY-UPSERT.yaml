@@ -1,0 +1,10 @@
+id: EP-EXECUTIVE-SUMMARY-UPSERT
+type: endpoint
+method: POST
+path: /executive-summary/
+access: admin-or-usuario
+router: api-sgsi/src/routers/executiveSummary.ts:16
+controller: api-sgsi/src/controllers/executiveSummary.ts#upsert
+model: api-sgsi/src/models/executiveSummary.ts#upsert
+function: FN-V2-EXECUTIVE-SUMMARY-UPSERT
+status: CONFIRMED

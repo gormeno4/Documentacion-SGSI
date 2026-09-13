@@ -1,0 +1,14 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-ROW-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_communications_matrix_row_delete_by_id
+definedIn: funciones_sgsi.sql:13478-13511
+status: CONFIRMED
+calls:
+  - FN-V2-COMMUNICATIONS-MATRIX-GET-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.communications_matrix_row, access: WRITE }
+  - { table: sgsi.communications_matrix_analysis, access: READ }
+notes: >
+  Soft delete de una fila, validando por JOIN que pertenezca al customer indicado (devuelve
+  success:false si no). Bloquea si la version esta finalizada. Misma limitacion que row_upsert: no
+  consulta el estado del proceso Doc-Flow.

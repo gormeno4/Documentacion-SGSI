@@ -1,0 +1,16 @@
+id: EP-COMMUNICATIONS-MATRIX-ROW-DELETE-BY-ID
+type: endpoint
+method: DELETE
+path: /communications-matrix/row/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:17
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#rowDeleteById
+model: api-sgsi/src/models/communicationsMatrix.ts#rowDeleteById
+function: FN-V2-COMMUNICATIONS-MATRIX-ROW-DELETE-BY-ID
+status: CONFIRMED
+notes: >
+  Unico endpoint del dominio que usa el verbo DELETE (el resto de las bajas usan POST
+  .../deleteById/:id). El tenant si se valida dentro de la funcion SQL (JOIN por customer_id).
+
+  HALLAZGO DE SEGURIDAD (authorization, no corregido): sin verifyAdminOnly y sin consumidor
+  no-admin.

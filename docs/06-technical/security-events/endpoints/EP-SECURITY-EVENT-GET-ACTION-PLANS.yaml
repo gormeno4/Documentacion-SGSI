@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-GET-ACTION-PLANS
+type: endpoint
+method: GET
+path: /security-events/action-plans/:eventId
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:70
+controller: api-sgsi/src/controllers/securityEvent.ts#getActionPlansByEventId
+model: api-sgsi/src/models/securityEvent.ts#getActionPlansByEventId
+function: FN-V2-INCIDENT-ACTION-PLANS-GET-BY-EVENT-ID
+status: CONFIRMED
+notes: "Read action plans for an event. Technical dependency, not a FLOW."

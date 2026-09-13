@@ -1,0 +1,80 @@
+id: EP-DASH-SUMMARY
+type: endpoint
+method: GET
+path: /dashboard/summary
+access: admin-or-usuario
+router: api-sgsi/src/routers/dashboard.ts:7
+controller: api-sgsi/src/controllers/dashboard.ts#getSummary
+model: api-sgsi/src/models/dashboard.ts#getSummary
+function: FN-DASH-SUMMARY
+status: CONFIRMED
+description: "Resumen agregado del SGSI con métricas, progreso por etapa y pendientes urgentes (solo lectura)"
+
+parameters: []
+
+returns:
+  type: json
+  structure: |
+    {
+      "mainScore": number,
+      "mainMessage": string,
+      "auditStatus": string,
+      "auditMessage": string,
+      "metrics": {
+        "criticalRisksWithoutTreatment": number,
+        "documentsCount": number,
+        "documentsExpected": number,
+        "documentsPending": number,
+        "soaControlsTotal": number,
+        "soaControlsDefined": number,
+        "soaControlsDefinedPercent": number,
+        "nextMilestone": string,
+        "nextMilestoneEstimate": string
+      },
+      "stages": [
+        { "name": string, "percent": number }
+      ],
+      "urgentPending": [
+        { "title": string, "detail": string, "severity": string }
+      ]
+    }
+
+security:
+  - type: jwt-auth
+    requirement: "customerId from JWT token"
+  - type: null-check
+    requirement: "customerId IS NOT NULL"
+
+classification: SUPPORT
+operationType: READ
+aggregator: true
+readOnly: true
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Reads asset count for risk analysis progress"
+    tables: [sgsi.asset]
+  - domain: DOM-CTX
+    reason: "Reads scope completeness and KPI stage progress"
+    tables: [sgsi.scope, sgsi.wizard_general_info]
+  - domain: DOM-RSK
+    reason: "Counts critical risks without treatment; evaluates asset risk coverage"
+    tables: [sgsi.asset_threat_risk, sgsi.asset_threat_risk_evaluation, sgsi.ai_asset_risk_suggestions]
+  - domain: DOM-DOCFLOW
+    reason: "Counts published/pending documents"
+    tables: [sgsi.doc_documents, sgsi.doc_versions]
+  - domain: DOM-GOV
+    reason: "Checks governance completeness (RESPONSABLE_SGSI + ALTA_DIRECCION roles)"
+    tables: [corvus.customer_person, corvus.person, corvus.user, corvus.user_rol, corvus.rol]
+  - domain: DOM-SOA
+    reason: "Calculates SOA applicability/definition percentage"
+    tables: [sgsi.base_control_clauses, sgsi.control_soa]
+
+notes: |
+  This endpoint is consumed by Wizard's FormalizationDashboard step (/wizard/formalization/dashboard).
+  It provides a read-only summary of SGSI readiness.
+  No mutations; aggregates pre-calculated metrics from multiple domains.
+
+externalDependencies:
+  - domain: Wizard
+    reason: "Used in /wizard/formalization/dashboard step"

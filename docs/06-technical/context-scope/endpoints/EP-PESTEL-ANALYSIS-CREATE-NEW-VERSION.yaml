@@ -1,0 +1,10 @@
+id: EP-PESTEL-ANALYSIS-CREATE-NEW-VERSION
+type: endpoint
+method: POST
+path: /pestel/analysis/new-version
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:23
+controller: api-sgsi/src/controllers/pestel.ts#createNewVersion
+model: api-sgsi/src/models/pestel.ts#createNewVersion
+function: FN-V2-PESTEL-ANALYSIS-CREATE-NEW-VERSION
+status: CONFIRMED

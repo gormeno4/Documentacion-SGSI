@@ -1,0 +1,10 @@
+id: EP-PESTEL-UPSERT
+type: endpoint
+method: POST
+path: /pestel/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:18
+controller: api-sgsi/src/controllers/pestel.ts#upsert
+model: api-sgsi/src/models/pestel.ts#upsert
+function: FN-V2-PESTEL-UPSERT
+status: CONFIRMED

@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-ACTION-PLANS-TRANSITION
+type: endpoint
+method: POST
+path: /security-events/action-plans/transition/:eventId
+access: investigator-or-reviewer
+router: api-sgsi/src/routers/securityEvent.ts:69
+controller: api-sgsi/src/controllers/securityEvent.ts#transitionActionPlanStatus
+model: api-sgsi/src/models/securityEvent.ts#transitionActionPlanStatus
+function: FN-V2-INCIDENT-ACTION-PLANS-TRANSITION-STATUS
+status: CONFIRMED

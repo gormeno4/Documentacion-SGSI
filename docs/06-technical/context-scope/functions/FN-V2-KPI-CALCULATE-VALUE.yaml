@@ -1,0 +1,14 @@
+id: FN-V2-KPI-CALCULATE-VALUE
+type: db-function
+name: sgsi.v2_kpi_calculate_value
+definedIn: funciones_sgsi.sql:20870-20957
+status: CONFIRMED
+tables:
+  - { table: sgsi.kpi, access: READ }
+  - { table: sgsi.monitoring_result_monthly, access: READ }
+  - { table: sgsi.monitoring_result_periodic, access: READ }
+notes: >
+  Calcula el valor vigente de un KPI aplicando su fórmula/calc_function sobre
+  los resultados de monitoreo ya registrados (mensual o periódico según
+  kpi.is_periodic). Alcanzada por 2 consumidores UI reales (kpi.tsx y
+  monitoring-results.tsx).

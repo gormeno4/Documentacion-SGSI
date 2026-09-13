@@ -1,0 +1,9 @@
+id: FN-V2-SECURITY-EVENT-CLASSIFY
+type: db-function
+name: sgsi.v2_security_event_classify
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_details, access: WRITE }
+notes: "Handles both discard (action='discard') and confirm (action='confirm') branches. Sets status to 'discarded' or 'incident_confirmed' and stores metadata."

@@ -1,0 +1,10 @@
+id: EP-ORGANIZATIONAL-RISK-DOMAINS
+type: endpoint
+method: GET
+path: /organizational-risk/domains
+access: admin-only
+router: api-sgsi/src/routers/organizationalRisk.ts
+controller: api-sgsi/src/controllers/organizationalRisk.ts#getDomains
+model: api-sgsi/src/models/organizationalRisk.ts#getDomains
+function: FN-V2-RISK-DOMAIN-GET-ALL
+status: CONFIRMED

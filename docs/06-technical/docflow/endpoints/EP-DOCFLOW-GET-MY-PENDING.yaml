@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-GET-MY-PENDING
+type: endpoint
+method: GET
+path: /document-flow/my-pending
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:46
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetMyPending
+model: api-sgsi/src/models/doc-flow.ts#getMyPending
+function: FN-DOC-FLOW-GET-MY-PENDING
+status: CONFIRMED

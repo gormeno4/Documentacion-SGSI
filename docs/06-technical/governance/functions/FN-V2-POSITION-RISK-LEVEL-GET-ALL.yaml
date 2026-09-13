@@ -1,0 +1,11 @@
+id: FN-V2-POSITION-RISK-LEVEL-GET-ALL
+type: db-function
+name: sgsi.v2_position_risk_level_get_all
+definedIn: funciones_sgsi.sql:23207-23237
+status: CONFIRMED
+tables:
+  - { table: sgsi.position_risk_level, access: READ }
+notes: >
+  Catalogo de niveles de riesgo de seguridad de la informacion del cargo (solo is_active = true).
+  El frontend tiene un fallback hardcodeado a 4 niveles (Bajo/Medio/Alto/Muy Alto) si la lista
+  viene vacia - position-profile-section.tsx:118-125.

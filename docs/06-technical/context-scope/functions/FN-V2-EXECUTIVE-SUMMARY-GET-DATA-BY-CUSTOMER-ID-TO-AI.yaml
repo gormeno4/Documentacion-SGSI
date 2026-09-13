@@ -1,0 +1,15 @@
+id: FN-V2-EXECUTIVE-SUMMARY-GET-DATA-BY-CUSTOMER-ID-TO-AI
+type: db-function
+name: sgsi.v2_executive_summary_get_data_by_customer_id_to_ai
+definedIn: funciones_sgsi.sql:17264-17506
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda_analysis, access: READ }
+  - { table: sgsi.pestel_analysis, access: READ }
+notes: >
+  INTERNAL/INDIRECT: propia de DOM-CTX (arma el contexto de FODA/PESTEL para
+  la IA) pero su único consumidor real es el dominio "ai"
+  (api-sgsi/src/models/ai.ts#getExecutiveSummaryData, invocada desde
+  controllers/ai.ts:193, GET /ai/generate-executive-summary-resumen) — no tiene
+  endpoint propio dentro de los routers de context-scope. Agrega trae_foda/
+  trae_pestel para que la IA bloquee la generación si FODA no está completo.

@@ -1,0 +1,19 @@
+id: FN-GROUP-RISK-TREATMENT-ACTION-GET-LIST
+type: db-function
+name: sgsi.group_risk_treatment_action_get_list
+definedIn: funciones_sgsi.sql:5941-6038
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.group_risk_treatment_action, access: READ }
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: sgsi.asset_group_threat_risk, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.group_risk_treatment_action_progress, access: READ }
+  - { table: sgsi.group_risk_treatment_action_evidence, access: READ }
+  - { table: sgsi.file, access: READ }
+  - { table: corvus.user, access: READ }
+notes: >
+  currentPercentage nunca se almacena — siempre se deriva del último registro
+  (ORDER BY created_at DESC LIMIT 1) de group_risk_treatment_action_progress.

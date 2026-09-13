@@ -1,0 +1,15 @@
+id: FN-V2-DOC-FLOW-APPROVER-GROUP-GET-BY-ID
+type: db-function
+name: sgsi.v2_doc_flow_approver_group_get_by_id
+definedIn: funciones_sgsi.sql:15535-15594
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_flow_approver_group, access: READ }
+  - { table: sgsi.doc_flow_approver_group_member, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.position, access: READ }
+notes: >
+  RAISE EXCEPTION si no existe, está eliminado, o no pertenece al cliente
+  (customer_id validado dentro de la misma función, a diferencia de los grupos de
+  visibilidad que lo validan en el controller).

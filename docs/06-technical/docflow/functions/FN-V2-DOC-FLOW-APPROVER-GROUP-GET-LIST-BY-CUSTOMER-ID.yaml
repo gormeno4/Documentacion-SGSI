@@ -1,0 +1,14 @@
+id: FN-V2-DOC-FLOW-APPROVER-GROUP-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_doc_flow_approver_group_get_list_by_customer_id
+definedIn: funciones_sgsi.sql:15599-15660
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_flow_approver_group, access: READ }
+  - { table: sgsi.doc_flow_approver_group_member, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.position, access: READ }
+notes: >
+  Filtra deleted_at IS NULL (a diferencia de la de grupos de visibilidad). isActive
+  por miembro se calcula en vivo (persona existe y sigue vinculada al cliente).

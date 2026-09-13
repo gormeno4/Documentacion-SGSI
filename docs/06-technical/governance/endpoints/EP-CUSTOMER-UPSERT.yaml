@@ -1,0 +1,14 @@
+id: EP-CUSTOMER-UPSERT
+type: endpoint
+method: POST
+path: /customer/upsert
+access: admin-only
+router: api-sgsi/src/routers/customer.ts:7
+controller: api-sgsi/src/controllers/customer.ts#upsert
+model: api-sgsi/src/models/customer.ts#upsert
+function: FN-V2-CUSTOMER-UPSERT
+status: CONFIRMED
+notes: >
+  Endpoint compartido: desde /governance/company solo se envian industry, description y
+  yearFounded (store/services/customer.Service.ts#updateCustomer), pero el mismo endpoint acepta
+  el payload completo del Wizard. Router montado admin-only en app.ts:47.

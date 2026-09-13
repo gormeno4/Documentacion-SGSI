@@ -1,0 +1,11 @@
+id: FN-V2-CONTROL-SOA-REMEDIATION-UPSERT
+type: db-function
+name: sgsi.v2_control_soa_remediation_upsert
+definedIn: funciones_sgsi.sql:14398-14439
+status: CONFIRMED
+tables:
+  - { table: sgsi.control_soa_remediation, access: WRITE }
+notes: >
+  Reemplazo completo, no incremental: DELETE de la remediación anterior del mismo
+  control_soa_id + soa_analysis_id, seguido de INSERT de la nueva — se asume una sola
+  remediación activa por control dentro de una misma versión.

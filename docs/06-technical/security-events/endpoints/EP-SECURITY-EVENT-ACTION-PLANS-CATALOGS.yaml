@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-ACTION-PLANS-CATALOGS
+type: endpoint
+method: GET
+path: /security-events/action-plans/catalogs
+access: public-authenticated
+router: api-sgsi/src/routers/securityEvent.ts:78
+controller: api-sgsi/src/controllers/securityEvent.ts#getActionPlanCatalogs
+model: api-sgsi/src/models/securityEvent.ts#getActionPlanCatalogs
+function: FN-V2-INCIDENT-ACTION-PLANS-GET-ACTION-TYPES
+status: CONFIRMED
+notes: "Catalog endpoint — no FLOW, only technical dependency."

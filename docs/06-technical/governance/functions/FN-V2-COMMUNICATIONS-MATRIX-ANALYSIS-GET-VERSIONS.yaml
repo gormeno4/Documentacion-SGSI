@@ -1,0 +1,13 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-GET-VERSIONS
+type: db-function
+name: sgsi.v2_communications_matrix_analysis_get_versions
+definedIn: funciones_sgsi.sql:13272-13307
+status: CONFIRMED
+tables:
+  - { table: sgsi.communications_matrix_analysis, access: READ }
+  - { table: sgsi.communications_matrix_row, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Historial completo de versiones del cliente (filtrado por customer_id), con responsableName
+  resuelto desde completed_by -> corvus.user -> corvus.person y el total de filas de cada version.

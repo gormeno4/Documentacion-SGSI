@@ -1,0 +1,39 @@
+id: EP-TRAIN-GET-EVIDENCE
+type: endpoint
+method: GET
+path: /training/{trainingId}/evidence/{evidenceId}
+access: admin-or-usuario
+router: api-sgsi/src/routers/training.ts:24
+controller: api-sgsi/src/controllers/training.ts#getEvidence
+model: api-sgsi/src/models/training.ts#getEvidencePathByEvidenceId
+query: api-sgsi/src/queries/training.ts#_getEvidencePathByEvidenceId
+function: FN-TRAIN-EVIDENCE-GET-PATH
+status: CONFIRMED
+description: "Descargar/visualizar archivo de evidencia"
+
+parameters:
+  - name: trainingId
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+  - name: evidenceId
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+
+responseBody:
+  type: string
+  format: binary
+  description: "Archivo binario con Content-Disposition: inline; filename=..."
+
+securityRules:
+  - "tenant isolation: validates evidenceId belongs to customer"
+  - "path validation: validatePathWithinBase() prevents directory traversal"
+
+notes: |
+  SUPPORT endpoint. File serving inline (no forced download).
+  Sets Content-Disposition header based on original filename.

@@ -1,0 +1,14 @@
+id: FN-DOC-FLOW-GET-SNAPSHOTS-BY-ENTITY
+type: db-function
+name: sgsi.doc_flow_get_snapshots_by_entity
+definedIn: funciones_sgsi.sql:2076-2126
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Igual a FN-DOC-FLOW-GET-ALL-PROCESS-SNAPSHOTS pero resuelve el proceso a partir de
+  (entity_type, entity_id) en vez de process_id directo.

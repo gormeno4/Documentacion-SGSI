@@ -1,0 +1,10 @@
+id: FN-TRAIN-EVIDENCE-GET-PATH
+type: db-function
+schema: sgsi
+name: training_evidence_get_path_by_id
+signature: "training_evidence_get_path_by_id(p_evidence_id uuid, p_customer_id uuid) RETURNS TABLE(evidence_path varchar, evidence_file_name varchar)"
+status: CONFIRMED
+tables:
+  - table: sgsi.training_evidence
+    access: READ
+notes: "Support function. Returns path and filename for file serving."

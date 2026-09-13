@@ -1,0 +1,12 @@
+id: FN-V2-CONTROL-SOA-EVIDENCE-DELETE
+type: db-function
+name: sgsi.v2_control_soa_evidence_delete
+definedIn: funciones_sgsi.sql:14067-14078
+status: CONFIRMED
+tables:
+  - { table: sgsi.control_soa_evidence, access: WRITE }
+notes: >
+  SECURITY FINDING (no corregido, solo documentado): DELETE FROM sgsi.control_soa_evidence
+  WHERE id = p_evidence_id — sin filtro de customer_id ni verificación de pertenencia al
+  tenant en ningún punto de la cadena (endpoint, controller, model ni query tampoco lo
+  validan). Ver docs/00-catalog/soa.md § Hallazgos y docs/06-technical/soa/endpoints/EP-SOA-EVIDENCE-DELETE.yaml.

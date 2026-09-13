@@ -1,0 +1,7 @@
+id: FN-STK-LIST
+type: db-function
+name: sgsi.stakeholder_list
+domain: DOM-STK
+status: CONFIRMED
+tables:
+  - { table: sgsi.stake_holder, access: READ }

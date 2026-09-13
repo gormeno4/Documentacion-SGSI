@@ -1,0 +1,8 @@
+id: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_strategic_objective_analysis_create_new_version
+definedIn: funciones_sgsi.sql:27742-27848
+status: CONFIRMED
+tables:
+  - { table: sgsi.strategic_objective_analysis, access: WRITE }
+  - { table: sgsi.strategic_objective, access: WRITE }

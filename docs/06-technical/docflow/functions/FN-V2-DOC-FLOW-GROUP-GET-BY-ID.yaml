@@ -1,0 +1,13 @@
+id: FN-V2-DOC-FLOW-GROUP-GET-BY-ID
+type: db-function
+name: sgsi.v2_doc_flow_group_get_by_id
+definedIn: funciones_sgsi.sql:15776-15827
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_flow_group, access: READ }
+  - { table: sgsi.doc_flow_group_position, access: READ }
+  - { table: sgsi.position, access: READ }
+notes: >
+  RAISE EXCEPTION si no existe o está eliminado (deleted_at IS NOT NULL excluido en
+  el WHERE). El controller valida ownership de tenant por separado, vía
+  FN-DOC-FLOW-GROUP-GET-CUSTOMER-ID, antes de llamar a esta función.

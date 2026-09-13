@@ -1,0 +1,17 @@
+id: FN-DOC-UPDATE-CONTENT
+type: db-function
+name: sgsi.doc_update_content
+definedIn: funciones_sgsi.sql:4557-4602
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: WRITE }
+  - { table: sgsi.doc_version_editors, access: READ }
+  - { table: sgsi.doc_document_related, access: WRITE }
+notes: >
+  Variante de 5 argumentos (con p_related_document_ids) — la única invocada desde
+  Node. Existe un overload de 4 argumentos (funciones_sgsi.sql:4606-4642, sin
+  p_related_document_ids) que la query TypeScript nunca invoca — dead overload, no
+  documentado como nodo (además valida ownership de forma más laxa: solo editor_id
+  singular, no doc_version_editors). Valida que el usuario sea editor asignado
+  (individual o N:M) y que la versión esté en EN_EDICION/BORRADOR/DEVUELTO; actualiza
+  content_json y sincroniza documentos relacionados (DELETE+INSERT del set completo).

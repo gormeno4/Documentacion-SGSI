@@ -1,0 +1,15 @@
+id: EP-GOVERNMENT-UPSERT
+type: endpoint
+method: POST
+path: /government/upsert
+access: admin-only
+router: api-sgsi/src/routers/government.ts:9
+controller: api-sgsi/src/controllers/government.ts#upsert
+model: api-sgsi/src/models/government.ts#upsert
+function: FN-V2-GOVERNMENT-UPSERT
+status: CONFIRMED
+notes: >
+  Router montado admin-or-usuario (app.ts:48) pero esta ruta si declara verifyAdminOnly, por lo
+  que el acceso efectivo es admin-only. El controller traduce el P0001 de la funcion (responsable
+  sin rol Admin o ajeno a la empresa) a un 409. Convergencia: el mismo endpoint lo usa el paso
+  /wizard/context/government.

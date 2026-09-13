@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-GET-PROCESS-STEPS
+type: endpoint
+method: GET
+path: /document-flow/process/:processId/steps
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:68
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetProcessSteps
+model: api-sgsi/src/models/doc-flow.ts#getStepsByWorkflowId
+function: FN-DOC-FLOW-GET-STEPS
+status: CONFIRMED

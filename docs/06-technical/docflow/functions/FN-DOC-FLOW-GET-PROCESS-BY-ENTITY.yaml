@@ -1,0 +1,16 @@
+id: FN-DOC-FLOW-GET-PROCESS-BY-ENTITY
+type: db-function
+name: sgsi.doc_flow_get_process_by_entity
+definedIn: funciones_sgsi.sql:1812-1888
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.position, access: READ }
+notes: >
+  Devuelve el proceso más reciente para un (entity_type, entity_id), con sus steps de
+  la iteración actual embebidos como jsonb. Endpoint más reutilizado del módulo:
+  consumido directamente por Riesgos y SoA ya documentados, y por Gobierno/Contexto y
+  Alcance/Partes Interesadas (no documentados aún).

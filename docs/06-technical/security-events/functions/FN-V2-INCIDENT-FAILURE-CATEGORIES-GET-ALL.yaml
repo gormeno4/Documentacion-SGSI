@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-FAILURE-CATEGORIES-GET-ALL
+type: db-function
+name: sgsi.v2_incident_failure_categories_get_all
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_failure_categories, access: READ }
+notes: "Catalog read: failure categories for RCA methodology."

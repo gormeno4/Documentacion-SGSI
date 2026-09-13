@@ -1,0 +1,12 @@
+id: FN-STK-UPSERT
+type: db-function
+name: sgsi.stakeholder_upsert
+domain: DOM-STK
+status: CONFIRMED
+tables:
+  - { table: sgsi.stake_holder, access: WRITE }
+  - { table: sgsi.stake_holder_analysis, access: READ }
+  - { table: sgsi.stake_holder_needs, access: WRITE }
+  - { table: sgsi.stake_holder_expectations, access: WRITE }
+  - { table: sgsi.stake_holder_information_security, access: WRITE }
+  - { table: sgsi.stake_holder_legal_regulatory, access: WRITE }

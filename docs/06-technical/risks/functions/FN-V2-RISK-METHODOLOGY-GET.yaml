@@ -1,0 +1,11 @@
+id: FN-V2-RISK-METHODOLOGY-GET
+type: db-function
+name: sgsi.v2_risk_methodology_get
+definedIn: funciones_sgsi.sql:24215-24240
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.risk_methodology_config, access: READ }
+notes: >
+  Retorna NULL (no error) cuando el cliente todavía no configuró metodología —
+  el frontend interpreta NULL como "mostrar el configurador con valores por defecto".

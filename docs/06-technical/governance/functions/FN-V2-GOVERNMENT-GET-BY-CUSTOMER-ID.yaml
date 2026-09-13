@@ -1,0 +1,13 @@
+id: FN-V2-GOVERNMENT-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_government_get_by_customer_id
+definedIn: funciones_sgsi.sql:18431-18492
+status: CONFIRMED
+tables:
+  - { table: sgsi.staff, access: READ }
+  - { table: sgsi.person_staff, access: READ }
+notes: >
+  NO existe una tabla 'government'. El estado del gobierno del SGSI se materializa como filas de
+  sgsi.person_staff contra dos sgsi.staff de sistema, identificados de forma rename-proof por
+  (company_id, code): 'RESP_SGSI' y 'ALTA_DIR'. El Responsable es la ultima asignacion por
+  created_at (si hubiera varias); la Alta Direccion es el array completo de person_id.

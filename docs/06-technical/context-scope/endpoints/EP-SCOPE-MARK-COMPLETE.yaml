@@ -1,0 +1,10 @@
+id: EP-SCOPE-MARK-COMPLETE
+type: endpoint
+method: POST
+path: /scope/complete
+access: admin-or-usuario
+router: api-sgsi/src/routers/scope.ts:17
+controller: api-sgsi/src/controllers/scope.ts#markComplete
+model: api-sgsi/src/models/scope.ts#markComplete
+function: FN-V2-SCOPE-MARK-COMPLETE
+status: CONFIRMED

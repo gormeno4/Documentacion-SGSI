@@ -1,0 +1,13 @@
+id: EP-CUSTOMER-GET-BY-ID
+type: endpoint
+method: GET
+path: /customer/getById
+access: admin-only
+router: api-sgsi/src/routers/customer.ts:8
+controller: api-sgsi/src/controllers/customer.ts#getById
+model: api-sgsi/src/models/customer.ts#getById
+function: FN-V2-CUSTOMER-GET-BY-ID
+status: CONFIRMED
+notes: >
+  El customerId sale siempre del token (dataUser(req).customerId), nunca de la query. Router
+  montado admin-only en api-sgsi/src/app.ts:47.

@@ -1,0 +1,10 @@
+id: EP-BASE-KPI-GET-ALL
+type: endpoint
+method: GET
+path: /base-kpi/getAll
+access: admin-or-usuario
+router: api-sgsi/src/routers/baseKpi.ts:6
+controller: api-sgsi/src/controllers/baseKpi.ts#getAll
+model: api-sgsi/src/models/baseKpi.ts#getAll
+function: FN-V2-BASE-KPI-GET-ALL
+status: CONFIRMED

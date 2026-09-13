@@ -1,0 +1,14 @@
+id: EP-DOC-BULK-VALIDATE
+type: endpoint
+method: POST
+path: /document-flow/documents/bulk-validate
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:31
+controller: api-sgsi/src/controllers/doc-documents.ts#handleBulkValidateDocuments
+model: api-sgsi/src/models/doc-documents.ts#validateBulkDocuments
+status: CONFIRMED
+notes: >
+  Sin function propia: compone en Node (Promise.all) varias consultas planas de
+  catálogo (tipos de documento, áreas, políticas, grupos, cargos, controles ISO,
+  personas — queries/doc-documents.ts) para validar cada fila del Excel antes de
+  crear nada. No invoca ninguna función PL/pgSQL de escritura.

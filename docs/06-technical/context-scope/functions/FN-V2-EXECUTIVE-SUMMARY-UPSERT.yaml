@@ -1,0 +1,7 @@
+id: FN-V2-EXECUTIVE-SUMMARY-UPSERT
+type: db-function
+name: sgsi.v2_executive_summary_upsert
+definedIn: funciones_sgsi.sql:17677-17798
+status: CONFIRMED
+tables:
+  - { table: sgsi.executive_summary, access: WRITE }

@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-RCA-FAILURE-CATEGORIES-CATALOG
+type: endpoint
+method: GET
+path: /security-events/rca/failure-categories
+access: public-authenticated
+router: api-sgsi/src/routers/securityEvent.ts:77
+controller: api-sgsi/src/controllers/securityEvent.ts#getFailureCategories
+model: api-sgsi/src/models/securityEvent.ts#getFailureCategories
+function: FN-V2-INCIDENT-FAILURE-CATEGORIES-GET-ALL
+status: CONFIRMED
+notes: "Catalog endpoint — no FLOW, only technical dependency."

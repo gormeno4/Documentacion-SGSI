@@ -1,0 +1,7 @@
+id: FN-V2-PESTEL-ANALYSIS-GET-VERSIONS
+type: db-function
+name: sgsi.v2_pestel_analysis_get_versions
+definedIn: funciones_sgsi.sql:22470-22510
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel_analysis, access: READ }

@@ -1,0 +1,10 @@
+id: EP-MONITORING-RESULT-PERIODIC-GET-BY-KPI-YEAR
+type: endpoint
+method: GET
+path: /monitoring-result-periodic/periodic
+access: admin-or-usuario
+router: api-sgsi/src/routers/monitoringResultPeriodic.ts:15
+controller: api-sgsi/src/controllers/monitoringResultPeriodic.ts#getPeriodicByKpiYear
+model: api-sgsi/src/models/monitoringResultPeriodic.ts#getPeriodicByKpiYear
+function: FN-V2-MONITORING-RESULT-PERIODIC-GET-BY-KPI-YEAR
+status: CONFIRMED

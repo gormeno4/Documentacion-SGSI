@@ -1,0 +1,7 @@
+id: FN-V2-KPI-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_kpi_delete_by_id
+definedIn: funciones_sgsi.sql:20962-21014
+status: CONFIRMED
+tables:
+  - { table: sgsi.kpi, access: WRITE }

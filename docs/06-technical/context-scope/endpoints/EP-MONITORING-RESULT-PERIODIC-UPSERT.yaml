@@ -1,0 +1,14 @@
+id: EP-MONITORING-RESULT-PERIODIC-UPSERT
+type: endpoint
+method: POST
+path: /monitoring-result-periodic/periodic/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/monitoringResultPeriodic.ts:18
+controller: api-sgsi/src/controllers/monitoringResultPeriodic.ts#upsertPeriodic
+model: api-sgsi/src/models/monitoringResultPeriodic.ts#upsertPeriodic
+function: FN-V2-MONITORING-RESULT-PERIODIC-UPSERT
+status: CONFIRMED
+notes: >
+  Tras guardar, si el payload trae evidenceData, el controller vincula cada
+  archivo previamente subido (FileModel.updateEntityId, dominio externo file)
+  al registro recién creado (api-sgsi/src/controllers/monitoringResultPeriodic.ts:80-88).

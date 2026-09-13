@@ -1,0 +1,19 @@
+id: FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS
+type: db-function
+name: sgsi.v2_asset_group_threat_risk_get_scenarios
+definedIn: funciones_sgsi.sql:10799-10896
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.base_asset_type, access: READ }
+  - { table: sgsi.base_rel_vuln_threat, access: READ }
+  - { table: sgsi.base_threat, access: READ }
+  - { table: sgsi.base_vulnerability_asset_type, access: READ }
+  - { table: sgsi.probability_impact_level, access: READ }
+  - { table: sgsi.asset_group_threat_risk, access: READ }
+notes: >
+  Variante RETURNS TABLE (no json) de FN-V2-ASSET-GROUP-THREAT-RISK-GET-LIST-BY-GROUP-ID,
+  con guard clause explícita (grupo inactivo o eliminado retorna vacío) y solo la rama "base"
+  con JOIN estricto contra filas ya guardadas (sin materializar virtuales). Se usa exclusivamente
+  vía CROSS JOIN LATERAL desde sgsi.v2_group_risk_treatment_get_list, no tiene endpoint propio.

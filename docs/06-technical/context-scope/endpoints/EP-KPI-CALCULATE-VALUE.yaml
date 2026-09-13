@@ -1,0 +1,14 @@
+id: EP-KPI-CALCULATE-VALUE
+type: endpoint
+method: GET
+path: /kpi/:id/calculate
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:34
+controller: api-sgsi/src/controllers/kpi.ts#calculate
+model: api-sgsi/src/models/kpi.ts#calculate
+function: FN-V2-KPI-CALCULATE-VALUE
+status: CONFIRMED
+notes: >
+  Convergente: se invoca tanto desde las tarjetas de kpi.tsx (valor vigente)
+  como desde monitoring-results.tsx (FLOW-CTX-007, al compilar el snapshot de
+  seguimiento) — mismo endpoint, dos consumidores UI reales.

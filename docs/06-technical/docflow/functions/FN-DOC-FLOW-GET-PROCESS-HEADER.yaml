@@ -1,0 +1,12 @@
+id: FN-DOC-FLOW-GET-PROCESS-HEADER
+type: db-function
+name: sgsi.doc_flow_get_process_header
+definedIn: funciones_sgsi.sql:1892-1909
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+notes: >
+  Cabecera mínima de un proceso (id, entity_type, entity_id, creator_id, status,
+  current_iteration). Invocada desde el modelo (models/doc-flow.ts#getProcessHeader)
+  y usada por el controller en handleSubmitProcess, handleSaveDraftReply y
+  handleGetProcessSteps para validaciones de estado/autorización antes de mutar.

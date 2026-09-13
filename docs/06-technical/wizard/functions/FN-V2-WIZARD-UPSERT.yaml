@@ -1,0 +1,29 @@
+id: FN-V2-WIZARD-UPSERT
+type: db-function
+name: sgsi.v2_wizard_upsert
+definedIn: funciones_sgsi.sql:12272-12617
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.wizard_progress, access: WRITE }
+  - { table: sgsi.wizard_general_info, access: WRITE }
+  - { table: sgsi.wizard_tech_inventory, access: WRITE }
+  - { table: sgsi.wizard_tech_infrastructure, access: WRITE }
+  - { table: sgsi.wizard_identity_access, access: WRITE }
+  - { table: sgsi.wizard_specialized_infra, access: WRITE }
+  - { table: sgsi.wizard_digital_exposure, access: WRITE }
+  - { table: sgsi.wizard_dev_processes, access: WRITE }
+  - { table: sgsi.wizard_compliance, access: WRITE }
+notes: >
+  Persiste progreso + datos del Wizard en una sola operación atómica.
+  Ejecuta UPSERT (INSERT ON CONFLICT) en todas las tablas datos.
+
+  Responsabilidad dual:
+  1. Si payload.progress: actualiza wizard_progress (paso actual, completados, respondidos, timestamps)
+  2. Si payload.data: actualiza tablas generales/técnicas (generalInfo, techContext, identidad, etc.)
+
+  Siempre invoca ambas si ambas están presentes en payload.
+  Marca completed_by/completed_at solo cuando is_completed = true.
+
+  REVIEW REQUIRED: verificar exhaustivamente que no permite write cross-tenant
+  (controller pasa customerId desde sesión, pero validación en función debe confirmarse).

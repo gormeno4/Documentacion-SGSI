@@ -1,0 +1,17 @@
+id: EP-COMMUNICATIONS-MATRIX-ANALYSIS-GET-VERSION-BY-ID
+type: endpoint
+method: GET
+path: /communications-matrix/analysis/version/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:22
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#getVersionById
+model: api-sgsi/src/models/communicationsMatrix.ts#getVersionById
+function: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-GET-VERSION-BY-ID
+status: CONFIRMED
+notes: >
+  Acceso admin-or-usuario INTENCIONAL: lo consume CommunicationsMatrixPreview.tsx:10-11 desde
+  /doc-flow/inbox, accesible para usuarios no admin que actuan como aprobadores.
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): ni el controller
+  (controllers/communicationsMatrix.ts:136-153) ni la funcion SQL validan customer_id, asi que
+  permite leer el plan de difusion completo de otro cliente.

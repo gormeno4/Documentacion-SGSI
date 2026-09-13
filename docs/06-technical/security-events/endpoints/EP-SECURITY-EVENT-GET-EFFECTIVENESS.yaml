@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-GET-EFFECTIVENESS
+type: endpoint
+method: GET
+path: /security-events/effectiveness/:eventId
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:55
+controller: api-sgsi/src/controllers/securityEvent.ts#getEffectivenessByEventId
+model: api-sgsi/src/models/securityEvent.ts#getEffectivenessByEventId
+function: FN-V2-INCIDENT-EFFECTIVENESS-GET-BY-EVENT-ID
+status: CONFIRMED
+notes: "Read effectiveness records for an event. Technical dependency, not a FLOW."

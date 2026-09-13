@@ -1,0 +1,16 @@
+id: FN-V2-STRATEGIC-OBJECTIVE-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_strategic_objective_delete_by_id
+definedIn: funciones_sgsi.sql:28126-28190
+status: CONFIRMED
+calls:
+  - FN-V2-STRATEGIC-OBJECTIVE-GET-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.strategic_objective, access: WRITE }
+  - { table: sgsi.kpi_strategic_objective, access: READ }
+  - { table: sgsi.kpi, access: READ }
+notes: >
+  Bloquea el borrado (success:false, sin excepción HTTP) si el objetivo tiene
+  al menos un KPI activo vinculado en sgsi.kpi_strategic_objective — retorna
+  la lista de KPIs afectados para que la UI la muestre
+  (funciones_sgsi.sql:28160-28174).

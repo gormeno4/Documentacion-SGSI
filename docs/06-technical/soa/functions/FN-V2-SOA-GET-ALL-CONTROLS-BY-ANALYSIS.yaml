@@ -1,0 +1,26 @@
+id: FN-V2-SOA-GET-ALL-CONTROLS-BY-ANALYSIS
+type: db-function
+name: sgsi.v2_soa_get_all_controls_by_analysis
+definedIn: funciones_sgsi.sql:26849-26966
+status: CONFIRMED
+calls:
+  - FN-CONTROL-GET-LINKED-POLICY-DOCUMENTS
+tables:
+  - { table: sgsi.soa_analysis, access: READ }
+  - { table: sgsi.base_control_clauses, access: READ }
+  - { table: sgsi.base_functional_group, access: READ }
+  - { table: sgsi.control_soa, access: READ }
+  - { table: sgsi.control_soa_evidence, access: READ }
+  - { table: sgsi.control_soa_remediation, access: READ }
+  - { table: sgsi.control_soa_governance_policy, access: READ }
+  - { table: sgsi.policies, access: READ }
+  - { table: sgsi.file, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Variante de FN-V2-SOA-GET-ALL-CONTROLS fijada a una versión puntual (p_analysis_id)
+  en vez de la activa. No calcula ai_suggested (hardcodeado a FALSE, comentario
+  explícito "Historical queries do not calculate new AI suggestions") ni aplicabilidad
+  sugerida (ca.aplicabilidad) — a diferencia de la variante de la versión activa.

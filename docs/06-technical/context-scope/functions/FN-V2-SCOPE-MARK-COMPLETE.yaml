@@ -1,0 +1,11 @@
+id: FN-V2-SCOPE-MARK-COMPLETE
+type: db-function
+name: sgsi.v2_scope_mark_complete
+definedIn: funciones_sgsi.sql:25563-25633
+status: CONFIRMED
+tables:
+  - { table: sgsi.scope, access: WRITE }
+notes: >
+  Guarda is_complete=true y la justificación sobre la versión en borrador
+  (is_complete=false) — corre antes de enviar a aprobación, mientras el
+  registro aún no es la versión vigente.

@@ -1,0 +1,20 @@
+id: EP-RESREV-SUMMARY
+type: endpoint
+method: GET
+path: /resource-review/summary
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:16
+controller: api-sgsi/src/controllers/resourceReview.ts#getSummary
+function: FN-RESREV-SUMMARY
+status: CONFIRMED
+description: "SUPPORT endpoint. Get aggregate summary for dashboard"
+
+responseBody:
+  type: object
+  properties:
+    activeRolesCount:
+      type: integer
+    lastSufficiencyStatus:
+      type: string
+
+notes: "Support endpoint. Returns aggregates for dashboard."

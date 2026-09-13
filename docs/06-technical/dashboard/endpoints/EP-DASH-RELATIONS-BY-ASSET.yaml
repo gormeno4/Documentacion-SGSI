@@ -1,0 +1,113 @@
+id: EP-DASH-RELATIONS-BY-ASSET
+type: endpoint
+method: GET
+path: /dashboard/getRelationsByAssetId
+access: admin-or-usuario
+router: api-sgsi/src/routers/dashboard.ts:9
+controller: api-sgsi/src/controllers/dashboard.ts#getRelationsByAssetId
+model: api-sgsi/src/models/dashboard.ts#getRelationsByAssetId
+function: FN-DASH-RELATIONS-BY-ASSET
+status: CONFIRMED
+description: "Detalles de relaciones de amenazas, vulnerabilidades, escenarios y controles de un activo específico — solo lectura"
+
+parameters:
+  - name: assetId
+    type: uuid
+    required: true
+    in: query
+    description: "UUID of the asset to fetch relations for"
+    validation: "Must be a valid UUID; asset must belong to customer and not be deleted"
+
+returns:
+  type: json
+  structure: |
+    {
+      "assetId": uuid,
+      "assetGroupName": string,
+      "assetTypeName": string,
+      "assetName": string,
+      "threats": [
+        {
+          "id": string,
+          "name": string,
+          "category": string,
+          "vulnerabilities": [
+            {
+              "id": string,
+              "name": string,
+              "description": string,
+              "scenarios": [
+                {
+                  "scenarioKey": string,
+                  "description": string,
+                  "domain": string,
+                  "risks": [
+                    {
+                      "id": uuid,
+                      "title": string,
+                      "description": string,
+                      "status": string,
+                      "controls": [
+                        {
+                          "id": uuid,
+                          "controlCode": string,
+                          "controlName": string,
+                          "implemented": boolean
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "threatsCount": number,
+      "vulnerabilitiesCount": number,
+      "scenariosCount": number,
+      "risksCount": number,
+      "controlsCount": number,
+      "risk": [{ "probability", "impact", "cia", ... }]
+    }
+
+security:
+  - type: jwt-auth
+    requirement: "customerId and personId from JWT token"
+  - type: null-check
+    requirement: "All three parameters (customerId, personId, assetId) must not be NULL"
+  - type: uuid-validation
+    requirement: "assetId must be a valid UUID format"
+  - type: ownership-check
+    requirement: "Asset must belong to customer (FK check in SQL)"
+
+classification: SUPPORT
+operationType: READ
+aggregator: false
+readOnly: true
+relationsDetail: true
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Reads specific asset, asset group, base asset type info"
+    tables: [sgsi.asset, sgsi.asset_group, sgsi.base_asset_type]
+  - domain: DOM-RSK
+    reason: "Reads threats, vulnerabilities, scenarios, evaluations, risk treatments for this asset"
+    tables: [sgsi.asset_threat_risk, sgsi.asset_threat_risk_evaluation, sgsi.ai_asset_risk_suggestions, sgsi.probability_impact_level, sgsi.cia_level, sgsi.risk_treatment]
+  - domain: DOM-SOA
+    reason: "Reads applicable control clauses and their implementation status"
+    tables: [sgsi.base_control_clauses, sgsi.ai_asset_risk_control_suggestions, sgsi.risk_treatment_control]
+
+notes: |
+  This endpoint provides detailed relations for a single asset (threat → vulnerability → scenario → risk → controls chain).
+  Designed for detail views or drill-down from risk matrix/relations map.
+  Called lazily/on-demand (not loaded on initial dashboard render).
+
+  CONSUMER STATUS: PARTIAL
+  - Defined in store (relationsDetailByAsset state)
+  - Reachable via useDashboard().getRelationsByAssetId()
+  - UI consumer not explicitly confirmed in grep; likely lazy-loaded on user interaction with asset card
+
+  No mutations; read-only projection.
+
+externalDependencies: []

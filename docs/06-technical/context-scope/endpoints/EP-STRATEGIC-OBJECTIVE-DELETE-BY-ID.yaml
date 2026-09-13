@@ -1,0 +1,14 @@
+id: EP-STRATEGIC-OBJECTIVE-DELETE-BY-ID
+type: endpoint
+method: DELETE
+path: /strategic-objective/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:19
+controller: api-sgsi/src/controllers/strategicObjective.ts#deleteById
+model: api-sgsi/src/models/strategicObjective.ts#deleteById
+function: FN-V2-STRATEGIC-OBJECTIVE-DELETE-BY-ID
+status: CONFIRMED
+notes: >
+  Bloquea el borrado (sin excepción HTTP, success:false) si existe al menos un
+  KPI activo vinculado en sgsi.kpi_strategic_objective — devuelve la lista de
+  KPIs afectados para que la UI los liste (funciones_sgsi.sql:28160-28174).

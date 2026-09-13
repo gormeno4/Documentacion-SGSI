@@ -1,0 +1,7 @@
+id: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-GET-VERSIONS
+type: db-function
+name: sgsi.v2_strategic_objective_analysis_get_versions
+definedIn: funciones_sgsi.sql:27956-27988
+status: CONFIRMED
+tables:
+  - { table: sgsi.strategic_objective_analysis, access: READ }

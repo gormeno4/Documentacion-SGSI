@@ -1,0 +1,14 @@
+id: EP-PERSON-DELETE-DOCUMENT-BY-ID
+type: endpoint
+method: POST
+path: /person/deleteDocumentById/:documentId
+access: admin-only
+router: api-sgsi/src/routers/person.ts:33
+controller: api-sgsi/src/controllers/person.ts#deleteDocumentById
+model: api-sgsi/src/models/person.ts#deleteDocumentById
+function: FN-PERSON-DELETE-DOCUMENT-BY-ID
+status: CONFIRMED
+notes: >
+  El controller SI valida tenant aqui, via sgsi.person_document_get_customer_id
+  (FN-PERSON-DOCUMENT-GET-CUSTOMER-ID, controllers/person.ts:292-296) - asimetria frente a la
+  subida.

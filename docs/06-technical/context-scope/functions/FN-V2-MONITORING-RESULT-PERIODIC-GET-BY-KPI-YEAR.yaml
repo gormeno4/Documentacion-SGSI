@@ -1,0 +1,7 @@
+id: FN-V2-MONITORING-RESULT-PERIODIC-GET-BY-KPI-YEAR
+type: db-function
+name: sgsi.v2_monitoring_result_periodic_get_by_kpi_year
+definedIn: funciones_sgsi.sql:21831-21856
+status: CONFIRMED
+tables:
+  - { table: sgsi.monitoring_result_periodic, access: READ }

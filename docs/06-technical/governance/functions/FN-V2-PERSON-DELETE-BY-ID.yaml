@@ -1,0 +1,22 @@
+id: FN-V2-PERSON-DELETE-BY-ID
+type: db-function
+name: corvus.v2_person_delete_by_id
+definedIn: funciones_corvus.sql:23972-24031
+status: CONFIRMED
+calls:
+  - FN-CHECK-PERSON-DEPENDENCIES
+  - FN-V2-CUSTOMER-PERSON-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: corvus.customer_person, access: WRITE }
+  - { table: corvus.person_application, access: WRITE }
+  - { table: sgsi.person_staff, access: WRITE }
+  - { table: corvus.customer_user, access: WRITE }
+  - { table: corvus.user_rol, access: WRITE }
+  - { table: corvus.user, access: READ }
+  - { table: sgsi.staff, access: READ }
+notes: >
+  Overload de 4 argumentos (uuid, uuid, uuid, uuid) - el unico invocado desde el modelo. Baja
+  tenant-aware: NO borra la persona global (corvus.person queda intacta), solo sus vinculos con el
+  cliente actual. Revoca TODOS los roles del par (user, customer) sin filtrar por application_id,
+  incluida la fila Admin app-agnostica. Existe un overload muerto de 3 argumentos en
+  funciones_corvus.sql:23927-23968 que ademas NO valida dependencias (ver Hallazgos).

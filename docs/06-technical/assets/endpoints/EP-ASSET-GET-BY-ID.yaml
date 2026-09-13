@@ -1,0 +1,15 @@
+id: EP-ASSET-GET-BY-ID
+type: endpoint
+method: GET
+path: /asset/getById/:id
+access: admin-only
+router: api-sgsi/src/routers/asset.ts:34
+controller: api-sgsi/src/controllers/asset.ts#getById
+model: api-sgsi/src/models/asset.ts#getById
+function: FN-V2-ASSET-GET-BY-ID
+status: CONFIRMED
+notes: >
+  El controller valida previamente ownership del customer llamando
+  models/asset.ts#getCustomerId (sgsi.v2_asset_get_customer_id) antes de resolver
+  el detalle; esa función auxiliar no está modelada como nodo propio porque solo
+  existe para autorización, no aporta una relación funcional nueva.

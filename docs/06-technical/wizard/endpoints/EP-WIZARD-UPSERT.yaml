@@ -1,0 +1,10 @@
+id: EP-WIZARD-UPSERT
+type: endpoint
+method: POST
+path: /wizard/upsert
+access: admin-only
+router: api-sgsi/src/routers/wizard.ts:6
+controller: api-sgsi/src/controllers/wizard.ts#upsert
+model: api-sgsi/src/models/wizard.ts#upsert
+function: FN-V2-WIZARD-UPSERT
+status: CONFIRMED

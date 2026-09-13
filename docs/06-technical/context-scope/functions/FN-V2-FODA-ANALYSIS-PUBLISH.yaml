@@ -1,0 +1,13 @@
+id: FN-V2-FODA-ANALYSIS-PUBLISH
+type: db-function
+name: sgsi.v2_foda_analysis_publish
+definedIn: funciones_sgsi.sql:18076-18117
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda_analysis, access: WRITE }
+notes: >
+  Guard is_complete=false: cuando se invoca (siempre después de
+  FN-DOC-FLOW-PUBLISH en el flujo real de la UI), la fila objetivo ya fue
+  marcada is_complete=true por Doc-Flow — retorna success:false sin modificar
+  nada. No-op real en la práctica, no solo idempotente. Technical Debt, ver
+  docs/00-catalog/contexto-alcance.md § Hallazgos.

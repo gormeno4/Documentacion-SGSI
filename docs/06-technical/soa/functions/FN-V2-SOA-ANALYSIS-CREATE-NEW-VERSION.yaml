@@ -1,0 +1,17 @@
+id: FN-V2-SOA-ANALYSIS-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_soa_analysis_create_new_version
+definedIn: funciones_sgsi.sql:26440-26591
+status: CONFIRMED
+tables:
+  - { table: sgsi.soa_analysis, access: WRITE }
+  - { table: sgsi.control_soa, access: WRITE }
+  - { table: sgsi.control_soa_evidence, access: WRITE }
+  - { table: sgsi.control_soa_governance_policy, access: WRITE }
+  - { table: sgsi.control_soa_remediation, access: WRITE }
+notes: >
+  Si no hay versión activa, retorna success:false sin crear nada. Desactiva la versión
+  anterior (is_active=false), crea la cabecera V+1, y clona por SELECT/INSERT (join por
+  id_base_control_clause) evaluaciones, evidencia, políticas de gobernanza y
+  remediación de la versión anterior hacia la nueva — clonado completo, no hay opción
+  de versión "en blanco".

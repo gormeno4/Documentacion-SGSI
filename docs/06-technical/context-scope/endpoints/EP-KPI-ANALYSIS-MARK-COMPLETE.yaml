@@ -1,0 +1,16 @@
+id: EP-KPI-ANALYSIS-MARK-COMPLETE
+type: endpoint
+method: POST
+path: /kpi/analysis/complete
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:24
+controller: api-sgsi/src/controllers/kpi.ts#markComplete
+model: api-sgsi/src/models/kpi.ts#markComplete
+function: FN-V2-KPI-ANALYSIS-MARK-COMPLETE
+status: CONFIRMED
+notes: >
+  No existe un endpoint local de "publish" para KPI (a diferencia de
+  Scope/FODA/PESTEL/Objetivos Estratégicos/Resumen Ejecutivo) — el flip de
+  is_active de sgsi.kpi_analysis ocurre únicamente dentro de
+  sgsi.doc_flow_publish (FLOW-DOCFLOW-006); este endpoint solo fija
+  is_complete=true antes de enviar a aprobación.

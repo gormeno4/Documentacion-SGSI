@@ -1,0 +1,7 @@
+id: FN-V2-EXECUTIVE-SUMMARY-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_executive_summary_create_new_version
+definedIn: funciones_sgsi.sql:17111-17206
+status: CONFIRMED
+tables:
+  - { table: sgsi.executive_summary, access: WRITE }

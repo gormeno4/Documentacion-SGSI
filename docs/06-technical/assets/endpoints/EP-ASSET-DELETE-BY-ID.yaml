@@ -1,0 +1,10 @@
+id: EP-ASSET-DELETE-BY-ID
+type: endpoint
+method: POST
+path: /asset/deleteById/:id
+access: admin-only
+router: api-sgsi/src/routers/asset.ts:39
+controller: api-sgsi/src/controllers/asset.ts#deleteById
+model: api-sgsi/src/models/asset.ts#deleteById
+function: FN-V2-ASSET-DELETE-BY-ID
+status: CONFIRMED

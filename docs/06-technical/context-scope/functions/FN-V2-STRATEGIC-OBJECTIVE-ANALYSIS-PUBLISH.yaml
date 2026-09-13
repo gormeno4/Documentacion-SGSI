@@ -1,0 +1,13 @@
+id: FN-V2-STRATEGIC-OBJECTIVE-ANALYSIS-PUBLISH
+type: db-function
+name: sgsi.v2_strategic_objective_analysis_publish
+definedIn: funciones_sgsi.sql:28062-28121
+status: CONFIRMED
+tables:
+  - { table: sgsi.strategic_objective_analysis, access: WRITE }
+notes: >
+  Orden invertido respecto a FODA/PESTEL: la UI la llama PRIMERO (todavía con
+  is_complete=false vigente), por lo que sí hace el flip real de
+  is_active/is_complete; Doc-Flow la llama después y repite el mismo UPDATE
+  sin guard — la llamada redundante es la de Doc-Flow, no esta. Technical
+  Debt, no corregido.

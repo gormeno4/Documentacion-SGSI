@@ -1,0 +1,12 @@
+id: FN-AREA-GET-CUSTOMER-ID
+type: db-function
+name: corvus.area_get_customer_id
+definedIn: funciones_corvus.sql:424-430
+status: CONFIRMED
+tables:
+  - { table: corvus.area, access: READ }
+notes: >
+  Helper de ownership: retorna el company_id de un area. Sin endpoint propio - la invoca el
+  controller (controllers/area.ts:61 y :88) como segunda query para verificar que el area
+  pertenezca al cliente autenticado antes de exponer dependencias o borrarla. Mismo patron que
+  FN-DOC-FLOW-GROUP-GET-CUSTOMER-ID en DOM-DOCFLOW.

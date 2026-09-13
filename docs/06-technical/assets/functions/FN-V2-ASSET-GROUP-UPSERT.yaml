@@ -1,0 +1,20 @@
+id: FN-V2-ASSET-GROUP-UPSERT
+type: db-function
+name: sgsi.v2_asset_group_upsert
+definedIn: funciones_sgsi.sql:10983-11207
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-GET-BY-ID   # RETURN sgsi.v2_asset_group_get_by_id(v_id)
+tables:
+  - { table: sgsi.asset_group, access: WRITE }
+  - { table: sgsi.asset_group_history, access: WRITE }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.base_asset_type, access: READ }
+  - { table: sgsi.cia_level, access: READ }
+  - { table: sgsi.group_risk_treatment, access: WRITE }
+  - { table: sgsi.asset_group_threat_risk, access: READ }
+notes: >
+  sgsi.group_risk_treatment / sgsi.asset_group_threat_risk se tocan solo como efecto
+  secundario al cambiar de propietario (limpieza de delegaciones) — dependencia externa
+  al dominio de Riesgos, mismo patrón que FN-V2-ASSET-UPSERT. Bloquea edición si el grupo
+  está inactivo (active = false): "Actívelo primero".

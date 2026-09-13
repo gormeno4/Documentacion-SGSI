@@ -1,0 +1,14 @@
+id: EP-MONITORING-RESULT-PERIODIC-GET-EVIDENCE-FILE
+type: endpoint
+method: GET
+path: /monitoring-result-periodic/periodic/evidence/:filename
+access: admin-or-usuario
+router: api-sgsi/src/routers/monitoringResultPeriodic.ts:28
+controller: api-sgsi/src/controllers/monitoringResultPeriodic.ts#getEvidenceFile
+model: (ninguno — lectura directa de filesystem)
+status: CONFIRMED
+notes: >
+  No consulta la base de datos: busca el archivo por nombre dentro de
+  storagePath/<customerId>/monitoring-evidence (búsqueda recursiva,
+  findFileRecursively) y lo sirve con res.sendFile. Aislamiento por
+  customerId de sesión, no por parámetro de request.

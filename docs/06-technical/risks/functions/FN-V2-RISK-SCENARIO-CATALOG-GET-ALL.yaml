@@ -1,0 +1,9 @@
+id: FN-V2-RISK-SCENARIO-CATALOG-GET-ALL
+type: db-function
+name: sgsi.v2_risk_scenario_catalog_get_all
+definedIn: funciones_sgsi.sql:24359-24382
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.risk_scenario_catalog, access: READ }
+notes: Catálogo global (sin filtro por customer_id), solo is_active = true.

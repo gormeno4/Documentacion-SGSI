@@ -1,0 +1,10 @@
+id: EP-EXECUTIVE-SUMMARY-GET-VERSIONS
+type: endpoint
+method: GET
+path: /executive-summary/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/executiveSummary.ts:19
+controller: api-sgsi/src/controllers/executiveSummary.ts#getVersions
+model: api-sgsi/src/models/executiveSummary.ts#getVersions
+function: FN-V2-EXECUTIVE-SUMMARY-GET-VERSIONS
+status: CONFIRMED

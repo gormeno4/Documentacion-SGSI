@@ -1,0 +1,19 @@
+id: FN-DOC-FLOW-SUBMIT
+type: db-function
+name: sgsi.doc_flow_submit
+definedIn: funciones_sgsi.sql:2836-2921
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: WRITE }
+  - { table: sgsi.document_flow_steps, access: WRITE }
+  - { table: sgsi.document_flow_snapshots, access: WRITE }
+  - { table: sgsi.doc_versions, access: WRITE }
+notes: >
+  Cambia el proceso a EN_APROBACION y guarda el snapshot (evidencia inmutable de lo
+  que se envía a aprobar) vía UPSERT (ON CONFLICT process_id+iteration). Si el proceso
+  venía DEVUELTO, exige reply_justification (obligatoria) y la persiste en el step
+  RECHAZADO de la iteración anterior. El model.submitProcess (Node) arma el payload de
+  entity_data_json antes de llamar a esta función: para ACTIVO_INFORMACION construye
+  un snapshot por cada activo activo del cliente (FN-DOC-FLOW-GET-ACTIVE-ASSET-IDS-BY-CUSTOMER
+  + FN-DOC-FLOW-BUILD-ASSET-SNAPSHOT en loop); para ORGANIGRAMA genera y persiste una
+  imagen del organigrama y arma el snapshot vía FN-V2-DOCUMENT-WORKFLOW-SNAPSHOT-ORGANIGRAMA.

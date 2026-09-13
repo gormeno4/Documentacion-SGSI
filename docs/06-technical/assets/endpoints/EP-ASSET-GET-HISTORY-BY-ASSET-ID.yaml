@@ -1,0 +1,10 @@
+id: EP-ASSET-GET-HISTORY-BY-ASSET-ID
+type: endpoint
+method: GET
+path: /asset/getHistoryByAssetId/:id
+access: admin-only
+router: api-sgsi/src/routers/asset.ts:35
+controller: api-sgsi/src/controllers/asset.ts#getHistoryByAssetId
+model: api-sgsi/src/models/asset.ts#getHistoryByAssetId
+function: FN-V2-ASSET-GET-HISTORY-BY-ASSET-ID
+status: CONFIRMED

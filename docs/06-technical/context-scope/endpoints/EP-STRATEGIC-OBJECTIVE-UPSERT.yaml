@@ -1,0 +1,10 @@
+id: EP-STRATEGIC-OBJECTIVE-UPSERT
+type: endpoint
+method: POST
+path: /strategic-objective/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:18
+controller: api-sgsi/src/controllers/strategicObjective.ts#upsert
+model: api-sgsi/src/models/strategicObjective.ts#upsert
+function: FN-V2-STRATEGIC-OBJECTIVE-UPSERT
+status: CONFIRMED

@@ -1,0 +1,14 @@
+id: FN-V2-DOC-FLOW-GROUP-UPSERT
+type: db-function
+name: sgsi.v2_doc_flow_group_upsert
+definedIn: funciones_sgsi.sql:15939-16000
+status: CONFIRMED
+calls:
+  - FN-V2-DOC-FLOW-GROUP-GET-BY-ID
+tables:
+  - { table: sgsi.doc_flow_group, access: WRITE }
+  - { table: sgsi.doc_flow_group_position, access: WRITE }
+notes: >
+  Crea o edita un grupo de visibilidad de documentos (is_global o vinculado a cargos
+  específicos vía doc_flow_group_position, reemplazo completo DELETE+INSERT).
+  Retorna el grupo actualizado vía FN-V2-DOC-FLOW-GROUP-GET-BY-ID.

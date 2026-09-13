@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-CLASSIFICATION-MASTERS-CATALOG
+type: endpoint
+method: GET
+path: /security-events/classification-masters
+access: public-authenticated
+router: api-sgsi/src/routers/securityEvent.ts:76
+controller: api-sgsi/src/controllers/securityEvent.ts#getClassificationMasters
+model: api-sgsi/src/models/securityEvent.ts#getClassificationMasters
+function: FN-V2-SECURITY-EVENT-CLASSIFICATION-MASTERS-GET-ALL
+status: CONFIRMED
+notes: "Catalog endpoint — no FLOW, only technical dependency."

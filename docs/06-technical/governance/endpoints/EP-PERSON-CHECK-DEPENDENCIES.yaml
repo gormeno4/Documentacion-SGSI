@@ -1,0 +1,16 @@
+id: EP-PERSON-CHECK-DEPENDENCIES
+type: endpoint
+method: GET
+path: /person/dependencies/:id
+access: admin-only
+router: api-sgsi/src/routers/person.ts:23
+controller: api-sgsi/src/controllers/person.ts#checkDependencies
+model: api-sgsi/src/models/person.ts#checkDependencies
+function: FN-CHECK-PERSON-DEPENDENCIES
+status: CONFIRMED
+notes: >
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): el controller
+  (controllers/person.ts:688-704) no compara el id con dataUser(req).customerId, y la funcion SQL
+  tampoco recibe customer_id. Permite enumerar dependencias de una persona de otro cliente.
+  Asimetria explicita frente a EP-AREA-CHECK-DEPENDENCIES y EP-POSITION-CHECK-DEPENDENCIES, que si
+  validan.

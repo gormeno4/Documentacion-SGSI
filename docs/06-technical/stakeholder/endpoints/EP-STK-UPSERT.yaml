@@ -1,0 +1,8 @@
+id: EP-STK-UPSERT
+type: endpoint
+method: POST
+path: /stakeholder/upsert
+domain: DOM-STK
+flow: FLOW-STK-001
+function: FN-STK-UPSERT
+status: CONFIRMED

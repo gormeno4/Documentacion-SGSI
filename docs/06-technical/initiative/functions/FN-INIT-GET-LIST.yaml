@@ -1,0 +1,14 @@
+id: FN-INIT-GET-LIST
+type: db-function
+schema: sgsi
+name: initiative_get_list_by_company_id
+signature: "initiative_get_list_by_company_id(p_company_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:6573-6651
+status: CONFIRMED
+description: "List initiatives for company, excluding deleted"
+
+tables:
+  - table: sgsi.initiative
+    access: READ
+
+notes: "SUPPORT function. Invoked after upsert/changeStatus to refresh list."

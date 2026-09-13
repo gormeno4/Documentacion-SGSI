@@ -1,0 +1,13 @@
+id: FN-RISK-TREATMENT-STRATEGY-GET-LIST
+type: db-function
+name: sgsi.risk_treatment_strategy_get_list
+definedIn: funciones_sgsi.sql:8387-8412
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.risk_treatment_strategy, access: READ }
+notes: >
+  Catálogo global (aceptar/mitigar/transferir/evitar) consumido por el
+  formulario de definición de tratamiento (individual y grupo). Vive bajo el
+  router /risk-treatment (en su mayoría huérfano — ver hallazgos), pero este
+  endpoint puntual sí tiene consumidor real.

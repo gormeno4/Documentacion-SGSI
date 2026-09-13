@@ -1,0 +1,27 @@
+id: FN-DOC-GET-MY-DOCUMENTS
+type: db-function
+name: sgsi.doc_get_my_documents
+definedIn: funciones_sgsi.sql:3512-3661
+status: CONFIRMED
+calls:
+  - FN-DOC-FLOW-GET-ACTIVE-PROCESS-INFO
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.base_document_type, access: READ }
+  - { table: sgsi.document_type, access: READ }
+  - { table: corvus.area, access: READ }
+  - { table: sgsi.doc_flow_group, access: READ }
+  - { table: sgsi.doc_flow_group_position, access: READ }
+  - { table: sgsi.doc_document_groups, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.doc_version_editors, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_processes, access: READ }
+notes: >
+  "Mis documentos": documentos visibles por grupo de visibilidad (posición del
+  usuario en un grupo global o vinculado), por ser editor (individual o N:M), por ser
+  creador, o por ser aprobador en algún step. Reutiliza FN-DOC-FLOW-GET-ACTIVE-PROCESS-INFO
+  vía LATERAL JOIN para el proceso/estado actual.

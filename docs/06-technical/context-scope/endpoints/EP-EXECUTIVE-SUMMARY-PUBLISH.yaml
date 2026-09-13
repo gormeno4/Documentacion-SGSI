@@ -1,0 +1,16 @@
+id: EP-EXECUTIVE-SUMMARY-PUBLISH
+type: endpoint
+method: POST
+path: /executive-summary/publish
+access: admin-or-usuario
+router: api-sgsi/src/routers/executiveSummary.ts:18
+controller: api-sgsi/src/controllers/executiveSummary.ts#publish
+model: api-sgsi/src/models/executiveSummary.ts#publish
+function: FN-V2-EXECUTIVE-SUMMARY-ANALYSIS-PUBLISH
+status: CONFIRMED
+notes: >
+  Mismo patrón de redundancia que FODA/PESTEL: la UI llama primero a Doc-Flow
+  (flip real de is_current+is_complete sobre sgsi.executive_summary,
+  executive-summary.tsx:237-241) y recién después a este endpoint — la llamada
+  local, sujeta al mismo tipo de guard is_complete=false que el resto de la
+  familia, queda como no-op en la práctica. Technical Debt, no corregido.

@@ -1,0 +1,14 @@
+id: FN-V2-PERSON-UPSERT-MASSIVE
+type: db-function
+name: corvus.v2_person_upsert_massive
+definedIn: funciones_corvus.sql:24328-24379
+status: CONFIRMED
+calls:
+  - FN-V2-PERSON-UPSERT
+  - FN-V2-CUSTOMER-PERSON-GET-LIST-BY-CUSTOMER-ID
+notes: >
+  Sin logica propia de negocio: itera el array JSON y delega fila a fila en v2_person_upsert, por
+  lo que hereda toda su cascada (corvus.person, customer_person, user, user_rol, person_staff). La
+  resolucion previa de areas, cargos y equipos por NOMBRE - creandolos si no existen - ocurre
+  ANTES, en Node (controllers/person.ts:415-660), no en esta funcion. No declara tables propias:
+  todas sus escrituras llegan por la arista calls.

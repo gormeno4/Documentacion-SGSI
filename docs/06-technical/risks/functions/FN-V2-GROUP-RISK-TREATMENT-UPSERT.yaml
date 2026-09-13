@@ -1,0 +1,20 @@
+id: FN-V2-GROUP-RISK-TREATMENT-UPSERT
+type: db-function
+name: sgsi.v2_group_risk_treatment_upsert
+definedIn: funciones_sgsi.sql:18990-19143
+status: CONFIRMED
+calls:
+  - FN-V2-GROUP-RISK-TREATMENT-GET-LIST
+tables:
+  - { table: sgsi.asset_group_threat_risk, access: WRITE }
+  - { table: sgsi.group_risk_treatment, access: WRITE }
+  - { table: sgsi.group_risk_treatment_control, access: WRITE }
+  - { table: sgsi.risk_treatment_strategy, access: READ }
+notes: >
+  Escritura condicional sobre asset_group_threat_risk: si el escenario recibido
+  es "virtual" (fila base del catálogo aún no materializada, id NULL), la
+  materializa antes de crear el tratamiento. Los controles vinculados se
+  reemplazan por completo (DELETE + INSERT) en cada guardado — el mismo patrón
+  documentado como riesgo de sobrescritura frente a la UI externa "Vínculo de
+  Controles" (SoA), que edita sgsi.group_risk_treatment_control de forma
+  incremental (ver dependencia externa entrante en docs/00-catalog/riesgos.md).

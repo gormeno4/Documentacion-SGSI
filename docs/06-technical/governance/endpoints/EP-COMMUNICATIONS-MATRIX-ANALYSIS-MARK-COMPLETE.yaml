@@ -1,0 +1,17 @@
+id: EP-COMMUNICATIONS-MATRIX-ANALYSIS-MARK-COMPLETE
+type: endpoint
+method: POST
+path: /communications-matrix/analysis/complete
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:19
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#markComplete
+model: api-sgsi/src/models/communicationsMatrix.ts#markComplete
+function: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-MARK-COMPLETE
+status: CONFIRMED
+notes: >
+  Publicacion LOCAL de la version vigente. Se invoca en las DOS rutas de publicacion: despues de
+  publishProcess en la ruta normal (escritura redundante) y como unico mecanismo en la ruta de
+  reintento. Ver FLOW-GOV-012 y la funcion para el detalle.
+
+  HALLAZGO DE SEGURIDAD (authorization, no corregido): sin verifyAdminOnly y sin consumidor
+  no-admin - un usuario sin rol Admin puede marcar una version como publicada.

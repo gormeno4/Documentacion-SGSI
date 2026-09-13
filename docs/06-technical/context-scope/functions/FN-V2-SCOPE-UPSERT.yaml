@@ -1,0 +1,17 @@
+id: FN-V2-SCOPE-UPSERT
+type: db-function
+name: sgsi.v2_scope_upsert
+definedIn: funciones_sgsi.sql:25733-25864
+status: CONFIRMED
+calls:
+  - FN-SCOPE-GET-RELATED-DOCUMENTS-JSON
+tables:
+  - { table: sgsi.scope, access: WRITE }
+  - { table: sgsi.scope_document_related, access: WRITE }
+notes: >
+  Al crear la primera versión (INSERT), invoca además
+  sgsi.v2_iso_insert_mandatory_policies(p_user_id, p_customer_id)
+  (funciones_sgsi.sql:25815) — función de otro dominio (SoA/gobernanza de
+  políticas), aún no documentada; no se referencia en `calls` para no crear un
+  nodo colgante. Reemplaza el set completo de scope_document_related
+  (DELETE+INSERT) cuando el payload trae related_document_ids.

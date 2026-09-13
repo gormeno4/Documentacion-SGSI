@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-EFFECTIVENESS-GET-OBSERVATION-PERIODS
+type: db-function
+name: sgsi.v2_incident_effectiveness_get_observation_periods
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_severities, access: READ }
+notes: "Catalog read: observation period options (weekly, monthly, quarterly, etc.)."

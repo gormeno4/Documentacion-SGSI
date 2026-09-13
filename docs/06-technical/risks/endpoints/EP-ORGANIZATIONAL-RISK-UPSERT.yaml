@@ -1,0 +1,10 @@
+id: EP-ORGANIZATIONAL-RISK-UPSERT
+type: endpoint
+method: POST
+path: /organizational-risk/upsert
+access: admin-only
+router: api-sgsi/src/routers/organizationalRisk.ts
+controller: api-sgsi/src/controllers/organizationalRisk.ts#upsert
+model: api-sgsi/src/models/organizationalRisk.ts#upsert
+function: FN-V2-ORGANIZATIONAL-RISK-UPSERT
+status: CONFIRMED

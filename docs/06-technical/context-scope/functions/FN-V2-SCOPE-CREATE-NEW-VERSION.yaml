@@ -1,0 +1,7 @@
+id: FN-V2-SCOPE-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_scope_create_new_version
+definedIn: funciones_sgsi.sql:25313-25406
+status: CONFIRMED
+tables:
+  - { table: sgsi.scope, access: WRITE }

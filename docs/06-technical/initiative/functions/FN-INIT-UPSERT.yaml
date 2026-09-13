@@ -1,0 +1,33 @@
+id: FN-INIT-UPSERT
+type: db-function
+schema: sgsi
+name: initiative_upsert
+signature: "initiative_upsert(p_json_data jsonb, p_user_connected_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:6652-6730
+status: CONFIRMED
+description: "Create or update initiative with optional risk/control/person links"
+
+parameters:
+  - name: p_json_data
+    type: jsonb
+    description: "{id?, companyId, title (required), status, progress, linkRiskId?, linkControlId?, leadResponsibleId?, estimatedBudget?, infrastructureTools?}"
+  - name: p_user_connected_id
+    type: uuid
+
+returns:
+  type: json
+  description: "Array of initiatives for company"
+
+tables:
+  - table: sgsi.initiative
+    access: WRITE
+    operations: "INSERT (if id null), UPDATE (if id exists)"
+
+businessRules:
+  - "title is required"
+  - "companyId is required"
+  - "status defaults to 'planificada'"
+  - "progress defaults to 0"
+  - "No state machine validation on create/update (done in changeStatus)"
+
+notes: "Links to risk/control/person are simple FK references, not validated for existence."

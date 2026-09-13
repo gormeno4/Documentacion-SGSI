@@ -1,0 +1,20 @@
+id: FN-DOC-FLOW-GET-NEXT-APPROVER-EMAIL-CONTEXT
+type: db-function
+name: sgsi.doc_flow_get_next_approver_email_context
+definedIn: funciones_sgsi.sql:1728-1807
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+notes: >
+  Helper de contexto para email (asunto/nombre de entidad, próximo aprobador),
+  invocado desde el controller (no desde otra function SQL) en submit/approve/reassign
+  para disparar la notificación fire-and-forget al siguiente aprobador
+  (utils/doc-flow-email-templates.ts + utils/api.ts#sendTemplateEmail — dependencia
+  externa `email`). Patrón de "función de contexto llamada desde TS" repetido en las
+  otras 3 functions *_email_context de este módulo.

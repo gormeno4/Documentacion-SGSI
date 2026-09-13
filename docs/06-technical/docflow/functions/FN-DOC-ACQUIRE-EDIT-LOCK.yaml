@@ -1,0 +1,13 @@
+id: FN-DOC-ACQUIRE-EDIT-LOCK
+type: db-function
+name: sgsi.doc_acquire_edit_lock
+definedIn: funciones_sgsi.sql:527-592
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: WRITE }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Lock colaborativo con timeout (default 15 min, parametrizable). Si no hay lock
+  activo, o el lock es del mismo usuario, o expiró, lo adquiere; si no, retorna
+  success=false con el nombre de quien tiene el lock.

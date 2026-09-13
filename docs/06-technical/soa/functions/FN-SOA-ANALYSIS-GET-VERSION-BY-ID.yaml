@@ -1,0 +1,15 @@
+id: FN-SOA-ANALYSIS-GET-VERSION-BY-ID
+type: db-function
+name: sgsi.soa_analysis_get_version_by_id
+definedIn: funciones_sgsi.sql:8634-8664
+status: CONFIRMED
+tables:
+  - { table: sgsi.soa_analysis, access: READ }
+  - { table: sgsi.control_soa, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Detalle de una versión puntual (activa o histórica) por id, con contador de controles
+  evaluados. El historial de aprobación real se agrega después, en el model
+  (models/soa.ts#getVersionById), vía getProcessByEntity del dominio externo doc-flow —
+  no forma parte de esta function SQL.

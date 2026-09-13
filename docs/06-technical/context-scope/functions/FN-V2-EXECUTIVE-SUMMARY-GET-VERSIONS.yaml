@@ -1,0 +1,7 @@
+id: FN-V2-EXECUTIVE-SUMMARY-GET-VERSIONS
+type: db-function
+name: sgsi.v2_executive_summary_get_versions
+definedIn: funciones_sgsi.sql:17549-17574
+status: CONFIRMED
+tables:
+  - { table: sgsi.executive_summary, access: READ }

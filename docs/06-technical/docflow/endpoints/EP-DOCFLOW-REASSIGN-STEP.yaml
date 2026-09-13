@@ -1,0 +1,14 @@
+id: EP-DOCFLOW-REASSIGN-STEP
+type: endpoint
+method: POST
+path: /document-flow/steps/:stepId/reassign
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:40
+controller: api-sgsi/src/controllers/doc-flow.ts#handleReassignStep
+model: api-sgsi/src/models/doc-flow.ts#reassignStep
+function: FN-DOC-FLOW-REASSIGN-STEP
+status: CONFIRMED
+notes: >
+  Autorización adicional en el controller (no en el router): solo admin del sistema
+  o admin del cliente puede reasignar (getAccessFlags), aunque el acceso base de la
+  ruta sea admin-or-usuario.

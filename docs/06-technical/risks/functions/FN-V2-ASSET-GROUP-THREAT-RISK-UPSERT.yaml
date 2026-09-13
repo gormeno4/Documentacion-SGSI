@@ -1,0 +1,16 @@
+id: FN-V2-ASSET-GROUP-THREAT-RISK-UPSERT
+type: db-function
+name: sgsi.v2_asset_group_threat_risk_upsert
+definedIn: funciones_sgsi.sql:10900-10978
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-THREAT-RISK-GET-LIST-BY-GROUP-ID
+tables:
+  - { table: sgsi.asset_group_threat_risk, access: WRITE }
+notes: >
+  UPDATE por PK si el payload trae id (fila ya materializada, "base" con
+  override o "custom" existente), o INSERT si es una fila nueva. El mismo
+  endpoint recibe isExcluded:true para excluir una amenaza del análisis de
+  grupo — no existe un endpoint dedicado para excluir a nivel de grupo (sí
+  existe a nivel de activo individual: sgsi.v2_asset_threat_risk_exclude,
+  huérfano — ver docs/00-catalog/riesgos.md).

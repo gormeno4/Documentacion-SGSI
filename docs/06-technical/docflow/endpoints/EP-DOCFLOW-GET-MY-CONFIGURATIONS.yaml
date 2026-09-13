@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-GET-MY-CONFIGURATIONS
+type: endpoint
+method: GET
+path: /document-flow/my-configurations
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:49
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetMyConfigurations
+model: api-sgsi/src/models/doc-flow.ts#getMyConfigurations
+function: FN-DOC-FLOW-GET-MY-CONFIGURATIONS
+status: CONFIRMED

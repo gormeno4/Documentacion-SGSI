@@ -1,0 +1,10 @@
+id: FN-V2-ASSET-GET-HISTORY-BY-ASSET-ID
+type: db-function
+name: sgsi.v2_asset_get_history_by_asset_id
+definedIn: funciones_sgsi.sql:9845-9888
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset_history, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.person, access: READ }

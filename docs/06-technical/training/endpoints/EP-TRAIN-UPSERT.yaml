@@ -1,0 +1,117 @@
+id: EP-TRAIN-UPSERT
+type: endpoint
+method: POST
+path: /training/upsert
+access: admin-only
+router: api-sgsi/src/routers/training.ts:11
+controller: api-sgsi/src/controllers/training.ts#upsert
+model: api-sgsi/src/models/training.ts#upsert
+query: api-sgsi/src/queries/training.ts#_upsert
+function: FN-TRAIN-UPSERT
+status: CONFIRMED
+description: "Crear o actualizar una capacitación, incluyendo asignación de participantes"
+
+requestBody:
+  type: object
+  required:
+    - courseName
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "Si vacío/null, es creación; si presente, es actualización"
+    courseName:
+      type: string
+      minLength: 1
+      maxLength: 500
+      description: "Nombre del curso"
+    description:
+      type: string
+      description: "Descripción de la capacitación"
+    institution:
+      type: string
+      description: "Institución que oferta"
+    instructorName:
+      type: string
+      description: "Nombre del facilitador"
+    startDate:
+      type: string
+      format: date
+      description: "Fecha de inicio (ISO 8601)"
+    endDate:
+      type: string
+      format: date
+      description: "Fecha de fin (ISO 8601)"
+    durationHours:
+      type: number
+      description: "Duración en horas"
+    modality:
+      type: string
+      enum: ["presencial", "online", "mixta"]
+      description: "Modalidad de capacitación"
+    status:
+      type: string
+      enum: ["planificado", "en curso", "finalizado", "cancelado"]
+      default: "planificado"
+      description: "Estado de la capacitación"
+    participants:
+      type: array
+      items:
+        type: object
+        properties:
+          personId:
+            type: string
+            format: uuid
+          status:
+            type: string
+            enum: ["asignado", "en_curso", "aprobado", "reprobado", "ausente", "cancelado"]
+            default: "asignado"
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/ITraining"
+  description: "Lista actualizada de capacitaciones"
+
+components:
+  schemas:
+    ITraining:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        courseName:
+          type: string
+        institution:
+          type: string
+        instructorName:
+          type: string
+        status:
+          type: string
+        modality:
+          type: string
+        personIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        participants:
+          type: array
+          items:
+            type: object
+            properties:
+              personId:
+                type: string
+                format: uuid
+              status:
+                type: string
+
+securityRules:
+  - "verifyAdminOnly middleware"
+  - "tenant isolation: compares training.company_id with dataUser(req).customerId"
+
+notes: |
+  Cascada de estado:
+  - Primera vez que status pasa a 'en curso': todos los participantes pasan a status 'en_curso'
+  - Si status pasa a 'cancelado': todos los participantes pasan a status 'cancelado'

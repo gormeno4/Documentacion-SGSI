@@ -1,0 +1,18 @@
+id: EP-POSITION-UPSERT
+type: endpoint
+method: POST
+path: /position/upsert
+access: admin-only
+router: api-sgsi/src/routers/position.ts:16
+controller: api-sgsi/src/controllers/position.ts#upsert
+model: api-sgsi/src/models/position.ts#upsert
+function: FN-V2-POSITION-UPSERT
+status: CONFIRMED
+notes: >
+  Ruta con verifyAdminOnly. El controller traduce el P0001 de la funcion (nombre de cargo o de
+  activo duplicado) a un 409. controllers/position.ts:8 importa CustomerModel y nunca lo usa
+  (deuda registrada).
+
+  Convergencia relevante: ademas de la ficha de Cargos, el modal de Roles y Responsabilidades y el
+  modal del Wizard, este mismo camino lo ejecuta el backend de Doc-Flow al publicar un CARGO
+  (controllers/doc-flow.ts:343 -> models/position.ts#upsert, ver FLOW-DOCFLOW-006).

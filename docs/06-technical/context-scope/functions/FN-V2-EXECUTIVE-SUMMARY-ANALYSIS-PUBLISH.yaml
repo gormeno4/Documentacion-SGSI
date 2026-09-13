@@ -1,0 +1,13 @@
+id: FN-V2-EXECUTIVE-SUMMARY-ANALYSIS-PUBLISH
+type: db-function
+name: sgsi.v2_executive_summary_analysis_publish
+definedIn: funciones_sgsi.sql:17013-17106
+status: CONFIRMED
+tables:
+  - { table: sgsi.executive_summary, access: WRITE }
+notes: >
+  Mismo patrón de redundancia que FODA/PESTEL (guard is_complete=false,
+  publish.tsx llama primero a Doc-Flow) — no-op real en el flujo actual de la
+  UI. A diferencia de las otras 3, el nombre real de la function incluye el
+  infijo "analysis" (v2_executive_summary_ANALYSIS_publish) aunque
+  sgsi.executive_summary es tabla única, no un par ítem+análisis.

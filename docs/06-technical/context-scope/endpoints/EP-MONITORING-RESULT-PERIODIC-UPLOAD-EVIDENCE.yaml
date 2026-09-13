@@ -1,0 +1,15 @@
+id: EP-MONITORING-RESULT-PERIODIC-UPLOAD-EVIDENCE
+type: endpoint
+method: POST
+path: /monitoring-result-periodic/periodic/upload
+access: admin-or-usuario
+router: api-sgsi/src/routers/monitoringResultPeriodic.ts:21
+controller: api-sgsi/src/controllers/monitoringResultPeriodic.ts#uploadEvidenceFile
+model: api-sgsi/src/models/file.ts#upsert
+status: CONFIRMED
+notes: >
+  No ejecuta ninguna function propia de DOM-CTX: sube el archivo físico y crea
+  el registro en sgsi.file (dominio externo "file", no documentado aquí) con un
+  entity_id placeholder (el customerId) hasta que EP-MONITORING-RESULT-PERIODIC-UPSERT
+  lo reasigne al registro real de monitoreo. Middleware: multer
+  (uploadMonitoringPeriodicEvidence.single("file")).

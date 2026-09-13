@@ -1,0 +1,10 @@
+id: EP-EXECUTIVE-SUMMARY-CREATE-NEW-VERSION
+type: endpoint
+method: POST
+path: /executive-summary/new-version
+access: admin-or-usuario
+router: api-sgsi/src/routers/executiveSummary.ts:20
+controller: api-sgsi/src/controllers/executiveSummary.ts#createNewVersion
+model: api-sgsi/src/models/executiveSummary.ts#createNewVersion
+function: FN-V2-EXECUTIVE-SUMMARY-CREATE-NEW-VERSION
+status: CONFIRMED

@@ -1,0 +1,30 @@
+id: FN-CHECK-PERSON-DEPENDENCIES
+type: db-function
+name: sgsi.check_person_dependencies
+definedIn: funciones_sgsi.sql:84-262
+status: CONFIRMED
+tables:
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.person_training, access: READ }
+  - { table: sgsi.training, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.resource_review, access: READ }
+  - { table: sgsi.resource_review_act_type, access: READ }
+  - { table: sgsi.person_staff, access: READ }
+  - { table: sgsi.staff, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.user_rol, access: READ }
+  - { table: corvus.rol, access: READ }
+notes: >
+  Devuelve NULL si la persona no tiene dependencias, o un jsonb con conteos y nombres de: pasos de
+  flujo documental, activos donde es propietaria/administradora, capacitaciones, versiones de
+  documento como editora, revisiones de recursos, Alta Direccion y Responsable del SGSI.
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): la funcion solo recibe p_person_id, sin
+  customer_id, y el controller tampoco valida (controllers/person.ts:688-704) - a diferencia de
+  /area/dependencies y /position/dependencies, que si lo hacen. Permite enumerar dependencias de
+  una persona de otro cliente.

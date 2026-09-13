@@ -1,0 +1,12 @@
+id: FN-DOC-VERSIONS-GET-NEXT-NUMBER
+type: db-function
+name: sgsi.doc_versions_get_next_number
+definedIn: funciones_sgsi.sql:4798-4809
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: READ }
+notes: >
+  Siguiente version_number para un documento. Invocada desde los 3 modelos
+  upsertPublished*Document (Cargo/Inventario/Organigrama) antes de llamar a
+  FN-DOC-UPSERT, para versionar correctamente el documento formal generado
+  automáticamente al publicar.

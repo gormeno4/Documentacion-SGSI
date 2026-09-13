@@ -1,0 +1,13 @@
+id: EP-PERSON-DELETE-BY-ID
+type: endpoint
+method: POST
+path: /person/deleteById/:id
+access: admin-only
+router: api-sgsi/src/routers/person.ts:45
+controller: api-sgsi/src/controllers/person.ts#deleteById
+model: api-sgsi/src/models/person.ts#deleteById
+function: FN-V2-PERSON-DELETE-BY-ID
+status: CONFIRMED
+notes: >
+  Baja tenant-aware: el modelo pasa userId, applicationId y customerId, y la funcion solo
+  desvincula a la persona del cliente actual sin borrarla globalmente.

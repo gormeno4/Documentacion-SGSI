@@ -1,0 +1,17 @@
+id: FN-V2-ASSET-GROUP-DEACTIVATE-BY-ID
+type: db-function
+name: sgsi.v2_asset_group_deactivate_by_id
+definedIn: funciones_sgsi.sql:10380-10434
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-DELETE-BY-ID       # en cascada, una vez por cada activo vigente del grupo
+  - FN-V2-ASSET-GROUP-GET-BY-ID    # RETURN final
+tables:
+  - { table: sgsi.asset_group, access: WRITE }
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.asset_group_history, access: WRITE }
+notes: >
+  Marca el grupo como active=false y, en cascada, da de baja (soft delete) cada activo
+  vigente del grupo invocando FN-V2-ASSET-DELETE-BY-ID individualmente. Los fallos por
+  activo individual (p. ej. activos con position_id) se capturan y se listan en el
+  summary sin abortar la desactivación del grupo.

@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-VALIDATION-SAVE
+type: endpoint
+method: POST
+path: /security-events/validation
+access: reviewer
+router: api-sgsi/src/routers/securityEvent.ts:49
+controller: api-sgsi/src/controllers/securityEvent.ts#saveValidation
+model: api-sgsi/src/models/securityEvent.ts#saveValidation
+function: FN-V2-INCIDENT-VALIDATION-UPSERT
+status: CONFIRMED

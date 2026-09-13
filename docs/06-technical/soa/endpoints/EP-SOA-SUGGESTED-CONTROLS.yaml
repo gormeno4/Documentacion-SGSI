@@ -1,0 +1,10 @@
+id: EP-SOA-SUGGESTED-CONTROLS
+type: endpoint
+method: GET
+path: /soa/suggested-controls
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:28
+controller: api-sgsi/src/controllers/soa.ts#getSuggestedControls
+model: api-sgsi/src/models/soa.ts#getSuggestions
+function: FN-V2-CONTROL-SOA-GET-SUGGESTIONS
+status: CONFIRMED

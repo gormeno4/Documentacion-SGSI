@@ -1,0 +1,14 @@
+id: EP-DOCFLOW-GET-ACTIVE-ASSET-PROCESS
+type: endpoint
+method: GET
+path: /document-flow/active-asset-process
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:52
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetActiveAssetProcess
+model: api-sgsi/src/models/doc-flow.ts#getActiveAssetProcessByCustomer
+function: FN-DOC-FLOW-GET-ACTIVE-ASSET-PROCESS-BY-CUSTOMER
+status: CONFIRMED
+notes: >
+  Reclasificado de PARTIAL (Discovery) a LIVE (Diseño/Implementación): consumido por
+  Activos (app-sgsi/src/components/functional/asset-inventory/asset-inventory.tsx) para
+  mostrar el banner de proceso de aprobación activo sobre el inventario.

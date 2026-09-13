@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-CREATE-PROCESS
+type: endpoint
+method: POST
+path: /document-flow/process
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:24
+controller: api-sgsi/src/controllers/doc-flow.ts#handleCreateProcess
+model: api-sgsi/src/models/doc-flow.ts#createProcess
+function: FN-DOC-FLOW-CREATE-PROCESS
+status: CONFIRMED

@@ -1,0 +1,10 @@
+id: EP-DOC-SEND-TO-EDITING
+type: endpoint
+method: POST
+path: /document-flow/documents/versions/:versionId/send-to-editing
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:36
+controller: api-sgsi/src/controllers/doc-documents.ts#handleSendToEditing
+model: api-sgsi/src/models/doc-documents.ts#sendToEditing
+function: FN-DOC-SEND-TO-EDITING
+status: CONFIRMED

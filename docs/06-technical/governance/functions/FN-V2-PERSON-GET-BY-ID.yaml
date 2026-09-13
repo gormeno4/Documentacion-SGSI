@@ -1,0 +1,23 @@
+id: FN-V2-PERSON-GET-BY-ID
+type: db-function
+name: corvus.v2_person_get_by_id
+definedIn: funciones_corvus.sql:24035-24150
+status: CONFIRMED
+calls:
+  - FN-V2-PERSON-DOCUMENT-GET-BY-PERSON-ID
+tables:
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.user_rol, access: READ }
+  - { table: corvus.rol, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.person_staff, access: READ }
+  - { table: sgsi.staff, access: READ }
+  - { table: sgsi.person_training, access: READ }
+  - { table: sgsi.training, access: READ }
+notes: >
+  Version post-sprint5: JOIN a customer_person scoped por p_customer_id. El payload embebe
+  documents[] (via v2_person_document_get_by_person_id), por eso la pestana de documentos de la
+  ficha no necesita el endpoint GET /person/:personId/documents - que queda huerfano (ver
+  Hallazgos).

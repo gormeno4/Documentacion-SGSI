@@ -1,0 +1,7 @@
+id: FN-V2-FODA-ANALYSIS-GET-VERSIONS
+type: db-function
+name: sgsi.v2_foda_analysis_get_versions
+definedIn: funciones_sgsi.sql:17994-18029
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda_analysis, access: READ }

@@ -1,0 +1,15 @@
+id: FN-PERSON-UPSERT-PERSON-DOCUMENTS
+type: db-function
+name: sgsi.person_upsert_person_documents
+definedIn: funciones_sgsi.sql:7245-7314
+status: CONFIRMED
+calls:
+  - FN-V2-PERSON-DOCUMENT-GET-BY-PERSON-ID
+tables:
+  - { table: sgsi.person_document, access: WRITE }
+  - { table: corvus.person, access: READ }
+notes: >
+  Recibe arrays paralelos (rutas, nombres, mime types, tamanos, fechas de firma, estados) aunque
+  el controller siempre envia un unico documento por llamada (upload.single). El archivo fisico se
+  guarda en disco y se registra ademas en sgsi.file desde Node (FileModel.upsert,
+  entity_type='person-document') - dependencia externa file, no una escritura de esta funcion.

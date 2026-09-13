@@ -1,0 +1,13 @@
+id: EP-DOC-GET-INVENTORY-REPORT
+type: endpoint
+method: GET
+path: /document-flow/documents/inventory/report
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:60
+controller: api-sgsi/src/controllers/doc-documents.ts#handleGetDocumentInventoryReport
+model: api-sgsi/src/models/doc-documents.ts#getDocumentInventoryReport
+function: FN-DOC-GET-INVENTORY-REPORT
+status: CONFIRMED
+notes: >
+  Autorización adicional en el controller: exige isSystemAdmin o hasAdminRole
+  (getAccessFlags), aunque el acceso base de la ruta sea admin-or-usuario.

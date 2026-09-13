@@ -1,0 +1,16 @@
+id: FN-V2-CUSTOMER-GET-BY-ID
+type: db-function
+name: sgsi.v2_customer_get_by_id
+definedIn: funciones_sgsi.sql:14740-14804
+status: CONFIRMED
+tables:
+  - { table: corvus.customer, access: READ }
+  - { table: corvus.branch, access: READ }
+  - { table: corvus.district, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+notes: >
+  Devuelve {customer, customerBranch, customerManager}. El listado de representantes legales y el
+  conteo de empleados ya se resuelven por corvus.customer_person (post-sprint5), no por las
+  columnas legacy de corvus.person. customerManager esta hardcodeado a '[]'::json. Tambien la
+  invoca FN-V2-CUSTOMER-UPSERT para devolver el registro actualizado.

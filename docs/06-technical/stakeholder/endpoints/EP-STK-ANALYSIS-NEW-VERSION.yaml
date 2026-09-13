@@ -1,0 +1,8 @@
+id: EP-STK-ANALYSIS-NEW-VERSION
+type: endpoint
+method: POST
+path: /stakeholder/analysis/new-version
+domain: DOM-STK
+flow: FLOW-STK-003
+function: FN-STK-ANALYSIS-NEW-VERSION
+status: CONFIRMED

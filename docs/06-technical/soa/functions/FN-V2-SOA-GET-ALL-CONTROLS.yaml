@@ -1,0 +1,32 @@
+id: FN-V2-SOA-GET-ALL-CONTROLS
+type: db-function
+name: sgsi.v2_soa_get_all_controls
+definedIn: funciones_sgsi.sql:26723-26844
+status: CONFIRMED
+calls:
+  - FN-V2-SOA-ANALYSIS-GET-ACTIVE
+  - FN-GET-CONTROLES-APLICABLES
+  - FN-CONTROL-GET-LINKED-POLICY-DOCUMENTS
+tables:
+  - { table: sgsi.base_control_clauses, access: READ }
+  - { table: sgsi.base_functional_group, access: READ }
+  - { table: sgsi.control_soa, access: READ }
+  - { table: sgsi.control_soa_evidence, access: READ }
+  - { table: sgsi.control_soa_remediation, access: READ }
+  - { table: sgsi.control_soa_governance_policy, access: READ }
+  - { table: sgsi.policies, access: READ }
+  - { table: sgsi.file, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.ai_asset_risk_suggestions, access: READ }
+  - { table: sgsi.ai_asset_risk_control_suggestions, access: READ }
+  - { table: sgsi.risk_domain, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Arma el catálogo completo de los 93 controles evaluados para la Declaración activa,
+  embebiendo evidencia, remediación, políticas de gobernanza, documentos de política
+  vinculados (FN-CONTROL-GET-LINKED-POLICY-DOCUMENTS) y aplicabilidad sugerida
+  (FN-GET-CONTROLES-APLICABLES). Calcula ai_suggested en vivo (EXISTS contra
+  ai_asset_risk_suggestions/_control_suggestions) — a diferencia de la variante
+  histórica (FN-V2-SOA-GET-ALL-CONTROLS-BY-ANALYSIS), que hardcodea FALSE.

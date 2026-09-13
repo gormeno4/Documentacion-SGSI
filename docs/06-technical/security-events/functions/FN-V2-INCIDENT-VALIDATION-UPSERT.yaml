@@ -1,0 +1,10 @@
+id: FN-V2-INCIDENT-VALIDATION-UPSERT
+type: db-function
+name: sgsi.v2_incident_validation_upsert
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_validations, access: WRITE }
+  - { table: sgsi.incident_validation_checks, access: WRITE }
+notes: "Registers validation checklist results. Creates validation record and individual check items."

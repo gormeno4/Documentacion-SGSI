@@ -1,0 +1,19 @@
+id: FN-V2-GROUP-RISK-TREATMENT-CONTROL-GET-LIST-RISKS
+type: db-function
+name: sgsi.v2_group_risk_treatment_control_get_list_risks
+definedIn: funciones_sgsi.sql:18683-18731
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS
+tables:
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: sgsi.group_risk_treatment_control, access: READ }
+  - { table: sgsi.base_control_clauses, access: READ }
+notes: >
+  Lista los escenarios de riesgo por grupo que ya tienen un tratamiento definido, con
+  sus controles vinculados. Llama sgsi.v2_asset_group_threat_risk_get_scenarios
+  (FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS), function propia de DOM-RSK, documentada
+  en docs/06-technical/risks/functions/ — arista cross-domain intencional, no oculta:
+  esta Operación pertenece funcionalmente a DOM-SOA pero depende de datos vivos de
+  Riesgos (ver externalDependencies de FLOW-SOA-006).

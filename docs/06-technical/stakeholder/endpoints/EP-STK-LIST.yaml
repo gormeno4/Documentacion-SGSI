@@ -1,0 +1,8 @@
+id: EP-STK-LIST
+type: endpoint
+method: GET
+path: /stakeholder/getListByCustomerId
+domain: DOM-STK
+flow: FLOW-STK-001
+function: FN-STK-LIST
+status: CONFIRMED

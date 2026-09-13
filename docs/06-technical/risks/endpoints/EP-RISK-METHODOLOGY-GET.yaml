@@ -1,0 +1,10 @@
+id: EP-RISK-METHODOLOGY-GET
+type: endpoint
+method: GET
+path: /risk-methodology/getMethodologyByCustomerId
+access: admin-only
+router: api-sgsi/src/routers/riskMethodology.ts
+controller: api-sgsi/src/controllers/riskMethodology.ts#getMethodologyByCustomerId
+model: api-sgsi/src/models/riskMethodology.ts#getMethodologyByCustomerId
+function: FN-V2-RISK-METHODOLOGY-GET
+status: CONFIRMED

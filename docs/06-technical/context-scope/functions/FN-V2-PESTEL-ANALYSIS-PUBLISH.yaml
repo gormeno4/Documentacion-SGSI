@@ -1,0 +1,11 @@
+id: FN-V2-PESTEL-ANALYSIS-PUBLISH
+type: db-function
+name: sgsi.v2_pestel_analysis_publish
+definedIn: funciones_sgsi.sql:22568-22627
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel_analysis, access: WRITE }
+notes: >
+  Mismo guard is_complete=false que FN-V2-FODA-ANALYSIS-PUBLISH — no-op real
+  en el flujo actual de la UI, porque Doc-Flow ya completó la fila antes de
+  que este endpoint se invoque. Technical Debt, no corregido.

@@ -1,0 +1,14 @@
+id: FN-V2-CUSTOMER-PERSON-UPSERT
+type: db-function
+name: corvus.v2_customer_person_upsert
+definedIn: funciones_corvus.sql:23864-23923
+status: CONFIRMED
+calls:
+  - FN-V2-CUSTOMER-PERSON-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: corvus.customer_person, access: WRITE }
+notes: >
+  Creada por la migracion sprint5 (2_2026-09-07_cargo_persona_functions.sql). Sin endpoint propio:
+  vive unicamente como llamada interna desde v2_person_upsert. Persiste position_id, area_id,
+  is_legal_representative e is_assistant POR EMPRESA, y asume la regla de 'representante legal
+  unico por empresa' que antes vivia en v2_person_upsert como regla global por persona.

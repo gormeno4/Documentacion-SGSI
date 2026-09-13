@@ -1,0 +1,13 @@
+id: EP-DOC-DOWNLOAD-LEGACY-FILE
+type: endpoint
+method: GET
+path: /document-flow/documents/files/:id/:fileName
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:66
+controller: api-sgsi/src/controllers/doc-documents.ts#handleDownloadLegacyFile (= file.ts#downloadById)
+status: CONFIRMED
+notes: >
+  Handler delegado enteramente al dominio compartido `file`
+  (controllers/file.ts#downloadById, reexportado con otro nombre). Sin function propia
+  de Doc-Flow. Consumido por enlaces de descarga embebidos en contenido histórico
+  (components/functional/doc-flow/edition/document-editor-view.tsx / editor.tsx).

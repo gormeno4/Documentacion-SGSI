@@ -1,0 +1,13 @@
+id: FN-V2-ASSET-GROUP-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_asset_group_get_list_by_customer_id
+definedIn: funciones_sgsi.sql:10602-10652
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.base_asset_type, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.cia_level, access: READ }
+  - { table: sgsi.asset, access: READ }
+notes: "sgsi.asset se lee solo para contar activos vinculados (assetCount), vía subquery."

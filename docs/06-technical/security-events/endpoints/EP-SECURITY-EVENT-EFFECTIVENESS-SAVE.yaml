@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-EFFECTIVENESS-SAVE
+type: endpoint
+method: POST
+path: /security-events/effectiveness
+access: investigator-or-reviewer
+router: api-sgsi/src/routers/securityEvent.ts:54
+controller: api-sgsi/src/controllers/securityEvent.ts#saveEffectivenessData
+model: api-sgsi/src/models/securityEvent.ts#saveEffectiveness
+function: FN-V2-INCIDENT-EFFECTIVENESS-UPSERT
+status: CONFIRMED

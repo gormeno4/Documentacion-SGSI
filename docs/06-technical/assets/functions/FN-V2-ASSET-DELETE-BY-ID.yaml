@@ -1,0 +1,14 @@
+id: FN-V2-ASSET-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_asset_delete_by_id
+definedIn: funciones_sgsi.sql:9509-9588
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset, access: WRITE }
+  - { table: sgsi.asset_history, access: WRITE }
+  - { table: sgsi.asset_group_history, access: WRITE }
+notes: >
+  Soft delete (deleted_at/deleted_by). Bloquea con excepción si el activo tiene
+  position_id IS NOT NULL (activo originado desde un cargo). También es invocada en
+  cascada por FN-V2-ASSET-GROUP-DEACTIVATE-BY-ID (una vez por cada activo activo del grupo).

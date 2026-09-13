@@ -1,0 +1,10 @@
+id: EP-ASSET-REACTIVATE-BY-ID
+type: endpoint
+method: POST
+path: /asset/reactivateById/:id
+access: admin-only
+router: api-sgsi/src/routers/asset.ts:40
+controller: api-sgsi/src/controllers/asset.ts#reactivateById
+model: api-sgsi/src/models/asset.ts#reactivateById
+function: FN-V2-ASSET-REACTIVATE-BY-ID
+status: CONFIRMED

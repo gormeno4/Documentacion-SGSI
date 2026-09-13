@@ -1,0 +1,28 @@
+id: FN-DOC-FLOW-ENTITY-BELONGS-TO-CUSTOMER
+type: db-function
+name: sgsi.doc_flow_entity_belongs_to_customer
+definedIn: funciones_sgsi.sql:1224-1272
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: corvus.area, access: READ }
+  - { table: sgsi.stake_holder_analysis, access: READ }
+  - { table: sgsi.scope, access: READ }
+  - { table: sgsi.kpi_analysis, access: READ }
+  - { table: sgsi.strategic_objective_analysis, access: READ }
+  - { table: sgsi.pestel_analysis, access: READ }
+  - { table: sgsi.foda_analysis, access: READ }
+  - { table: sgsi.executive_summary, access: READ }
+  - { table: sgsi.communications_matrix_analysis, access: READ }
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.soa_analysis, access: READ }
+notes: >
+  Helper de aislamiento de tenant para el motor polimórfico: dado (entity_type,
+  entity_id, customer_id), resuelve contra la tabla física correspondiente a ese
+  entity_type. Para KPI_TRACKING y RISK_MATRIX (sin tabla propia, entity_id sintético)
+  retorna true siempre — el aislamiento real para esos dos tipos depende de que Node
+  (submitProcess) fuerce el customer_id en el snapshot. Llamada internamente por
+  FN-DOC-FLOW-CREATE-PROCESS (5-arg) y FN-DOC-FLOW-REASSIGN-STEP (3-arg); también
+  invocada directo desde Node (models/doc-flow.ts#submitProcess).

@@ -1,0 +1,13 @@
+id: EP-STAFF-UPSERT
+type: endpoint
+method: POST
+path: /staff/upsert
+access: admin-only
+router: api-sgsi/src/routers/staff.ts:13
+controller: api-sgsi/src/controllers/staff.ts#upsert
+model: api-sgsi/src/models/staff.ts#upsert
+function: FN-V2-STAFF-UPSERT
+status: CONFIRMED
+notes: >
+  Desde Gobierno solo se ejerce el alta (roles-responsibilities/staff-modal.tsx:108). POST
+  /staff/deleteById/:id y GET /staff/dependencies/:id son LIVE pero pertenecen a Catalogos.

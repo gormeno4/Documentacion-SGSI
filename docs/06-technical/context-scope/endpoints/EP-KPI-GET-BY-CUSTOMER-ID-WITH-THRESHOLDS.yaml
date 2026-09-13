@@ -1,0 +1,13 @@
+id: EP-KPI-GET-BY-CUSTOMER-ID-WITH-THRESHOLDS
+type: endpoint
+method: GET
+path: /kpi/getByCustomerIdWithThresholds
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:36
+controller: api-sgsi/src/controllers/kpi.ts#getByCustomerIdWithThresholds
+model: api-sgsi/src/models/kpi.ts#getByCustomerIdWithThresholds
+function: FN-V2-KPI-GET-BY-CUSTOMER-ID-WITH-THRESHOLDS
+status: CONFIRMED
+notes: >
+  Consumido únicamente desde monitoring-results.tsx (FLOW-CTX-007) para armar
+  la lista de KPIs con sus umbrales antes de compilar el snapshot.

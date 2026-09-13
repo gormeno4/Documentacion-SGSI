@@ -1,0 +1,11 @@
+id: FN-V2-FODA-UPSERT
+type: db-function
+name: sgsi.v2_foda_upsert
+definedIn: funciones_sgsi.sql:18253-18365
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda, access: WRITE }
+  - { table: sgsi.foda_analysis, access: WRITE }
+notes: >
+  Auto-siembra sgsi.foda_analysis (crea el borrador si no existe) al guardar
+  el primer ítem, igual que el patrón de auto-siembra ya visto en SoA.

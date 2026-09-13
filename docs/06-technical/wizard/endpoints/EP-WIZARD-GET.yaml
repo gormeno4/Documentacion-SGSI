@@ -1,0 +1,10 @@
+id: EP-WIZARD-GET
+type: endpoint
+method: GET
+path: /wizard/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/wizard.ts:1
+controller: api-sgsi/src/controllers/wizard.ts#getByCustomerId
+model: api-sgsi/src/models/wizard.ts#getByCustomerId
+function: FN-V2-WIZARD-GET-BY-CUSTOMER-ID
+status: CONFIRMED

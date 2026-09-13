@@ -1,0 +1,11 @@
+id: FN-V2-ORGANIZATIONAL-RISK-DELETE
+type: db-function
+name: sgsi.v2_organizational_risk_delete
+definedIn: funciones_sgsi.sql:22012-22035
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.organizational_risk, access: WRITE }
+notes: >
+  Soft delete (deleted_at + delete_justification + deleted_by). Retorna
+  {success:false} si no encuentra la fila o ya estaba eliminada, sin RAISE EXCEPTION.

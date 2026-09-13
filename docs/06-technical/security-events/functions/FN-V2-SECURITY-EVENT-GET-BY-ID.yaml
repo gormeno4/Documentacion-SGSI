@@ -1,0 +1,9 @@
+id: FN-V2-SECURITY-EVENT-GET-BY-ID
+type: db-function
+name: sgsi.v2_security_event_get_by_id
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_details, access: READ }
+notes: "Read single event by id. Used as return path by upsert operations."

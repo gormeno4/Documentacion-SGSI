@@ -1,0 +1,14 @@
+id: EP-DOC-UPLOAD-IMAGE
+type: endpoint
+method: POST
+path: /document-flow/documents/versions/:versionId/images
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:46-50
+controller: api-sgsi/src/controllers/doc-documents.ts#handleUploadDocumentImage
+model: api-sgsi/src/models/file.ts#upsert
+status: CONFIRMED
+notes: >
+  Sin function propia de Doc-Flow: delega la persistencia del archivo en
+  FileModel.upsert (dominio compartido `file`), guardando en disco vía
+  utils/document-image.ts. Solo lee sgsi.doc_versions/doc_documents indirectamente a
+  través de getDocumentDetail para validar que la versión exista.

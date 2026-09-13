@@ -1,0 +1,14 @@
+id: EP-SOA-APPLICABLE-CONTROLS
+type: endpoint
+method: GET
+path: /soa/applicable-controls
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:27
+controller: api-sgsi/src/controllers/soa.ts#getApplicable
+model: api-sgsi/src/models/soa.ts#getApplicable
+function: FN-V2-CONTROL-SOA-GET-APPLICABLE
+status: CONFIRMED
+notes: >
+  Consumido tanto por FLOW-SOA-001 (indirectamente, no) como reutilizado directamente
+  por FLOW-SOA-006 (GroupSoAControlSelectorModal) — convergencia directa entre ambas
+  Operaciones sobre este mismo endpoint.

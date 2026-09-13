@@ -1,0 +1,10 @@
+id: EP-GROUP-RISK-TREATMENT-ACTIONS-UPSERT
+type: endpoint
+method: POST
+path: /group-risk-treatment/actions/upsertAction
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentRouter.ts
+controller: api-sgsi/src/controllers/groupRiskTreatmentController.ts#upsertAction
+model: api-sgsi/src/models/groupRiskTreatment.ts#upsertAction
+function: FN-GROUP-RISK-TREATMENT-ACTION-UPSERT
+status: CONFIRMED

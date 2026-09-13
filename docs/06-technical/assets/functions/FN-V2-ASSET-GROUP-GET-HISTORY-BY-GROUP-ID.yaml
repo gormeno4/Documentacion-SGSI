@@ -1,0 +1,10 @@
+id: FN-V2-ASSET-GROUP-GET-HISTORY-BY-GROUP-ID
+type: db-function
+name: sgsi.v2_asset_group_get_history_by_group_id
+definedIn: funciones_sgsi.sql:10563-10597
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset_group_history, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.person, access: READ }

@@ -1,0 +1,16 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_communications_matrix_analysis_create_new_version
+definedIn: funciones_sgsi.sql:13109-13216
+status: CONFIRMED
+tables:
+  - { table: sgsi.communications_matrix_analysis, access: WRITE }
+  - { table: sgsi.communications_matrix_row, access: WRITE }
+notes: >
+  Exige que la version vigente este finalizada (devuelve success:false si is_complete = false).
+  Desactiva la version actual, crea la siguiente (version + 1) ya activa y editable, y COPIA todas
+  las filas vigentes a la nueva version reseteando la auditoria. Si no existe ninguna version,
+  crea la v1 vacia.
+
+  HALLAZGO (divergencia funcional, no corregida): no consulta si la version vigente tiene un
+  proceso Doc-Flow abierto antes de desactivarla.

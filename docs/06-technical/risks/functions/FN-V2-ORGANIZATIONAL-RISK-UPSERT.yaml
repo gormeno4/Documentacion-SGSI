@@ -1,0 +1,14 @@
+id: FN-V2-ORGANIZATIONAL-RISK-UPSERT
+type: db-function
+name: sgsi.v2_organizational_risk_upsert
+definedIn: funciones_sgsi.sql:22133-22181
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.organizational_risk, access: WRITE }
+  - { table: sgsi.organizational_risk_control, access: WRITE }
+notes: >
+  Si p_id es NULL, INSERT; si no, UPDATE y borra todos los controles vinculados
+  (DELETE FROM organizational_risk_control) antes de reinsertar el set completo
+  recibido en p_control_ids — mismo patrón "DELETE+INSERT completo" que
+  sgsi.v2_group_risk_treatment_upsert usa para sus controles.

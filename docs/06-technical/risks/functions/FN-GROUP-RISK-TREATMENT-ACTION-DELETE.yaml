@@ -1,0 +1,9 @@
+id: FN-GROUP-RISK-TREATMENT-ACTION-DELETE
+type: db-function
+name: sgsi.group_risk_treatment_action_delete
+definedIn: funciones_sgsi.sql:5806-5820
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.group_risk_treatment_action, access: WRITE }
+notes: Soft delete (deleted_at). Retorna boolean (FOUND).

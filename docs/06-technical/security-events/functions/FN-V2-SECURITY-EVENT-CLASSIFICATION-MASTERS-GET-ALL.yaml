@@ -1,0 +1,9 @@
+id: FN-V2-SECURITY-EVENT-CLASSIFICATION-MASTERS-GET-ALL
+type: db-function
+name: sgsi.v2_security_event_classification_masters_get_all
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_severities, access: READ }
+notes: "Catalog read: returns classification options for event categorization."

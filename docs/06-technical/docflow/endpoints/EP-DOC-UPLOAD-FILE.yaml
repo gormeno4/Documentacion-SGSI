@@ -1,0 +1,12 @@
+id: EP-DOC-UPLOAD-FILE
+type: endpoint
+method: POST
+path: /document-flow/documents/versions/:versionId/files
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:52-56
+controller: api-sgsi/src/controllers/doc-documents.ts#handleUploadDocumentFile
+model: api-sgsi/src/models/file.ts#upsert
+status: CONFIRMED
+notes: >
+  Igual patrón que EP-DOC-UPLOAD-IMAGE: delega en FileModel.upsert (dominio
+  compartido `file`), sin function propia de Doc-Flow.

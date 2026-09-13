@@ -1,0 +1,13 @@
+id: EP-ASSET-ACTIVATE-GROUP-BY-ID
+type: endpoint
+method: POST
+path: /asset/activateGroupById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/asset.ts:33
+controller: api-sgsi/src/controllers/asset.ts#activateGroupById
+model: api-sgsi/src/models/asset.ts#activateGroupById
+function: FN-V2-ASSET-GROUP-ACTIVATE-BY-ID
+status: CONFIRMED
+notes: >
+  El controller chequea isAssetFlowLockedByCustomer (dependencia externa a doc-flow)
+  antes de invocar el modelo.

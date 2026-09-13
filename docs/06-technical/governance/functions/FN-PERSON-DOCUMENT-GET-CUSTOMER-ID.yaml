@@ -1,0 +1,12 @@
+id: FN-PERSON-DOCUMENT-GET-CUSTOMER-ID
+type: db-function
+name: sgsi.person_document_get_customer_id
+definedIn: funciones_sgsi.sql:6799-6809
+status: CONFIRMED
+tables:
+  - { table: sgsi.person_document, access: READ }
+  - { table: corvus.customer_person, access: READ }
+notes: >
+  Helper de ownership: resuelve el customer_id dueno de un documento de persona. Sin endpoint
+  propio - lo invoca el controller (controllers/person.ts:293) antes de borrar. Mismo patron que
+  FN-DOC-FLOW-GROUP-GET-CUSTOMER-ID en DOM-DOCFLOW.

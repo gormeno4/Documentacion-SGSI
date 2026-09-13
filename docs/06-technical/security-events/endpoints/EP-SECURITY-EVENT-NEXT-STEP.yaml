@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-NEXT-STEP
+type: endpoint
+method: POST
+path: /security-events/next-step/:eventId
+access: investigator-or-reviewer
+router: api-sgsi/src/routers/securityEvent.ts:71
+controller: api-sgsi/src/controllers/securityEvent.ts#nextStep
+model: api-sgsi/src/models/securityEvent.ts#advanceToRca
+function: FN-V2-SECURITY-EVENT-TRANSITION-TO-RCA
+status: CONFIRMED
+notes: "Generic transition endpoint used by multiple state machine transitions; target state determined by context or additional param."

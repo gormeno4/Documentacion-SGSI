@@ -1,0 +1,18 @@
+id: FN-RESREV-UPLOAD-EVIDENCE
+type: db-function
+schema: sgsi
+name: resource_review_upsert_evidence
+signature: "resource_review_upsert_evidence(p_revision_id uuid, p_customer_id uuid, p_evidencia_path text, p_evidencia_file_name varchar, p_evidencia_mime_type varchar, p_evidencia_size_bytes bigint, p_user_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:8006-8040
+status: CONFIRMED
+description: "Upload or replace evidence file for review"
+
+tables:
+  - table: sgsi.resource_review
+    access: WRITE
+    operations: "UPDATE: evidencia_path, evidencia_file_name, evidencia_mime_type, evidencia_size_bytes, uploaded_by"
+
+securityRules:
+  - "tenant isolation: validates review belongs to customer"
+
+notes: "Support function. Updates evidence metadata in existing review."

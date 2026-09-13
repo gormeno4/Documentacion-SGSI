@@ -1,0 +1,9 @@
+id: FN-V2-SCOPE-GET-VERSION-BY-ID
+type: db-function
+name: sgsi.v2_scope_get_version_by_id
+definedIn: funciones_sgsi.sql:25477-25515
+status: CONFIRMED
+calls:
+  - FN-SCOPE-GET-RELATED-DOCUMENTS-JSON
+tables:
+  - { table: sgsi.scope, access: READ }

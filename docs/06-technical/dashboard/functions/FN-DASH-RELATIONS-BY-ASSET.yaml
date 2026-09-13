@@ -1,0 +1,93 @@
+id: FN-DASH-RELATIONS-BY-ASSET
+type: db-function
+schema: sgsi
+name: v2_relations_get_by_asset_id
+signature: "v2_relations_get_by_asset_id(p_customer_id uuid, p_person_id uuid, p_asset_id uuid) RETURNS jsonb"
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/v2_relations_get_by_asset_id.sql
+status: CONFIRMED
+description: "Detalles completos de relaciones de amenazas → vulnerabilidades → escenarios → riesgos → controles para un activo específico"
+
+parameters:
+  - name: p_customer_id
+    type: uuid
+    description: "Customer identifier (tenant)"
+  - name: p_person_id
+    type: uuid
+    description: "Person identifier (user for authorization)"
+  - name: p_asset_id
+    type: uuid
+    description: "Asset identifier to fetch relations for"
+
+returns:
+  type: jsonb
+  description: "RelationData object with assetId, assetGroupName, assetTypeName, assetName, threats[], threatsCount, vulnerabilitiesCount, scenariosCount, risksCount, controlsCount"
+
+tables:
+  - table: corvus.customer_person
+    access: READ
+    operations: "Validates person-customer relationship for authorization"
+  - table: sgsi.asset
+    access: READ
+    operations: "Reads asset name, description, code, CIA levels, asset_group_id, base_asset_type_id"
+  - table: sgsi.asset_group
+    access: READ
+    operations: "Reads asset group name"
+  - table: sgsi.base_asset_type
+    access: READ
+    operations: "Reads asset type name"
+  - table: sgsi.asset_threat_risk
+    access: READ
+    operations: "Reads threat-vulnerability relationships (active only)"
+  - table: sgsi.asset_threat_risk_evaluation
+    access: READ
+    operations: "Reads probability/impact evaluations for threats"
+  - table: sgsi.ai_asset_risk_suggestions
+    access: READ
+    operations: "Reads AI-suggested risks, scenarios, and status"
+  - table: sgsi.ai_asset_risk_control_suggestions
+    access: READ
+    operations: "Reads suggested controls for each risk"
+  - table: sgsi.base_control_clauses
+    access: READ
+    operations: "Reads control code, title, column order"
+  - table: sgsi.cia_level
+    access: READ
+    operations: "Reads CIA (confidentiality, integrity, availability) level values"
+  - table: sgsi.probability_impact_level
+    access: READ
+    operations: "Reads probability and impact level values"
+  - table: sgsi.risk_treatment
+    access: READ
+    operations: "Checks if risk has treatment and reads strategy"
+  - table: sgsi.risk_treatment_control
+    access: READ
+    operations: "Reads control-treatment mappings to determine 'implemented' status"
+
+businessRules:
+  - "Returns NULL if person is not authorized (not customer_person)"
+  - "Returns NULL if asset does not exist or does not belong to customer"
+  - "Threat-vulnerability-scenario-risk-control chain is fully traversed"
+  - "Controls are marked 'implemented' if a risk_treatment exists linking this risk to the control"
+  - "Only reads active (is_active = true) threat risks"
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Asset, asset group, base asset type details"
+  - domain: DOM-RSK
+    reason: "Threat risks, evaluations, AI-suggested risks, control suggestions"
+  - domain: DOM-SOA
+    reason: "Base control clauses for risk treatment controls"
+
+notes: |
+  This function provides detailed relations for a single asset.
+  Designed for drill-down views (e.g., clicking on asset card in risk matrix to see all threats/controls).
+
+  No mutations, no state changes. Safe to call multiple times (idempotent).
+
+security:
+  - type: parameter
+    requirement: "All three parameters must not be NULL"
+  - type: authorization
+    requirement: "p_person_id must have customer_person relationship with p_customer_id"
+  - type: ownership
+    requirement: "p_asset_id must belong to p_customer_id"

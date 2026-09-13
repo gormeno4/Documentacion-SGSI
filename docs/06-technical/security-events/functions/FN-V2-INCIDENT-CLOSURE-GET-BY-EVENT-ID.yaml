@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-CLOSURE-GET-BY-EVENT-ID
+type: db-function
+name: sgsi.v2_incident_closure_get_by_event_id
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_closures, access: READ }
+notes: "Read closure record for an event."

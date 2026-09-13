@@ -1,0 +1,10 @@
+id: FN-DOC-FLOW-GET-ACTIVE-ASSET-IDS-BY-CUSTOMER
+type: db-function
+name: sgsi.doc_flow_get_active_asset_ids_by_customer
+definedIn: funciones_sgsi.sql:1276-1288
+status: CONFIRMED
+tables:
+  - { table: sgsi.asset, access: READ }
+notes: >
+  Lista de IDs de activos activos del cliente. Invocada desde
+  models/doc-flow.ts#submitProcess para armar el loop de FN-DOC-FLOW-BUILD-ASSET-SNAPSHOT.

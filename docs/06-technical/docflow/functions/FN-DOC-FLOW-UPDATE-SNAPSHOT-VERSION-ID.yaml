@@ -1,0 +1,11 @@
+id: FN-DOC-FLOW-UPDATE-SNAPSHOT-VERSION-ID
+type: db-function
+name: sgsi.doc_flow_update_snapshot_version_id
+definedIn: funciones_sgsi.sql:2926-2936
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_snapshots, access: WRITE }
+notes: >
+  Igual que FN-DOC-FLOW-BACKFILL-SNAPSHOT-VERSION-ID pero fija version_id solo en el
+  snapshot de la iteración indicada, no en todas. Invocada desde el mismo punto del
+  controller (handlePublishProcess), justo antes del backfill.

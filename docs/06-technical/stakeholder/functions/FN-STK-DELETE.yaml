@@ -1,0 +1,8 @@
+id: FN-STK-DELETE
+type: db-function
+name: sgsi.stakeholder_delete_by_id
+domain: DOM-STK
+status: CONFIRMED
+tables:
+  - { table: sgsi.stake_holder, access: WRITE }
+  - { table: sgsi.stake_holder_analysis, access: WRITE }

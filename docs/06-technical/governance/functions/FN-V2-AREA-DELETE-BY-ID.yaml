@@ -1,0 +1,16 @@
+id: FN-V2-AREA-DELETE-BY-ID
+type: db-function
+name: corvus.v2_area_delete_by_id
+definedIn: funciones_corvus.sql:23225-23260
+status: CONFIRMED
+calls:
+  - FN-CHECK-AREA-DEPENDENCIES
+  - FN-V2-AREA-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: corvus.area, access: WRITE }
+notes: >
+  Soft delete (deleted_at/deleted_by). Valida dependencias llamando a check_area_dependencies y
+  lanza P0001 si existen; el controller traduce ese P0001 a un 409 con el detalle de dependencias.
+  La funcion NO recibe customer_id: la proteccion de tenant vive unicamente en el controller
+  (api-sgsi/src/controllers/area.ts:61-64, via corvus.area_get_customer_id), es decir una sola
+  capa.

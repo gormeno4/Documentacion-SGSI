@@ -1,0 +1,14 @@
+id: EP-COMMUNICATIONS-MATRIX-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /communications-matrix/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:15
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#getByCustomerId
+model: api-sgsi/src/models/communicationsMatrix.ts#getByCustomerId
+function: FN-V2-COMMUNICATIONS-MATRIX-GET-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  Lectura correctamente scoped por el customerId del token. Sin verifyAdminOnly y sin consumidor
+  no-admin identificado: clasificado AMBIGUOUS en la revision de seguridad, no como
+  vulnerabilidad.

@@ -1,0 +1,12 @@
+id: FN-DOC-FLOW-GET-PROCESS-SNAPSHOT
+type: db-function
+name: sgsi.doc_flow_get_process_snapshot
+definedIn: funciones_sgsi.sql:1914-1935
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.document_flow_processes, access: READ }
+notes: >
+  Snapshot más reciente (mayor iteración) de un proceso. Invocada también desde el
+  controller (no solo vía el endpoint) dentro de handlePublishProcess para leer el
+  snapshot antes de generar el documento formal (CARGO/ASSET_INVENTORY/ORGANIGRAMA).

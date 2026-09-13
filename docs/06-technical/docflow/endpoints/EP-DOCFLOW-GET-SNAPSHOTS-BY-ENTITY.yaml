@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-GET-SNAPSHOTS-BY-ENTITY
+type: endpoint
+method: GET
+path: /document-flow/snapshots/entity/:entityType/:entityId
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:65
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetSnapshotsByEntity
+model: api-sgsi/src/models/doc-flow.ts#getSnapshotsByEntity
+function: FN-DOC-FLOW-GET-SNAPSHOTS-BY-ENTITY
+status: CONFIRMED

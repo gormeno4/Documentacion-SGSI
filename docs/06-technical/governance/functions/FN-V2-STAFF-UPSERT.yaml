@@ -1,0 +1,13 @@
+id: FN-V2-STAFF-UPSERT
+type: db-function
+name: sgsi.v2_staff_upsert
+definedIn: funciones_sgsi.sql:27229-27290
+status: CONFIRMED
+calls:
+  - FN-V2-STAFF-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.staff, access: WRITE }
+notes: >
+  Alta/edicion de comite con ON CONFLICT (company_id, code) WHERE deleted_at IS NULL. Autogenera
+  code con corvus.generate_sgsi_code cuando no viene. Desde Gobierno solo se ejerce el alta
+  (roles-responsibilities/staff-modal.tsx); la baja y la edicion se hacen desde Catalogos.

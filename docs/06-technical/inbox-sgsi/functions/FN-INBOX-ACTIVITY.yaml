@@ -1,0 +1,31 @@
+id: FN-INBOX-ACTIVITY
+type: db-function
+name: sgsi.inbox_get_main_activity
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/inbox_get_main_activity.sql:3-310
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.stake_holder_analysis, access: READ }
+  - { table: sgsi.scope, access: READ }
+  - { table: sgsi.kpi_analysis, access: READ }
+  - { table: sgsi.strategic_objective_analysis, access: READ }
+  - { table: sgsi.pestel_analysis, access: READ }
+  - { table: sgsi.foda_analysis, access: READ }
+  - { table: sgsi.executive_summary, access: READ }
+  - { table: sgsi.communications_matrix_analysis, access: READ }
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.initiative, access: READ }
+  - { table: sgsi.soa_analysis, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Core table-returning function. UNION of 6 query sets: (1) APPROVER PENDIENTE,
+  (2) PUBLISHER PENDIENTE, (3) EDITOR PENDIENTE, (4) APPROVER REVISION,
+  (5) EDITOR REVISION, (6) APPROVER HISTORIAL. Polymorphic entity_type support:
+  DOCUMENT, STAKEHOLDER, SCOPE, KPI, STRATEGIC_OBJECTIVE, PESTEL, FODA, EXECUTIVE_SUMMARY,
+  COMMUNICATIONS_MATRIX, ACTIVO_INFORMACION, CARGO, INITIATIVE, SOA, ORGANIGRAMA,
+  RISK_TREATMENT_PLAN. No mutations. Called by FN-INBOX-GET-MAIN and FN-INBOX-GET-ENRICHED.

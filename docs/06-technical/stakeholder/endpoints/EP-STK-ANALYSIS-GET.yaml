@@ -1,0 +1,7 @@
+id: EP-STK-ANALYSIS-GET
+type: endpoint
+method: GET
+path: /stakeholder/analysis
+domain: DOM-STK
+function: FN-STK-ANALYSIS-GET
+status: CONFIRMED

@@ -1,0 +1,14 @@
+id: FN-V2-ASSET-GROUP-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_asset_group_delete_by_id
+definedIn: funciones_sgsi.sql:10439-10482
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.asset_group, access: WRITE }
+  - { table: sgsi.asset, access: READ }
+notes: >
+  Bloquea con excepción si existen activos activos (deleted_at IS NULL) vinculados al
+  grupo. A diferencia de las demás mutaciones de grupo, esta función NO inserta un
+  registro en sgsi.asset_group_history (verificado por lectura completa del cuerpo;
+  posible inconsistencia menor respecto al resto del dominio — ver hallazgos).

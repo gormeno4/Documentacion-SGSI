@@ -1,0 +1,10 @@
+id: EP-PESTEL-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /pestel/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:17
+controller: api-sgsi/src/controllers/pestel.ts#getByCustomerId
+model: api-sgsi/src/models/pestel.ts#getByCustomerId
+function: FN-V2-PESTEL-GET-BY-CUSTOMER-ID
+status: CONFIRMED

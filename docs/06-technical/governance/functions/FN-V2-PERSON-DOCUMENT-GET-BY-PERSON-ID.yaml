@@ -1,0 +1,13 @@
+id: FN-V2-PERSON-DOCUMENT-GET-BY-PERSON-ID
+type: db-function
+name: sgsi.v2_person_document_get_by_person_id
+definedIn: funciones_sgsi.sql:22186-22221
+status: CONFIRMED
+tables:
+  - { table: sgsi.person_document, access: READ }
+notes: >
+  Viva unicamente de forma interna: la invocan v2_person_get_by_id,
+  v2_customer_person_get_list_by_customer_id, person_upsert_person_documents y
+  person_delete_document_by_id para embeber documents[] en sus respuestas. Su endpoint HTTP (GET
+  /person/:personId/documents) existe pero no tiene consumidor en la UI - queda registrado como
+  huerfano en el catalogo y no se nodaliza.

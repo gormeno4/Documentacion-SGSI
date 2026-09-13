@@ -1,0 +1,16 @@
+id: FN-V2-GROUP-RISK-TREATMENT-CONTROL-DELETE
+type: db-function
+name: sgsi.v2_group_risk_treatment_control_delete
+definedIn: funciones_sgsi.sql:18634-18655
+status: CONFIRMED
+tables:
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: sgsi.group_risk_treatment_control, access: WRITE }
+notes: >
+  Variante de 3 argumentos (p_group_risk_treatment_id, p_id_base_control_clause,
+  p_customer_id) — la única alcanzable desde el frontend. Borra el vínculo validando
+  pertenencia del tratamiento al cliente vía DELETE ... USING ... AND grt.customer_id =
+  p_customer_id, a diferencia del hallazgo de seguridad de
+  FN-V2-CONTROL-SOA-EVIDENCE-DELETE, aquí sí hay aislamiento de tenant. Existe un
+  overload de 2 argumentos (sin p_customer_id, funciones_sgsi.sql:18660-18679) que NO se
+  documenta como nodo — inalcanzable desde el frontend actual (overload muerto).

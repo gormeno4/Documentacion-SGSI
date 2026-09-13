@@ -1,0 +1,10 @@
+id: EP-SCOPE-GET-VERSIONS
+type: endpoint
+method: GET
+path: /scope/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/scope.ts:19
+controller: api-sgsi/src/controllers/scope.ts#getVersions
+model: api-sgsi/src/models/scope.ts#getVersions
+function: FN-V2-SCOPE-GET-VERSIONS
+status: CONFIRMED

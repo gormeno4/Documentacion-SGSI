@@ -1,0 +1,13 @@
+id: EP-COMMUNICATIONS-MATRIX-ANALYSIS-CREATE-NEW-VERSION
+type: endpoint
+method: POST
+path: /communications-matrix/analysis/new-version
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:20
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#createNewVersion
+model: api-sgsi/src/models/communicationsMatrix.ts#createNewVersion
+function: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-CREATE-NEW-VERSION
+status: CONFIRMED
+notes: >
+  HALLAZGO DE SEGURIDAD (authorization, no corregido): sin verifyAdminOnly y sin consumidor
+  no-admin.

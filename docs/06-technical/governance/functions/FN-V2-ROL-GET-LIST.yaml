@@ -1,0 +1,12 @@
+id: FN-V2-ROL-GET-LIST
+type: db-function
+name: corvus.v2_rol_get_list
+definedIn: funciones_corvus.sql:24383-24407
+status: CONFIRMED
+tables:
+  - { table: corvus.rol, access: READ }
+notes: >
+  Catalogo de roles de la aplicacion (Admin/Usuario). Gobierno lo usa para detectar que personas
+  tienen rol Admin y poder ofrecerlas como Responsable del SGSI, y para derivar un gobierno
+  tentativo desde personList cuando aun no hay datos guardados
+  (utils/wizardFunctions.ts#getGovernmentFromPersons). Ownership real del catalogo: Corvus/Auth.

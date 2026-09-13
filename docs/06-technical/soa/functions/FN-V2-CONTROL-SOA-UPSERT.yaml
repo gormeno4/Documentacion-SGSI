@@ -1,0 +1,14 @@
+id: FN-V2-CONTROL-SOA-UPSERT
+type: db-function
+name: sgsi.v2_control_soa_upsert
+definedIn: funciones_sgsi.sql:14444-14505
+status: CONFIRMED
+calls:
+  - FN-V2-SOA-ANALYSIS-GET-ACTIVE
+  - FN-V2-CONTROL-SOA-GET-ONE
+tables:
+  - { table: sgsi.control_soa, access: WRITE }
+notes: >
+  Viva únicamente de forma interna — invocada en loop por FN-V2-CONTROL-SOA-UPSERT-BATCH.
+  El endpoint HTTP POST /soa/upsert (singular) está huérfano; soaStore.ts solo importa
+  y usa upsertBatch, incluso para guardar un único control.

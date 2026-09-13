@@ -1,0 +1,10 @@
+id: EP-DOC-UPSERT
+type: endpoint
+method: POST
+path: /document-flow/documents
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:30
+controller: api-sgsi/src/controllers/doc-documents.ts#handleUpsertDocument
+model: api-sgsi/src/models/doc-documents.ts#upsertDocument
+function: FN-DOC-UPSERT
+status: CONFIRMED

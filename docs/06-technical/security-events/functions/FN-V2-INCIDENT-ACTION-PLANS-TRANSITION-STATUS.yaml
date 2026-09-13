@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-ACTION-PLANS-TRANSITION-STATUS
+type: db-function
+name: sgsi.v2_incident_action_plans_transition_status
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_details, access: WRITE }
+notes: "Transitions incident from action_planning to pending_validation once actions are complete."

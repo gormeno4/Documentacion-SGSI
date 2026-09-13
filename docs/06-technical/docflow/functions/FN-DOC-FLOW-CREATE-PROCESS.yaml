@@ -1,0 +1,16 @@
+id: FN-DOC-FLOW-CREATE-PROCESS
+type: db-function
+name: sgsi.doc_flow_create_process
+definedIn: funciones_sgsi.sql:1117-1220
+status: CONFIRMED
+calls:
+  - FN-DOC-FLOW-ENTITY-BELONGS-TO-CUSTOMER
+tables:
+  - { table: sgsi.document_flow_processes, access: WRITE }
+  - { table: sgsi.document_flow_steps, access: WRITE }
+notes: >
+  Variante de 5 argumentos (con p_customer_id) — la única invocada desde Node. Existe
+  un overload de 4 argumentos (sin p_customer_id, funciones_sgsi.sql:1018-1113) que la
+  query TypeScript nunca invoca (siempre pasa 5 args) — dead overload, no documentado
+  como nodo. Crea o reconfigura (según status previo: FINALIZADO/DEVUELTO/otro) el
+  proceso de aprobación y sus pasos (steps) para el entity_type/entity_id indicados.

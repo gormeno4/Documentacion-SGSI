@@ -1,0 +1,26 @@
+id: FN-INBOX-GET-MAIN
+type: db-function
+name: sgsi.v2_inbox_main_get
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/v2_inbox_main_get.sql:3-125
+status: CONFIRMED
+calls:
+  - FN-INBOX-ACTIVITY
+  - FN-INBOX-OPERATIVE-RISK-MATRIX
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.doc_document_groups, access: READ }
+  - { table: sgsi.doc_flow_group, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.risk_methodology_config, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.customer_person, access: READ }
+notes: >
+  Primary aggregator function for GET /inbox/activity endpoint.
+  Returns JSONB containing: activities (list of user inbox items across all roles/states),
+  operativeRiskMatrix (if user is asset group owner), methodology, appetite, zones, and
+  isConfigured/isGroupOwner flags. No mutations. Calls FN-INBOX-ACTIVITY for core items
+  and FN-INBOX-OPERATIVE-RISK-MATRIX for risk data (conditional on group_owner status).

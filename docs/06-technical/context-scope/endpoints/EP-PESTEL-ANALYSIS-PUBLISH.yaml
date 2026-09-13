@@ -1,0 +1,15 @@
+id: EP-PESTEL-ANALYSIS-PUBLISH
+type: endpoint
+method: POST
+path: /pestel/analysis/publish
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:24
+controller: api-sgsi/src/controllers/pestel.ts#publish
+model: api-sgsi/src/models/pestel.ts#publish
+function: FN-V2-PESTEL-ANALYSIS-PUBLISH
+status: CONFIRMED
+notes: >
+  Mismo patrón de redundancia que FODA (ver EP-FODA-ANALYSIS-PUBLISH): Doc-Flow
+  publica primero (flip real de is_active+is_complete de sgsi.pestel_analysis);
+  esta llamada local, con el mismo guard is_complete=false, queda como no-op en
+  la práctica. Technical Debt, no corregido.

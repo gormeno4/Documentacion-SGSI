@@ -1,0 +1,14 @@
+id: EP-BASE-PESTEL-GET-ALL
+type: endpoint
+method: GET
+path: /base-pestel/getAll
+access: admin-only
+router: api-sgsi/src/routers/basePestel.ts:7
+controller: api-sgsi/src/controllers/basePestel.ts#getAll
+model: api-sgsi/src/models/basePestel.ts#getAll
+function: FN-V2-BASE-PESTEL-GET-ALL
+status: CONFIRMED
+notes: >
+  Único router de este dominio montado con acceso admin-only en vez de
+  admin-or-usuario (api-sgsi/src/app.ts:81) — asimetría real frente a
+  base-kpi/base-strategic-objective (admin-or-usuario), no corregida.

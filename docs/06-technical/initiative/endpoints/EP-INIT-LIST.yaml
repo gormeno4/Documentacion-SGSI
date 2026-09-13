@@ -1,0 +1,15 @@
+id: EP-INIT-LIST
+type: endpoint
+method: GET
+path: /initiative/getListByCompanyId
+access: admin-or-usuario
+router: api-sgsi/src/routers/initiative.ts:6
+controller: api-sgsi/src/controllers/initiative.ts#getListByCompanyId
+function: FN-INIT-GET-LIST
+status: CONFIRMED
+description: "SUPPORT endpoint. List all initiatives for authenticated company"
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/IInitiative"

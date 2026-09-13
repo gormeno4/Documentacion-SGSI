@@ -1,0 +1,10 @@
+id: FN-V2-AREA-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: corvus.v2_area_get_list_by_customer_id
+definedIn: funciones_corvus.sql:23264-23297
+status: CONFIRMED
+tables:
+  - { table: corvus.area, access: READ }
+notes: >
+  Listado de areas activas del cliente. Es tambien el valor de retorno de v2_area_upsert y
+  v2_area_delete_by_id, por lo que el frontend no necesita recargar tras escribir.

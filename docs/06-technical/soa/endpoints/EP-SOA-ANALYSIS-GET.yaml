@@ -1,0 +1,14 @@
+id: EP-SOA-ANALYSIS-GET
+type: endpoint
+method: GET
+path: /soa/analysis
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:39
+controller: api-sgsi/src/controllers/soa.ts#getAnalysis
+model: api-sgsi/src/models/soa.ts#getAnalysis
+function: FN-SOA-ANALYSIS-GET-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  Consumido por FLOW-SOA-001, FLOW-SOA-002 y FLOW-SOA-003 para refrescar la cabecera
+  tras guardar/publicar/versionar; documentado bajo FLOW-SOA-004 (Consultar historial/detalle)
+  como su Operación principal.

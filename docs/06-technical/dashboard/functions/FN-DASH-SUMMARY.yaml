@@ -1,0 +1,103 @@
+id: FN-DASH-SUMMARY
+type: db-function
+schema: sgsi
+name: v2_dashboard_get_summary
+signature: "v2_dashboard_get_summary(p_customer_id uuid) RETURNS json"
+definedIn: api-sgsi/sql/sgsi/database/sgsi/functions/v2_dashboard_get_summary.sql
+status: CONFIRMED
+description: "Calcula resumen agregado del SGSI: métricas, progreso por etapa (contexto, gobierno, riesgos, SoA, documentos), audit status, y pendientes urgentes"
+
+parameters:
+  - name: p_customer_id
+    type: uuid
+    description: "Customer identifier (tenant)"
+
+returns:
+  type: json
+  description: "Summary object with mainScore, metrics, stages, and urgent items"
+
+tables:
+  - table: sgsi.scope
+    access: READ
+    operations: "Checks scope completeness (name and text required)"
+  - table: sgsi.wizard_general_info
+    access: READ
+    operations: "Validates context completeness (company_name, industry, size, locations, main_activity_category, critical_services)"
+  - table: corvus.customer_person
+    access: READ
+    operations: "Verifies government role assignment (RESPONSABLE_SGSI, ALTA_DIRECCION)"
+  - table: corvus.person
+    access: READ
+    operations: "Reads person names for role verification"
+  - table: corvus.user
+    access: READ
+    operations: "Checks user status (not deleted)"
+  - table: corvus.user_rol
+    access: READ
+    operations: "Maps user to role"
+  - table: corvus.rol
+    access: READ
+    operations: "Looks up role code"
+  - table: sgsi.asset
+    access: READ
+    operations: "Counts total assets"
+  - table: sgsi.asset_threat_risk
+    access: READ
+    operations: "Counts assets with active threat risks"
+  - table: sgsi.asset_threat_risk_evaluation
+    access: READ
+    operations: "Checks risk evaluations (inherent_risk_value)"
+  - table: sgsi.base_control_clauses
+    access: READ
+    operations: "Counts total applicable controls"
+  - table: sgsi.control_soa
+    access: READ
+    operations: "Counts defined/applicable controls"
+  - table: sgsi.doc_documents
+    access: READ
+    operations: "Counts total and expected documents"
+  - table: sgsi.doc_versions
+    access: READ
+    operations: "Checks document publication status"
+  - table: sgsi.policies
+    access: READ
+    operations: "Counts mandatory policies"
+  - table: sgsi.customer_policy_acknowledged
+    access: READ
+    operations: "Checks policy acknowledgment status"
+  - table: sgsi.risk_treatment
+    access: READ
+    operations: "Counts risk treatments"
+  - table: sgsi.ai_asset_risk_suggestions
+    access: READ
+    operations: "Counts AI-suggested risks"
+
+businessRules:
+  - "mainScore: computed from stages average or custom algorithm"
+  - "stages: context, government, risks, soa, documents (each with percentage)"
+  - "urgentPending: critical risks without treatment, overdue documents, etc."
+  - "All metrics are read-only calculations (no state change)"
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Asset count and risk coverage %"
+  - domain: DOM-CTX
+    reason: "Scope and governance context completeness"
+  - domain: DOM-RSK
+    reason: "Risk analysis stage progress"
+  - domain: DOM-DOCFLOW
+    reason: "Document publication metrics"
+  - domain: DOM-GOV
+    reason: "Role and responsibility assignment checks"
+  - domain: DOM-SOA
+    reason: "Control definition and applicability %"
+
+notes: |
+  This function computes read-only summary metrics.
+  Used by Wizard's FormalizationDashboard step to show SGSI readiness before finalization.
+  No mutations, no state changes.
+  Safe to call multiple times (idempotent).
+
+security:
+  - type: parameter
+    requirement: "p_customer_id must not be NULL"

@@ -1,0 +1,7 @@
+id: FN-STK-PROFILES
+type: db-function
+name: sgsi.stakeholder_get_profiles
+domain: DOM-STK
+status: CONFIRMED
+tables:
+  - { table: sgsi.stake_holder, access: READ }

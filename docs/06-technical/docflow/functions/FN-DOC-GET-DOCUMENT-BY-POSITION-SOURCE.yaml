@@ -1,0 +1,14 @@
+id: FN-DOC-GET-DOCUMENT-BY-POSITION-SOURCE
+type: db-function
+name: sgsi.doc_get_document_by_position_source
+definedIn: funciones_sgsi.sql:3366-3383
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Igual patrón que FN-DOC-GET-DOCUMENT-BY-INVENTORY pero para sourceType='POSITION'
+  (descriptor de cargo). Invocada desde
+  models/doc-documents.ts#upsertPublishedCargoDocument, a su vez invocada desde
+  handlePublishProcess cuando entity_type = 'CARGO'.

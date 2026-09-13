@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-IMPACT-LEVELS-CATALOG
+type: endpoint
+method: GET
+path: /security-events/impact-levels
+access: public-authenticated
+router: api-sgsi/src/routers/securityEvent.ts:75
+controller: api-sgsi/src/controllers/securityEvent.ts#getImpactLevels
+model: api-sgsi/src/models/securityEvent.ts#getImpactLevels
+function: FN-V2-SECURITY-EVENT-IMPACT-LEVELS-GET-ALL
+status: CONFIRMED
+notes: "Catalog endpoint — no FLOW, only technical dependency."

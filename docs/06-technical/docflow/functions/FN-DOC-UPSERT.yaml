@@ -1,0 +1,25 @@
+id: FN-DOC-UPSERT
+type: db-function
+name: sgsi.doc_upsert
+definedIn: funciones_sgsi.sql:4646-4793
+status: CONFIRMED
+calls:
+  - FN-DOC-GET-DOCUMENT-ID-BY-CUSTOMER-AND-TITLE
+tables:
+  - { table: sgsi.doc_documents, access: WRITE }
+  - { table: sgsi.doc_versions, access: WRITE }
+  - { table: sgsi.doc_document_groups, access: WRITE }
+  - { table: sgsi.doc_version_editors, access: WRITE }
+  - { table: sgsi.doc_version_controls, access: WRITE }
+  - { table: sgsi.doc_document_related, access: WRITE }
+notes: >
+  21 parámetros. Verifica primero que no exista otro documento con el mismo título
+  para el cliente (FN-DOC-GET-DOCUMENT-ID-BY-CUSTOMER-AND-TITLE — RAISE EXCEPTION
+  ERRCODE 'DT001' si existe, capturado por el controller como conflicto 409
+  DOCUMENT_TITLE_EXISTS). Crea o actualiza documento + versión BORRADOR; sincroniza
+  grupos, editores (N:M), controles ISO y documentos relacionados con
+  DELETE+INSERT del set completo en cada llamada. Es el único camino real de
+  persistencia de documentos — usado directo por EP-DOC-UPSERT, en loop por
+  EP-DOC-BULK-CREATE, y por las 3 functions de generación automática cross-domain
+  (FN-DOC-GET-DOCUMENT-BY-INVENTORY / -ORGANIGRAMA / -POSITION-SOURCE, vía los modelos
+  upsertPublished*Document).

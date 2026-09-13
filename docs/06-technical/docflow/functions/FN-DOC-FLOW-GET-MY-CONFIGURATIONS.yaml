@@ -1,0 +1,16 @@
+id: FN-DOC-FLOW-GET-MY-CONFIGURATIONS
+type: db-function
+name: sgsi.doc_flow_get_my_configurations
+definedIn: funciones_sgsi.sql:1437-1507
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Procesos EN_CONFIGURACION creados por el usuario, filtrados por pertenencia al
+  cliente (mismo catálogo polimórfico por entity_type que las funciones hermanas).

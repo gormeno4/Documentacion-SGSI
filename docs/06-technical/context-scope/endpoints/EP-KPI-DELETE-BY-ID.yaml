@@ -1,0 +1,10 @@
+id: EP-KPI-DELETE-BY-ID
+type: endpoint
+method: DELETE
+path: /kpi/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:22
+controller: api-sgsi/src/controllers/kpi.ts#deleteById
+model: api-sgsi/src/models/kpi.ts#deleteById
+function: FN-V2-KPI-DELETE-BY-ID
+status: CONFIRMED

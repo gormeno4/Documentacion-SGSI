@@ -1,0 +1,18 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-ROW-UPSERT
+type: db-function
+name: sgsi.v2_communications_matrix_row_upsert
+definedIn: funciones_sgsi.sql:13515-13593
+status: CONFIRMED
+calls:
+  - FN-V2-COMMUNICATIONS-MATRIX-GET-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.communications_matrix_row, access: WRITE }
+  - { table: sgsi.communications_matrix_analysis, access: WRITE }
+notes: >
+  Auto-siembra: si no existe una version activa crea la v1 en communications_matrix_analysis antes
+  de insertar la fila (mismo patron de auto-siembra ya visto en FODA y SoA). Valida campos
+  obligatorios y bloquea la escritura si la version esta finalizada (is_complete = true).
+
+  HALLAZGO (divergencia funcional, no corregida): el bloqueo depende SOLO de is_complete - la
+  funcion no consulta el estado del proceso Doc-Flow, asi que una version en EN_APROBACION sigue
+  siendo mutable por API aunque la UI oculte el boton.

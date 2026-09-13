@@ -1,0 +1,36 @@
+{
+  "skills": {
+    "validate-sql-params": {
+      "description": "Valida que SQL use solo parámetros ($1, $2...), no concatenación",
+      "command": "node scripts/validate-sql-params.js",
+      "cwd": ".",
+      "timeout": 30000
+    },
+    "validate-component-size": {
+      "description": "Valida que componentes funcionales no excedan 800 líneas",
+      "command": "node scripts/validate-component-size.js",
+      "cwd": ".",
+      "timeout": 30000
+    },
+    "validate-naming-conventions": {
+      "description": "Valida convenciones de nombres (PascalCase, camelCase, snake_case, etc.)",
+      "command": "node scripts/validate-naming-conventions.js",
+      "cwd": ".",
+      "timeout": 30000
+    }
+  },
+
+  "agents": {
+    "architecture-guardian": {
+      "description": "Ejecuta todas las validaciones arquitectónicas (SQL, component size, naming)",
+      "config_file": ".claude/agents/architecture-guardian.json"
+    }
+  },
+
+  "metadata": {
+    "project": "barnard-sgsi",
+    "version": "1.0.0",
+    "created": "2026-09-11",
+    "rules_reference": "rulesproyect.md"
+  }
+}

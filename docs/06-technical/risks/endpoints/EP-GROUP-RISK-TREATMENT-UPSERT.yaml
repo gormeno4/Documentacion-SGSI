@@ -1,0 +1,17 @@
+id: EP-GROUP-RISK-TREATMENT-UPSERT
+type: endpoint
+method: POST
+path: /group-risk-treatment/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentRouter.ts
+controller: api-sgsi/src/controllers/groupRiskTreatmentController.ts#upsert
+model: api-sgsi/src/models/groupRiskTreatment.ts#upsert
+function: FN-V2-GROUP-RISK-TREATMENT-UPSERT
+status: CONFIRMED
+notes: >
+  El controller resuelve permisos (isAdmin/isOwner/isDelegate vía
+  verifySgsiAccess + PersonModel.getById), candado de reapertura si el
+  escenario ya tiene acciones con avance, y validación estricta del plan
+  (fecha objetivo, residual obligatorio, control SoA obligatorio si
+  strategy es mitigate/transfer) ANTES de llamar al Model — lógica de
+  negocio sustancial en TypeScript, no solo en la función SQL.

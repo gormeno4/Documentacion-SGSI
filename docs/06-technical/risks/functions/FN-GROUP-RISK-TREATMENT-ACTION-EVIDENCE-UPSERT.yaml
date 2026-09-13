@@ -1,0 +1,15 @@
+id: FN-GROUP-RISK-TREATMENT-ACTION-EVIDENCE-UPSERT
+type: db-function
+name: sgsi.group_risk_treatment_action_evidence_upsert
+definedIn: funciones_sgsi.sql:5884-5936
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.group_risk_treatment_action_evidence, access: WRITE }
+  - { table: sgsi.group_risk_treatment_action, access: READ }
+  - { table: sgsi.group_risk_treatment_action_progress, access: READ }
+  - { table: sgsi.file, access: READ }
+notes: >
+  RAISE EXCEPTION 'GROUP_RISK_TREATMENT: ACTION_LOCKED' si la acción ya tiene
+  progreso al 100%. El archivo binario se sube antes vía sgsi.file (fuera de
+  este módulo); esta función solo vincula el file_id ya existente a la acción/progreso.

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Barnard SGSI — Traceability Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="sidebar-backdrop" class="sidebar-backdrop hidden"></div>
+  <header id="topbar">
+    <div class="brand"><span class="brand-mark">◆</span> BARNARD SGSI <span class="brand-sep">/</span> <span class="brand-sub">Traceability Explorer</span></div>
+    <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Abrir menú" title="Menú">☰</button>
+    <div class="search-wrap">
+      <input id="search-input" type="text" placeholder="Buscar operación, endpoint, función, tabla o componente…" autocomplete="off" />
+      <div id="search-results" class="search-results hidden"></div>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter-chip active" data-filter="ALL">Todo</button>
+      <button class="filter-chip" data-filter="flow">Operaciones</button>
+      <button class="filter-chip" data-filter="endpoint">Endpoints</button>
+      <button class="filter-chip" data-filter="function">Functions</button>
+      <button class="filter-chip" data-filter="table">Tables</button>
+    </div>
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Cambiar tema" title="Cambiar tema claro / oscuro">
+      <span class="theme-toggle-icon">🌙</span>
+    </button>
+  </header>
+
+  <div id="breadcrumbs"></div>
+
+  <main id="layout">
+    <nav id="sidebar"></nav>
+    <section id="content"></section>
+    <aside id="detail"></aside>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

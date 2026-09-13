@@ -1,0 +1,13 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_communications_matrix_get_by_customer_id
+definedIn: funciones_sgsi.sql:13412-13474
+status: CONFIRMED
+tables:
+  - { table: sgsi.communications_matrix_analysis, access: READ }
+  - { table: sgsi.communications_matrix_row, access: READ }
+  - { table: sgsi.position, access: READ }
+notes: >
+  Devuelve {analysis, rowList} de la version activa (is_active = true) del cliente, o {analysis:
+  NULL, rowList: []} si no existe ninguna. Cada fila trae positionName resuelto por LEFT JOIN a
+  sgsi.position. Es tambien el valor de retorno de row_upsert y row_delete_by_id.

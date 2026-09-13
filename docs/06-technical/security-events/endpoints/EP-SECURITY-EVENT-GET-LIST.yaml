@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-GET-LIST
+type: endpoint
+method: GET
+path: /security-events/getByCustomerId
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:36
+controller: api-sgsi/src/controllers/securityEvent.ts#getByCustomerId
+model: api-sgsi/src/models/securityEvent.ts#getByCustomerId
+function: FN-V2-SECURITY-EVENT-GET-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: "Hub endpoint for listing events; used by SecurityEventsList component. Not a FLOW on its own (reading + navigation hub)."

@@ -1,0 +1,14 @@
+id: EP-SCOPE-UPSERT
+type: endpoint
+method: POST
+path: /scope/
+access: admin-or-usuario
+router: api-sgsi/src/routers/scope.ts:16
+controller: api-sgsi/src/controllers/scope.ts#upsert
+model: api-sgsi/src/models/scope.ts#upsert
+function: FN-V2-SCOPE-UPSERT
+status: CONFIRMED
+notes: >
+  El model bloquea la edición (409 funcional, sin excepción HTTP) si el Alcance
+  vigente tiene un proceso Doc-Flow en EN_APROBACION o PENDIENTE_PUBLICAR
+  (api-sgsi/src/models/scope.ts:60-69, vía getProcessByEntity).

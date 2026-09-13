@@ -1,0 +1,16 @@
+id: EP-AREA-UPSERT
+type: endpoint
+method: POST
+path: /area/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/area.ts:8
+controller: api-sgsi/src/controllers/area.ts#upsert
+model: api-sgsi/src/models/area.ts#upsert
+function: FN-V2-AREA-UPSERT
+status: CONFIRMED
+notes: >
+  HALLAZGO DE SEGURIDAD (authorization, no corregido): el router /area esta montado
+  admin-or-usuario (app.ts:53) y esta ruta NO tiene verifyAdminOnly, pese a que la seccion
+  Gobierno del SGSI es admin-only en la UI (layout.tsx:272-284) y no existe ningun consumidor
+  no-admin de este endpoint. Un usuario sin rol Admin puede crear o editar areas invocandolo
+  directamente.

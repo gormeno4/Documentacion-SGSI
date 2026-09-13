@@ -1,0 +1,15 @@
+id: EP-RISK-GET-MATRIX
+type: endpoint
+method: GET
+path: /asset-threat-risk/getMatrixByCustomerId
+access: admin-only
+router: api-sgsi/src/routers/assetThreatRisk.ts
+controller: api-sgsi/src/controllers/assetThreatRisk.ts#getMatrixByCustomerId
+model: api-sgsi/src/models/assetThreatRisk.ts#getMatrixByCustomerId
+function: FN-V2-RISK-MATRIX-GET
+status: CONFIRMED
+notes: >
+  Único endpoint vivo del router /asset-threat-risk (junto con
+  getAssetIdsWithAnalysisByCustomerId, consumido solo por Wizard, fuera de
+  Riesgos) — los otros 4 (upsert/exclude/finalizeRiskAnalysis/getListByAssetId)
+  están huérfanos, ver docs/00-catalog/riesgos.md.

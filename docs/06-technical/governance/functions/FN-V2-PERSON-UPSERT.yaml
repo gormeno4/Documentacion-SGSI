@@ -1,0 +1,22 @@
+id: FN-V2-PERSON-UPSERT
+type: db-function
+name: corvus.v2_person_upsert
+definedIn: funciones_corvus.sql:24154-24324
+status: CONFIRMED
+calls:
+  - FN-V2-CUSTOMER-PERSON-UPSERT
+  - FN-V2-USER-UPSERT-WITH-ROLES
+  - FN-V2-PERSON-GET-BY-ID
+tables:
+  - { table: corvus.person, access: WRITE }
+  - { table: corvus.user, access: WRITE }
+  - { table: sgsi.person_staff, access: WRITE }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.staff, access: READ }
+notes: >
+  Version post-sprint5: ya NO escribe position_id, area_id, is_assistant ni
+  is_legal_representative sobre corvus.person (el comentario del propio cuerpo lo declara
+  explicitamente); esos 4 campos se delegan a v2_customer_person_upsert, que los persiste por
+  empresa. district_id si se mantiene en corvus.person. Alinea corvus.user.login con el email
+  recien guardado. Reemplaza por completo las asignaciones de staff (soft-delete de todas y
+  reinsercion).

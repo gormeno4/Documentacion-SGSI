@@ -1,0 +1,29 @@
+id: FN-V2-POSITION-UPSERT
+type: db-function
+name: sgsi.v2_position_upsert
+definedIn: funciones_sgsi.sql:23241-23494
+status: CONFIRMED
+calls:
+  - FN-V2-POSITION-GET-BY-ID
+tables:
+  - { table: sgsi.position, access: WRITE }
+  - { table: sgsi.position_profile, access: WRITE }
+  - { table: sgsi.position_function, access: WRITE }
+  - { table: sgsi.position_responsibility, access: WRITE }
+  - { table: sgsi.asset, access: WRITE }
+  - { table: sgsi.asset_history, access: WRITE }
+notes: >
+  EFECTO CROSS-DOMAIN CONFIRMADO (DOM-GOV -> DOM-ACT): al CREAR un cargo inserta ademas un activo
+  de informacion en sgsi.asset (code autogenerado con corvus.generate_sgsi_code('ASSET', ...),
+  name y area_id heredados del cargo, base_asset_type_id HARDCODEADO al literal
+  '5f7b9b62-7c85-4ced-9112-28e19280fbff' = TA-13 'Roles y Funciones', position_id = id del cargo)
+  y registra sgsi.asset_history con action='create'. Al EDITAR sincroniza name y area_id del
+  activo vinculado, pero NO lo crea si falta - de ahi la migracion correctiva acotada
+  2026-07-06_backfill_position_asset_link.sql. La creacion falla con RAISE EXCEPTION si ya existe
+  un ACTIVO con ese nombre, aunque el usuario este creando un CARGO. position_function y
+  position_responsibility se borran y reinsertan completos en cada guardado (DELETE + loop
+  INSERT).
+
+  Segundo invocador, desde otro dominio: al publicar un proceso Doc-Flow con entity_type='CARGO',
+  controllers/doc-flow.ts:343 llama models/position.ts#upsert dentro de la misma transaccion, por
+  lo que esta funcion reescribe el cargo con los datos del snapshot (ver FLOW-DOCFLOW-006).

@@ -1,0 +1,11 @@
+id: FN-V2-SECURITY-EVENT-UPSERT
+type: db-function
+name: sgsi.v2_security_event_upsert
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls:
+  - FN-V2-SECURITY-EVENT-GET-BY-ID
+tables:
+  - { table: sgsi.incident_details, access: WRITE }
+  - { table: corvus.customer_person, access: READ }
+notes: "UPSERT pattern: INSERT if id is NULL, UPDATE if exists and in pending_classification. Returns event detail via v2_security_event_get_by_id."

@@ -1,0 +1,67 @@
+{
+  "id": "architecture-guardian",
+  "name": "Architecture Guardian",
+  "description": "Validates code against rulesproyect.md standards. Runs multiple skills in sequence and reports violations.",
+  "version": "1.0.0",
+  "created": "2026-09-11",
+  "rules_reference": "rulesproyect.md",
+
+  "skills": [
+    {
+      "id": "validate-sql-params",
+      "name": "Validate SQL Parameters",
+      "priority": "critical",
+      "script": "scripts/validate-sql-params.js",
+      "description": "Ensures all SQL uses parameterized queries ($1, $2...), no concatenation",
+      "blocking": true
+    },
+    {
+      "id": "validate-component-size",
+      "name": "Validate Component Size",
+      "priority": "high",
+      "script": "scripts/validate-component-size.js",
+      "description": "Ensures functional components don't exceed 800 lines",
+      "blocking": false
+    },
+    {
+      "id": "validate-naming-conventions",
+      "name": "Validate Naming Conventions",
+      "priority": "high",
+      "script": "scripts/validate-naming-conventions.js",
+      "description": "Validates PascalCase (components), camelCase (hooks), kebab-case (folders), snake_case (DB), SCREAMING_SNAKE (env)",
+      "blocking": false
+    }
+  ],
+
+  "execution": {
+    "mode": "sequential",
+    "fail_on_blocking": true,
+    "stop_on_first_critical": true,
+    "generate_report": true
+  },
+
+  "commands": {
+    "run_all": "Run all validation skills",
+    "run_critical": "Run only blocking (critical) skills",
+    "run_sql_only": "Run SQL parameterization check only",
+    "run_component_size": "Run component size check only",
+    "run_naming": "Run naming conventions check only"
+  },
+
+  "usage": {
+    "manual": "Invoke from Claude Code with /agent architecture-guardian",
+    "automatic": "Configure git hooks to run before commit/push (future)",
+    "ci": "Integrate into GitHub Actions (future)"
+  },
+
+  "output": {
+    "format": "json",
+    "includes_violations": true,
+    "includes_metrics": true,
+    "exit_code_0": "All validations passed",
+    "exit_code_1": "At least one violation found"
+  },
+
+  "status": "active",
+  "maintainer": "Architecture Team"
+}

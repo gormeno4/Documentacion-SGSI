@@ -1,0 +1,14 @@
+id: EP-SCOPE-GET-VERSION-BY-ID
+type: endpoint
+method: GET
+path: /scope/version/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/scope.ts:21
+controller: api-sgsi/src/controllers/scope.ts#getVersionById
+model: api-sgsi/src/models/scope.ts#getVersionById
+function: FN-V2-SCOPE-GET-VERSION-BY-ID
+status: CONFIRMED
+notes: >
+  Tras leer la versión, el model enriquece la respuesta con el historial de
+  aprobación (getProcessByEntity('SCOPE', id, customerId), dominio doc-flow) —
+  no ejecuta ninguna otra function propia de este módulo.

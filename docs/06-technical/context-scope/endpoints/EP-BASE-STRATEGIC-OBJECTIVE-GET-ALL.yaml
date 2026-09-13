@@ -1,0 +1,10 @@
+id: EP-BASE-STRATEGIC-OBJECTIVE-GET-ALL
+type: endpoint
+method: GET
+path: /base-strategic-objective/getAll
+access: admin-or-usuario
+router: api-sgsi/src/routers/baseStrategicObjective.ts:6
+controller: api-sgsi/src/controllers/baseStrategicObjective.ts#getAll
+model: api-sgsi/src/models/baseStrategicObjective.ts#getAll
+function: FN-V2-BASE-STRATEGIC-OBJECTIVE-GET-ALL
+status: CONFIRMED

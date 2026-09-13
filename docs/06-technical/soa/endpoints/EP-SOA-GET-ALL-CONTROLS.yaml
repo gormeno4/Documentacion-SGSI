@@ -1,0 +1,10 @@
+id: EP-SOA-GET-ALL-CONTROLS
+type: endpoint
+method: GET
+path: /soa/getAllControls
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:26
+controller: api-sgsi/src/controllers/soa.ts#getAllControls
+model: api-sgsi/src/models/soa.ts#getAllControls
+function: FN-V2-SOA-GET-ALL-CONTROLS
+status: CONFIRMED

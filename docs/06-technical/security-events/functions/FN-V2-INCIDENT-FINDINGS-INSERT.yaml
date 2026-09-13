@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-FINDINGS-INSERT
+type: db-function
+name: sgsi.v2_incident_findings_insert
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_findings, access: WRITE }
+notes: "Registers investigation finding with optional file_id reference. Does not transition state."

@@ -1,0 +1,14 @@
+id: EP-MONITORING-RESULT-MONTHLY-UPSERT
+type: endpoint
+method: POST
+path: /monitoring-result/monthly/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/monitoringResult.ts:8
+controller: api-sgsi/src/controllers/monitoringResult.ts#upsertMonthly
+model: api-sgsi/src/models/monitoringResult.ts#upsertMonthly
+function: FN-V2-MONITORING-RESULT-MONTHLY-UPSERT
+status: CONFIRMED
+notes: >
+  Rama usada cuando kpi.is_periodic=false (frecuencia anual/mensual); la rama
+  periódica usa EP-MONITORING-RESULT-PERIODIC-UPSERT — ambas conviven en la
+  misma Operación FLOW-CTX-007, elegidas en runtime por monitoring-results.tsx.

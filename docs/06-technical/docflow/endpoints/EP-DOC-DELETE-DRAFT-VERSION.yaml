@@ -1,0 +1,20 @@
+id: EP-DOC-DELETE-DRAFT-VERSION
+type: endpoint
+method: DELETE
+path: /document-flow/documents/versions/:versionId
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:44
+controller: api-sgsi/src/controllers/doc-documents.ts#handleDeleteDraftVersion
+model: api-sgsi/src/models/doc-documents.ts#deleteDraftVersion
+function: FN-DOC-DELETE-DRAFT-VERSION
+status: CONFIRMED
+notes: >
+  SECURITY FINDING (no corregido): ni el router (solo admin-or-usuario de mount, sin
+  middleware propio), ni el controller (handleDeleteDraftVersion, líneas 164-183, solo
+  extrae versionId de req.params — nunca llama dataUser(req) para customerId), ni el
+  model (deleteDraftVersion(versionId), sin parámetro de tenant), ni la query
+  (queries/doc-documents.ts:8, un solo parámetro), ni la función SQL (WHERE id =
+  p_version_id, sin filtro de customer_id) validan que la versión pertenezca al
+  cliente autenticado. Cualquier usuario autenticado de cualquier cliente puede borrar
+  el borrador (y su evidencia/imágenes asociadas) de otro cliente conociendo el
+  versionId. Ver docs/00-catalog/docflow.md § Hallazgos para la cascada completa.

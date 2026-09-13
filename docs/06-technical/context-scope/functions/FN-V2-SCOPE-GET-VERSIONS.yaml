@@ -1,0 +1,7 @@
+id: FN-V2-SCOPE-GET-VERSIONS
+type: db-function
+name: sgsi.v2_scope_get_versions
+definedIn: funciones_sgsi.sql:25520-25558
+status: CONFIRMED
+tables:
+  - { table: sgsi.scope, access: READ }

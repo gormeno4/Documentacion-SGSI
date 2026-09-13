@@ -1,0 +1,8 @@
+id: FN-V2-FODA-ANALYSIS-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_foda_analysis_create_new_version
+definedIn: funciones_sgsi.sql:17803-17894
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda_analysis, access: WRITE }
+  - { table: sgsi.foda, access: WRITE }

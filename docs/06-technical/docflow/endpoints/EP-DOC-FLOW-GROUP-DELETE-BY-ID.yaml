@@ -1,0 +1,10 @@
+id: EP-DOC-FLOW-GROUP-DELETE-BY-ID
+type: endpoint
+method: POST
+path: /document-flow-group/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow-group.ts:16
+controller: api-sgsi/src/controllers/doc-flow-group.ts#deleteById
+model: api-sgsi/src/models/doc-flow-group.ts#deleteById (línea 97, + getCustomerId ownership check)
+function: FN-V2-DOC-FLOW-GROUP-DELETE-BY-ID
+status: CONFIRMED

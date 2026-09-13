@@ -1,0 +1,11 @@
+id: FN-DOC-FLOW-GET-ACTIVE-ASSET-PROCESS-BY-CUSTOMER
+type: db-function
+name: sgsi.doc_flow_get_active_asset_process_by_customer
+definedIn: funciones_sgsi.sql:1293-1319
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.asset, access: READ }
+notes: >
+  Último proceso ACTIVO_INFORMACION en EN_CONFIGURACION/EN_APROBACION/PENDIENTE_PUBLICAR
+  para el cliente — usado por Activos (asset-inventory.tsx) para el banner de bloqueo.

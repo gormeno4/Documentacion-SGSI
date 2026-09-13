@@ -1,0 +1,12 @@
+id: FN-CONTROL-SOA-EVIDENCE-GET-FILE-ID
+type: db-function
+name: sgsi.control_soa_evidence_get_file_id
+definedIn: funciones_sgsi.sql:515-522
+status: CONFIRMED
+tables:
+  - { table: sgsi.control_soa_evidence, access: READ }
+notes: >
+  Viva únicamente de forma interna — invocada por models/soa.ts#deleteEvidence antes de
+  borrar el registro, para luego dar de baja lógicamente el archivo asociado en
+  sgsi.file (dominio externo "file", vía sgsi.file_soft_delete, no documentado aquí).
+  No tiene endpoint HTTP propio.

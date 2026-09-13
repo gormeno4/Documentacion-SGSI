@@ -1,0 +1,25 @@
+id: FN-DOC-FLOW-BUILD-ASSET-SNAPSHOT
+type: db-function
+name: sgsi.doc_flow_build_asset_snapshot
+definedIn: funciones_sgsi.sql:789-1013
+status: CONFIRMED
+tables:
+  - { table: sgsi.asset, access: READ }
+  - { table: sgsi.asset_threat_risk, access: READ }
+  - { table: sgsi.asset_threat_risk_evaluation, access: READ }
+  - { table: sgsi.ai_asset_risk_suggestions, access: READ }
+  - { table: sgsi.risk_treatment, access: READ }
+  - { table: sgsi.risk_treatment_control, access: READ }
+  - { table: sgsi.risk_treatment_action, access: READ }
+  - { table: sgsi.base_control_clauses, access: READ }
+  - { table: sgsi.risk_rel_scenario_map, access: READ }
+  - { table: sgsi.risk_scenario_catalog, access: READ }
+  - { table: sgsi.probability_impact_level, access: READ }
+  - { table: sgsi."position", access: READ }
+notes: >
+  Arma el snapshot jsonb de UN activo individual (datos del activo + amenazas/vulns +
+  análisis de riesgo legado por activo individual + tratamientos). Invocada en loop
+  desde models/doc-flow.ts#submitProcess, una vez por cada activo activo del cliente
+  (FN-DOC-FLOW-GET-ACTIVE-ASSET-IDS-BY-CUSTOMER), al enviar a aprobación el inventario
+  completo (entity_type='ACTIVO_INFORMACION'). Lee tablas legadas de Riesgos
+  (asset_threat_risk, risk_treatment) — dependencia saliente hacia DOM-RSK.

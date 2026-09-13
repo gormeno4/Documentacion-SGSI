@@ -1,0 +1,11 @@
+id: FN-SOA-ANALYSIS-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.soa_analysis_get_by_customer_id
+definedIn: funciones_sgsi.sql:8602-8629
+status: CONFIRMED
+tables:
+  - { table: sgsi.soa_analysis, access: READ }
+notes: >
+  Retorna la cabecera de la Declaración activa (is_active=true) del cliente. A
+  diferencia de la mayoría de las functions de este módulo, no auto-siembra si no
+  existe — retorna NULL.

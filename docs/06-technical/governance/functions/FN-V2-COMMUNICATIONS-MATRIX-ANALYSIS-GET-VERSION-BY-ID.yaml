@@ -1,0 +1,21 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-GET-VERSION-BY-ID
+type: db-function
+name: sgsi.v2_communications_matrix_analysis_get_version_by_id
+definedIn: funciones_sgsi.sql:13220-13268
+status: CONFIRMED
+tables:
+  - { table: sgsi.communications_matrix_analysis, access: READ }
+  - { table: sgsi.communications_matrix_row, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Detalle de una version historica (analysis + rowList).
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): solo recibe p_analysis_id y el
+  controller tampoco valida (controllers/communicationsMatrix.ts:136-153), por lo que permite leer
+  el plan de difusion completo de otro cliente. Asimetria explicita frente a get_versions, que si
+  filtra por customer_id.
+
+  Convergencia: ademas de la pantalla de Gobierno, la consume el preview de revision de
+  DOM-DOCFLOW (CommunicationsMatrixPreview.tsx) desde /doc-flow/inbox.

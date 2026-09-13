@@ -1,0 +1,17 @@
+id: EP-AREA-DELETE-BY-ID
+type: endpoint
+method: POST
+path: /area/deleteById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/area.ts:9
+controller: api-sgsi/src/controllers/area.ts#deleteById
+model: api-sgsi/src/models/area.ts#deleteById
+function: FN-V2-AREA-DELETE-BY-ID
+status: CONFIRMED
+notes: >
+  Verbo POST para una baja (inconsistente con DELETE /communications-matrix/row/deleteById/:id).
+  El controller valida tenant con FN-AREA-GET-CUSTOMER-ID (controllers/area.ts:61-64) y traduce el
+  P0001 de la funcion a un 409 con el detalle de dependencias.
+
+  HALLAZGO DE SEGURIDAD (authorization, no corregido): sin verifyAdminOnly y sin consumidor
+  no-admin - un usuario sin rol Admin puede eliminar areas.

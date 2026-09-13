@@ -1,0 +1,40 @@
+id: EP-TRAIN-DELETE
+type: endpoint
+method: POST
+path: /training/deleteById/{id}
+access: admin-only
+router: api-sgsi/src/routers/training.ts:12
+controller: api-sgsi/src/controllers/training.ts#deleteById
+model: api-sgsi/src/models/training.ts#deleteById
+query: api-sgsi/src/queries/training.ts#_deleteById
+function: FN-TRAIN-DELETE
+status: CONFIRMED
+description: "Soft delete de una capacitación y sus asignaciones"
+
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+    description: "ID de la capacitación a eliminar"
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/ITraining"
+  description: "Lista actualizada de capacitaciones (excluyendo deleted_at IS NOT NULL)"
+
+securityRules:
+  - "verifyAdminOnly middleware"
+  - "tenant isolation: validates training.company_id matches dataUser(req).customerId"
+  - "404 if not found or different tenant"
+
+cascades:
+  - "sgsi.person_training rows set deleted_at = NOW()"
+  - "sgsi.training_evidence rows set deleted_at = NOW()"
+
+errorHandling:
+  P0001: "Conflict: cannot delete due to active dependencies"
+  "23503": "Foreign key violation — registra como boom.conflict()"

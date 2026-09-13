@@ -1,0 +1,13 @@
+id: EP-ASSET-DEACTIVATE-GROUP-BY-ID
+type: endpoint
+method: POST
+path: /asset/deactivateGroupById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/asset.ts:32
+controller: api-sgsi/src/controllers/asset.ts#deactivateGroupById
+model: api-sgsi/src/models/asset.ts#deactivateGroupById
+function: FN-V2-ASSET-GROUP-DEACTIVATE-BY-ID
+status: CONFIRMED
+notes: >
+  El controller chequea isAssetFlowLockedByCustomer (dependencia externa a doc-flow)
+  antes de invocar el modelo.

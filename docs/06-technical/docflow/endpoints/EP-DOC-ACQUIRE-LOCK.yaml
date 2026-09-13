@@ -1,0 +1,10 @@
+id: EP-DOC-ACQUIRE-LOCK
+type: endpoint
+method: POST
+path: /document-flow/documents/versions/:versionId/lock
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:40
+controller: api-sgsi/src/controllers/doc-documents.ts#handleAcquireEditLock
+model: api-sgsi/src/models/doc-documents.ts#acquireEditLock
+function: FN-DOC-ACQUIRE-EDIT-LOCK
+status: CONFIRMED

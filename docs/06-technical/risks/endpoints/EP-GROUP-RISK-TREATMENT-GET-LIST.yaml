@@ -1,0 +1,10 @@
+id: EP-GROUP-RISK-TREATMENT-GET-LIST
+type: endpoint
+method: GET
+path: /group-risk-treatment/getList
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentRouter.ts
+controller: api-sgsi/src/controllers/groupRiskTreatmentController.ts#getList
+model: api-sgsi/src/models/groupRiskTreatment.ts#getList
+function: FN-V2-GROUP-RISK-TREATMENT-GET-LIST
+status: CONFIRMED

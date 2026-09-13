@@ -1,0 +1,10 @@
+id: EP-DOC-FLOW-GROUP-GET-BY-ID
+type: endpoint
+method: GET
+path: /document-flow-group/getById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow-group.ts:14
+controller: api-sgsi/src/controllers/doc-flow-group.ts#getById
+model: api-sgsi/src/models/doc-flow-group.ts#getById (+ getCustomerId, línea 41/129, verificación de ownership)
+function: FN-V2-DOC-FLOW-GROUP-GET-BY-ID
+status: CONFIRMED

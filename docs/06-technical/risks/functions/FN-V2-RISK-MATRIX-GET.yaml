@@ -1,0 +1,29 @@
+id: FN-V2-RISK-MATRIX-GET
+type: db-function
+name: sgsi.v2_risk_matrix_get
+definedIn: funciones_sgsi.sql:23908-24210
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS   # CROSS JOIN LATERAL por cada sgsi.asset_group
+tables:
+  - { table: sgsi.risk_methodology_config, access: READ }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: sgsi.probability_impact_level, access: READ }
+  - { table: sgsi.organizational_risk, access: READ }
+  - { table: sgsi.risk_scenario_catalog, access: READ }
+  - { table: sgsi.risk_treatment, access: READ }
+notes: >
+  Corregida en Sprint 5 (migración api-sgsi/sql/sgsi/migrations/sprint5/5_2026-09-07_me007_risk_matrix_4x4_functions.sql,
+  aplicada y confirmada contra funciones_sgsi.sql sincronizado desde la BD el 2026-09-08).
+  El propio comentario de la migración documenta que la rama "1. Riesgos de Activos"
+  se había escrito por error a partir de la plantilla previa a Gestión de Riesgos por
+  Grupo, leyendo de sgsi.asset_threat_risk/sgsi.asset (por activo individual) en vez
+  de sgsi.asset_group + sgsi.v2_asset_group_threat_risk_get_scenarios + sgsi.group_risk_treatment
+  (por grupo, el modelo vigente desde julio). Ya corregido: la rama 1 ahora itera
+  sgsi.asset_group vía CROSS JOIN LATERAL sgsi.v2_asset_group_threat_risk_get_scenarios(ag.id)
+  y resuelve el residual contra sgsi.group_risk_treatment — FLOW-RSK-002 (análisis por
+  grupo) sí se refleja en esta matriz. La rama 2 (organizacional) no cambió: sgsi.organizational_risk
+  + sgsi.risk_treatment (vía organizational_risk_id). Función pura de lectura, sin
+  escrituras. matrix5x5 sigue siendo un alias idéntico a matrix4x4 ("retrocompatibilidad",
+  comentario propio de la función) — el modelo real es 4x4 (Sprint 5, ME-007).

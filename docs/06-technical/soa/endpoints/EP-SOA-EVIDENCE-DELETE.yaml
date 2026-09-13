@@ -1,0 +1,18 @@
+id: EP-SOA-EVIDENCE-DELETE
+type: endpoint
+method: DELETE
+path: /soa/evidence/:evidenceId
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:34
+controller: api-sgsi/src/controllers/soa.ts#deleteEvidence
+model: api-sgsi/src/models/soa.ts#deleteEvidence
+function: FN-V2-CONTROL-SOA-EVIDENCE-DELETE
+status: CONFIRMED
+notes: >
+  SECURITY FINDING (no corregido, solo documentado): ni el controller (soa.ts:210-228)
+  ni el model (soa.ts:158-185) ni la query (_deleteEvidence, un solo parámetro) reciben
+  o validan customerId — a diferencia de todos los demás handlers de este mismo archivo.
+  verifyAdminOnly valida rol, no tenant. La function SQL (sgsi.v2_control_soa_evidence_delete,
+  funciones_sgsi.sql:14067-14078) borra por id sin filtro de customer_id. Cualquier admin
+  autenticado de cualquier cliente podría borrar evidencia de otro cliente conociendo el
+  UUID. Ver docs/00-catalog/soa.md § Hallazgos.

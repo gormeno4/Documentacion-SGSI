@@ -1,0 +1,12 @@
+id: FN-SCOPE-GET-RELATED-DOCUMENTS-JSON
+type: db-function
+name: sgsi.scope_get_related_documents_json
+definedIn: funciones_sgsi.sql:8554-8597
+status: CONFIRMED
+tables:
+  - { table: sgsi.scope_document_related, access: READ }
+notes: >
+  Viva únicamente de forma interna — invocada por
+  v2_scope_get_by_customer_id, v2_scope_get_version_by_id y v2_scope_upsert
+  para armar el arreglo de documentos relacionados embebido en la respuesta.
+  Sin endpoint HTTP propio.

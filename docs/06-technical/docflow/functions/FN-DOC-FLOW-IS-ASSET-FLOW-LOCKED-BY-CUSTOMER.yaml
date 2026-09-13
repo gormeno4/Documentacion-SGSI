@@ -1,0 +1,16 @@
+id: FN-DOC-FLOW-IS-ASSET-FLOW-LOCKED-BY-CUSTOMER
+type: db-function
+name: sgsi.doc_flow_is_asset_flow_locked_by_customer
+definedIn: funciones_sgsi.sql:2195-2212
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.asset, access: READ }
+notes: >
+  true si existe un proceso ACTIVO_INFORMACION en EN_APROBACION o PENDIENTE_PUBLICAR
+  para el cliente. Invocada desde dos lugares: (1) el propio controller de Doc-Flow
+  (handleCreateProcess, bloquea crear un nuevo proceso de activos si ya hay uno en
+  revisión), y (2) desde el dominio Activos (queries/asset.ts, consumida por
+  models/asset.ts#isAssetFlowLockedByCustomer) para bloquear mutaciones de
+  activo/grupo con 409 — dependencia entrante confirmada desde DOM-ACT, acoplamiento
+  cross-schema a nivel SQL (no solo HTTP).

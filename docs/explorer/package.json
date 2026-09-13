@@ -1,0 +1,19 @@
+{
+  "name": "barnard-sgsi-traceability-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prototipo aislado: parsea docs/05-flows/assets/*.md y docs/06-technical/assets/**/*.yaml en un grafo normalizado y lo visualiza. NO forma parte de app-sgsi/api-sgsi.",
+  "type": "module",
+  "scripts": {
+    "build": "node parser.mjs",
+    "validate": "node validate.mjs",
+    "smoke-test": "node smoke-test.mjs",
+    "serve": "python3 -m http.server 8743"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0"
+  }
+}

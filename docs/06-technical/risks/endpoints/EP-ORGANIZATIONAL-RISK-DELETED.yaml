@@ -1,0 +1,10 @@
+id: EP-ORGANIZATIONAL-RISK-DELETED
+type: endpoint
+method: GET
+path: /organizational-risk/deleted
+access: admin-only
+router: api-sgsi/src/routers/organizationalRisk.ts
+controller: api-sgsi/src/controllers/organizationalRisk.ts#getDeleted
+model: api-sgsi/src/models/organizationalRisk.ts#getDeleted
+function: FN-V2-ORGANIZATIONAL-RISK-GET-DELETED
+status: CONFIRMED

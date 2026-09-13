@@ -1,0 +1,10 @@
+id: EP-KPI-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /kpi/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:20
+controller: api-sgsi/src/controllers/kpi.ts#getByCustomerId
+model: api-sgsi/src/models/kpi.ts#getByCustomerId
+function: FN-V2-KPI-GET-BY-CUSTOMER-ID
+status: CONFIRMED

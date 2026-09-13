@@ -1,0 +1,10 @@
+id: EP-ASSET-MASSIVE
+type: endpoint
+method: POST
+path: /asset/massive
+access: admin-only
+router: api-sgsi/src/routers/asset.ts:38
+controller: api-sgsi/src/controllers/asset.ts#upsertMassive
+model: api-sgsi/src/models/asset.ts#upsertMassive
+function: FN-V2-ASSET-UPSERT-MASSIVE
+status: CONFIRMED

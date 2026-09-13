@@ -1,0 +1,12 @@
+id: EP-COMMUNICATIONS-MATRIX-ANALYSIS-GET-VERSIONS
+type: endpoint
+method: GET
+path: /communications-matrix/analysis/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/communicationsMatrix.ts:21
+controller: api-sgsi/src/controllers/communicationsMatrix.ts#getVersions
+model: api-sgsi/src/models/communicationsMatrix.ts#getVersions
+function: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-GET-VERSIONS
+status: CONFIRMED
+notes: >
+  Lectura correctamente scoped por customerId. Clasificado AMBIGUOUS en la revision de seguridad.

@@ -1,0 +1,13 @@
+id: FN-V2-SOA-ANALYSIS-GET-VERSIONS
+type: db-function
+name: sgsi.v2_soa_analysis_get_versions
+definedIn: funciones_sgsi.sql:26644-26679
+status: CONFIRMED
+tables:
+  - { table: sgsi.soa_analysis, access: READ }
+  - { table: sgsi.control_soa, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Lista todas las versiones (activas e inactivas) del cliente, ordenadas por versión
+  descendente, con contador de controles evaluados por versión.

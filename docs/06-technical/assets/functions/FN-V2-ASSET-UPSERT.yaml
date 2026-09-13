@@ -1,0 +1,22 @@
+id: FN-V2-ASSET-UPSERT
+type: db-function
+name: sgsi.v2_asset_upsert
+definedIn: funciones_sgsi.sql:12272-12617
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GET-BY-ID   # RETURN sgsi.v2_asset_get_by_id(v_asset_id) al final de la función
+tables:
+  - { table: sgsi.asset, access: WRITE }
+  - { table: sgsi.asset_history, access: WRITE }
+  - { table: sgsi.asset_group_history, access: WRITE }
+  - { table: sgsi.asset_threat_risk, access: WRITE }
+  - { table: sgsi.asset_group, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.risk_treatment, access: WRITE }
+  - { table: sgsi.ai_asset_risk_suggestions, access: READ }
+notes: >
+  sgsi.risk_treatment / sgsi.ai_asset_risk_suggestions se tocan solo como efecto secundario
+  al cambiar de propietario (limpieza de delegaciones). Pertenecen funcionalmente al dominio
+  de Riesgos — registrado como dependencia externa, no se documenta ese dominio aquí.
+  También invoca corvus.generate_sgsi_code() (función, no tabla) para autogenerar el código
+  cuando no se envía uno.

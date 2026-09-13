@@ -1,0 +1,19 @@
+id: FN-CHECK-POSITION-DEPENDENCIES
+type: db-function
+name: sgsi.check_position_dependencies
+definedIn: funciones_sgsi.sql:266-401
+status: CONFIRMED
+tables:
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.kpi, access: READ }
+  - { table: sgsi.kpi_analysis, access: READ }
+  - { table: sgsi.communications_matrix_row, access: READ }
+  - { table: sgsi.risk_treatment_action, access: READ }
+notes: >
+  Version post-sprint5 (migracion 2_2026-09-07_cargo_persona_functions.sql, verificada identica en
+  el snapshot): resuelve las personas del cargo por corvus.customer_person.position_id, no por la
+  columna legacy de corvus.person - a diferencia de check_area_dependencies, que si quedo
+  desactualizada. Cuenta 5 tipos de dependencia: personas, cargos hijos, KPIs, filas de la matriz
+  de comunicaciones y acciones de mitigacion. Devuelve NULL si no hay ninguna.

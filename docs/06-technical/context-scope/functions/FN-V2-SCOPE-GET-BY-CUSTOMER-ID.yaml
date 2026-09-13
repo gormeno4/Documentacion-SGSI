@@ -1,0 +1,9 @@
+id: FN-V2-SCOPE-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_scope_get_by_customer_id
+definedIn: funciones_sgsi.sql:25411-25472
+status: CONFIRMED
+calls:
+  - FN-SCOPE-GET-RELATED-DOCUMENTS-JSON
+tables:
+  - { table: sgsi.scope, access: READ }

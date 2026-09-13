@@ -1,0 +1,22 @@
+id: FN-DOC-GET-MY-EDITING-ASSIGNMENTS
+type: db-function
+name: sgsi.doc_get_my_editing_assignments
+definedIn: funciones_sgsi.sql:3666-3741
+status: CONFIRMED
+calls:
+  - FN-DOC-FLOW-GET-ACTIVE-PROCESS-INFO
+tables:
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.base_document_type, access: READ }
+  - { table: sgsi.document_type, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.doc_version_editors, access: READ }
+notes: >
+  Variante de 2 argumentos (con p_customer_id) — la única invocada desde Node. Existe
+  un overload de 1 argumento (funciones_sgsi.sql:3746-3795, sin p_customer_id, sin
+  scoping de tenant) que la query TypeScript nunca invoca — dead overload, no
+  documentado como nodo. Versiones EN_EDICION/DEVUELTO donde el usuario es editor
+  (individual o N:M).

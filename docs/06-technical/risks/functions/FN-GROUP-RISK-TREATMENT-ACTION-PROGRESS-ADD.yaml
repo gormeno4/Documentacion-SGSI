@@ -1,0 +1,14 @@
+id: FN-GROUP-RISK-TREATMENT-ACTION-PROGRESS-ADD
+type: db-function
+name: sgsi.group_risk_treatment_action_progress_add
+definedIn: funciones_sgsi.sql:6042-6097
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.group_risk_treatment_action_progress, access: WRITE }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  RAISE EXCEPTION 'GROUP_RISK_TREATMENT: PROGRESS_REGRESSION' si el último
+  porcentaje registrado ya es 100 y el nuevo valor es menor a 100 — prohíbe
+  retroceder progreso ya completado.

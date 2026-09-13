@@ -1,0 +1,8 @@
+id: FN-V2-PESTEL-ANALYSIS-CREATE-NEW-VERSION
+type: db-function
+name: sgsi.v2_pestel_analysis_create_new_version
+definedIn: funciones_sgsi.sql:22298-22390
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel_analysis, access: WRITE }
+  - { table: sgsi.pestel, access: WRITE }

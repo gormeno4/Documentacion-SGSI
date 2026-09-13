@@ -1,0 +1,18 @@
+id: EP-PERSON-UPSERT-TRAINING-CERTIFICATE
+type: endpoint
+method: POST
+path: /person/upsertTrainingCertificate/:personTrainingId
+access: admin-only
+router: api-sgsi/src/routers/person.ts:34
+controller: api-sgsi/src/controllers/person.ts#upsertTrainingCertificate
+model: api-sgsi/src/models/person.ts#upsertTrainingCertificate
+function: FN-TRAINING-UPDATE-TRAINING-DOCUMENTS
+status: CONFIRMED
+notes: >
+  multipart/form-data (upload.single('certificate')).
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): el controller
+  (controllers/person.ts:303-367) no valida que personTrainingId pertenezca al cliente
+  autenticado, pese a que el helper existe y se usa en el borrado. Permite sobrescribir el
+  archivo, el porcentaje de aprobacion, la asistencia y la fecha de un person_training de otro
+  cliente.

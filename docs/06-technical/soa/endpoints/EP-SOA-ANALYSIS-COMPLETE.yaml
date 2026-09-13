@@ -1,0 +1,10 @@
+id: EP-SOA-ANALYSIS-COMPLETE
+type: endpoint
+method: POST
+path: /soa/analysis/complete
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:40
+controller: api-sgsi/src/controllers/soa.ts#markComplete
+model: api-sgsi/src/models/soa.ts#markComplete
+function: FN-V2-SOA-ANALYSIS-MARK-COMPLETE
+status: CONFIRMED

@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-SAVE-DRAFT-REPLY
+type: endpoint
+method: POST
+path: /document-flow/process/:processId/draft-reply
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:30
+controller: api-sgsi/src/controllers/doc-flow.ts#handleSaveDraftReply
+model: api-sgsi/src/models/doc-flow.ts#saveDraftReply
+function: FN-DOC-FLOW-SAVE-DRAFT-REPLY
+status: CONFIRMED

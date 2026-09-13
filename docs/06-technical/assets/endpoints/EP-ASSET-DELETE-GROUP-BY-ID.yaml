@@ -1,0 +1,10 @@
+id: EP-ASSET-DELETE-GROUP-BY-ID
+type: endpoint
+method: POST
+path: /asset/deleteGroupById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/asset.ts:31
+controller: api-sgsi/src/controllers/asset.ts#deleteGroupById
+model: api-sgsi/src/models/asset.ts#deleteGroupById
+function: FN-V2-ASSET-GROUP-DELETE-BY-ID
+status: CONFIRMED

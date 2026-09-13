@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-APPROVE-STEP
+type: endpoint
+method: POST
+path: /document-flow/process/:processId/steps/:stepId/approve
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:34
+controller: api-sgsi/src/controllers/doc-flow.ts#handleApproveStep
+model: api-sgsi/src/models/doc-flow.ts#approveStep
+function: FN-DOC-FLOW-APPROVE-STEP
+status: CONFIRMED

@@ -1,0 +1,14 @@
+id: EP-DOC-BULK-CREATE
+type: endpoint
+method: POST
+path: /document-flow/documents/bulk-create
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:32
+controller: api-sgsi/src/controllers/doc-documents.ts#handleBulkCreateDocuments
+model: api-sgsi/src/models/doc-documents.ts#createBulkDocuments
+function: FN-DOC-UPSERT
+status: CONFIRMED
+notes: >
+  El loop de creación ocurre en Node (createBulkDocuments itera los documentos ya
+  validados por EP-DOC-BULK-VALIDATE), invocando FN-DOC-UPSERT una vez por documento
+  — no existe una function SQL de batch dedicada.

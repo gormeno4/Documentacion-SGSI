@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-EFFECTIVENESS-CATALOG
+type: endpoint
+method: GET
+path: /security-events/effectiveness/catalog
+access: public-authenticated
+router: api-sgsi/src/routers/securityEvent.ts:79
+controller: api-sgsi/src/controllers/securityEvent.ts#getEffectivenessCatalog
+model: api-sgsi/src/models/securityEvent.ts#getEffectivenessCatalog
+function: FN-V2-INCIDENT-EFFECTIVENESS-GET-OBSERVATION-PERIODS
+status: CONFIRMED
+notes: "Catalog endpoint — no FLOW, only technical dependency."

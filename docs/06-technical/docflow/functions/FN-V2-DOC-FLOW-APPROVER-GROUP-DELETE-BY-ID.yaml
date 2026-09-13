@@ -1,0 +1,12 @@
+id: FN-V2-DOC-FLOW-APPROVER-GROUP-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_doc_flow_approver_group_delete_by_id
+definedIn: funciones_sgsi.sql:15505-15530
+status: CONFIRMED
+calls:
+  - FN-V2-DOC-FLOW-APPROVER-GROUP-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.doc_flow_approver_group, access: WRITE }
+notes: >
+  Soft delete validando pertenencia al cliente en el propio WHERE. Retorna la lista
+  actualizada.

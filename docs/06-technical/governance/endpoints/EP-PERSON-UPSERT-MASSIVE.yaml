@@ -1,0 +1,17 @@
+id: EP-PERSON-UPSERT-MASSIVE
+type: endpoint
+method: POST
+path: /person/massive
+access: admin-only
+router: api-sgsi/src/routers/person.ts:26
+controller: api-sgsi/src/controllers/person.ts#upsertMassive
+model: api-sgsi/src/models/person.ts#upsertMassive
+function: FN-V2-PERSON-UPSERT-MASSIVE
+status: CONFIRMED
+notes: >
+  El controller (controllers/person.ts:415-660) hace mucho mas que delegar: precarga cargos,
+  areas, distritos, equipos y personas del cliente, resuelve cada columna de la plantilla POR
+  NOMBRE y CREA lo que falte llamando a AreaModel.upsert (:510), PositionModel.upsert
+  (:535/:561/:572) y StaffModel.upsert (:596) antes de invocar la funcion masiva. Es decir, esta
+  operacion puede escribir corvus.area, sgsi.position (con su cascada a sgsi.asset) y sgsi.staff
+  aunque la funcion SQL masiva no las declare.

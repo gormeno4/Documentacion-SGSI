@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-FINDINGS-UPLOAD
+type: endpoint
+method: POST
+path: /security-events/findings/upload/:eventId
+access: investigator
+router: api-sgsi/src/routers/securityEvent.ts:46
+controller: api-sgsi/src/controllers/securityEvent.ts#uploadFindingEvidence
+model: api-sgsi/src/models/securityEvent.ts#uploadFindingEvidence
+function: null
+status: CONFIRMED
+notes: "File upload endpoint — no DB function, stores file in FS and returns fileId."

@@ -1,0 +1,7 @@
+id: FN-V2-THRESHOLD-GOAL-UPSERT
+type: db-function
+name: sgsi.v2_threshold_goal_upsert
+definedIn: funciones_sgsi.sql:28624-28688
+status: CONFIRMED
+tables:
+  - { table: sgsi.threshold_goal, access: WRITE }

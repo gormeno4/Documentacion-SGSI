@@ -1,0 +1,10 @@
+id: FN-V2-STAFF-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_staff_get_list_by_customer_id
+definedIn: funciones_sgsi.sql:27193-27225
+status: CONFIRMED
+tables:
+  - { table: sgsi.staff, access: READ }
+notes: >
+  Listado de equipos/comites del cliente. Convergencia: lo consumen la seccion Comites de
+  Gobierno, el Organigrama y la pantalla de Catalogos -> Equipos (staff).

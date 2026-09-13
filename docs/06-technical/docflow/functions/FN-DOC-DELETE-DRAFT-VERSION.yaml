@@ -1,0 +1,22 @@
+id: FN-DOC-DELETE-DRAFT-VERSION
+type: db-function
+name: sgsi.doc_delete_draft_version
+definedIn: funciones_sgsi.sql:596-679
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: WRITE }
+  - { table: sgsi.file, access: WRITE }
+  - { table: sgsi.doc_documents, access: WRITE }
+  - { table: corvus.sgsi_code_seq, access: WRITE }
+  - { table: sgsi.document_flow_steps, access: WRITE }
+  - { table: sgsi.document_flow_snapshots, access: WRITE }
+  - { table: sgsi.document_flow_processes, access: WRITE }
+notes: >
+  SECURITY FINDING (no corregido): sin filtro de customer_id en ningún WHERE de la
+  función — ver docs/00-catalog/docflow.md § Hallazgos y EP-DOC-DELETE-DRAFT-VERSION.yaml
+  para la cadena completa router→controller→model→query→función. Exige status =
+  'BORRADOR' (única validación real). Borra sgsi.file de imágenes/archivos asociados a
+  la versión; si es la única versión del documento, además retrocede la secuencia de
+  codificación (corvus.sgsi_code_seq), borra el proceso de aprobación EN_CONFIGURACION
+  (steps + snapshots + proceso) del documento, la versión y el documento completo — si
+  hay otras versiones, solo borra la versión indicada.

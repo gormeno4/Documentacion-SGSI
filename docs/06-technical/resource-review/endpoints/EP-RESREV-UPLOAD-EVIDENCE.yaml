@@ -1,0 +1,46 @@
+id: EP-RESREV-UPLOAD-EVIDENCE
+type: endpoint
+method: POST
+path: /resource-review/{revisionId}/evidence
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:21-24
+controller: api-sgsi/src/controllers/resourceReview.ts#uploadEvidence
+model: api-sgsi/src/models/resourceReview.ts#upsertEvidence
+function: FN-RESREV-UPLOAD-EVIDENCE
+status: CONFIRMED
+description: "SUPPORT endpoint. Upload evidence file for review"
+
+parameters:
+  - name: revisionId
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+
+requestBody:
+  type: multipart/form-data
+  properties:
+    file:
+      type: string
+      format: binary
+
+responseBody:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+    evidenciaPath:
+      type: string
+    evidenciaFileName:
+      type: string
+
+storage:
+  - "file saved to disk"
+  - "relative path stored in sgsi.resource_review.evidencia_path"
+  - "metadata indexed in sgsi.file with entity_type='resource-review-evidence'"
+
+securityRules:
+  - "tenant isolation: validates review belongs to customer"
+  - "path traversal prevention via validatePathWithinBase()"

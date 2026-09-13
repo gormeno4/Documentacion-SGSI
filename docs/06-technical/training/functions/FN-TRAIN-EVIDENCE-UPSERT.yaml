@@ -1,0 +1,11 @@
+id: FN-TRAIN-EVIDENCE-UPSERT
+type: db-function
+schema: sgsi
+name: training_evidence_upsert
+signature: "training_evidence_upsert(p_evidence_id uuid|null, p_training_id uuid, p_customer_id uuid, p_path varchar, p_file_name varchar, p_mime_type varchar, p_size integer) RETURNS json"
+definedIn: "queries/training.ts:_upsertEvidence"
+status: CONFIRMED
+tables:
+  - table: sgsi.training_evidence
+    access: WRITE
+notes: "Support function for evidence management. Invoked from EP-TRAIN-UPLOAD-EVIDENCE."

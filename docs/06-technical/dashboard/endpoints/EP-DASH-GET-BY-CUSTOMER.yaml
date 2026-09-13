@@ -1,0 +1,77 @@
+id: EP-DASH-GET-BY-CUSTOMER
+type: endpoint
+method: GET
+path: /dashboard/getDashboardByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/dashboard.ts:8
+controller: api-sgsi/src/controllers/dashboard.ts#getDashboardByCustomerId
+model: api-sgsi/src/models/dashboard.ts#getDashboardByCustomerId
+function: FN-DASH-GET-BY-CUSTOMER
+status: CONFIRMED
+description: "Dashboard principal: agregación completa de datos del SGSI (perfiles, documentos, KPIs, riesgos, iniciativas, implementación, madurez, SoA) — solo lectura"
+
+parameters: []
+
+returns:
+  type: json
+  structure: |
+    {
+      "profileData": [{ "id", "userProfile", "userName", "companyName" }],
+      "documentsData": [{ "id", "documentType", "documentTitle", "documentTypeCode", "documentOwnerCode", "documentOwnerName", "documentPublishDate", "status", "informationClassification", "documentEndDate" }],
+      "kpiData": [{ "id", "kpi_name", "formula", "iso_references", "target", "frequency", "responsible_role", "measurement", "measure_unit" }],
+      "riskData": [{ "id", "asset", "amenazas", "treatment", "risks" }],
+      "methodology": { ... },
+      "initiativesData": [{ "id", "companyId", "title", "status", "progress", "completedAt", "linkRiskId", "linkRiskName", "linkControlId", "linkControlName", "leadResponsibleId", "leadResponsibleName", "estimatedBudget", "infrastructureTools", "statusJustification", "createdAt", "updatedAt" }],
+      "implementationData": [...],
+      "maturityData": [...],
+      "soaData": [...]
+    }
+
+security:
+  - type: jwt-auth
+    requirement: "customerId and personId from JWT token"
+  - type: null-check
+    requirement: "Both customerId and personId must not be NULL"
+
+classification: SUPPORT
+operationType: READ
+aggregator: true
+readOnly: true
+primaryEndpoint: true
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Reads asset groups, threat risks for risk matrix"
+    tables: [sgsi.asset_group, sgsi.asset_threat_risk, sgsi.asset_threat_risk_evaluation]
+  - domain: DOM-CTX
+    reason: "Reads KPI definitions, frequencies, monitoring results, strategic objectives"
+    tables: [sgsi.kpi, sgsi.kpi_analysis, sgsi.monitoring_result_monthly, sgsi.monitoring_result_periodic, sgsi.frequency, sgsi.strategic_objective, sgsi.base_kpi]
+  - domain: DOM-RSK
+    reason: "Reads asset group threats, risk evaluations, organizational risks, treatment strategies"
+    tables: [sgsi.asset_group_threat_risk, sgsi.organizational_risk, sgsi.risk_treatment, sgsi.probability_impact_level, sgsi.cia_level, sgsi.ai_asset_risk_suggestions]
+  - domain: DOM-DOCFLOW
+    reason: "Reads published/draft documents and versions"
+    tables: [sgsi.doc_documents, sgsi.doc_versions, sgsi.base_document_type, sgsi.document_type]
+  - domain: DOM-INIT
+    reason: "Reads initiative titles, status, progress, linked risks/controls, responsible leads"
+    tables: [sgsi.initiative, sgsi.initiative_status_log]
+  - domain: DOM-GOV
+    reason: "Reads position names, person names for profile and ownership info"
+    tables: [sgsi.position, corvus.customer_person, corvus.person, corvus.customer]
+  - domain: DOM-SOA
+    reason: "Reads control clauses for SOA data aggregation"
+    tables: [sgsi.base_control_clauses]
+
+notes: |
+  This is the PRIMARY dashboard endpoint. Called on every dashboard.tsx render.
+  Aggregates data from 7 FROZEN domains + Wizard step info.
+  Returns paginated/aggregated data; no filters or search.
+  No mutations; read-only projection.
+
+  LEGACY DEBT: Function reads corvus.person.position_id and corvus.customer_person.position_id which are marked for DROP.
+  Will break when sprint5/3_2026-09-07_drops_columnas_obsoletas.sql is executed.
+  See: docs/00-catalog/gobierno.md#Hallazgos
+
+externalDependencies:
+  - domain: Wizard
+    reason: "General info context for scope completeness check"

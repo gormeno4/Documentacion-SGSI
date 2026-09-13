@@ -1,0 +1,66 @@
+id: EP-DASH-RELATIONS-BY-CUSTOMER
+type: endpoint
+method: GET
+path: /dashboard/getAllRelationsByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/dashboard.ts:10
+controller: api-sgsi/src/controllers/dashboard.ts#getAllRelationsByCustomerId
+model: api-sgsi/src/models/dashboard.ts#getAllRelationsByCustomerId
+function: FN-DASH-RELATIONS-BY-CUSTOMER
+status: CONFIRMED
+description: "Relaciones agregadas de amenazas, vulnerabilidades, escenarios y controles para todos los activos del cliente — solo lectura"
+
+parameters: []
+
+returns:
+  type: json
+  structure: |
+    [
+      {
+        "assetId": uuid,
+        "assetGroupName": string,
+        "assetTypeName": string,
+        "assetName": string,
+        "threats": [...],
+        "threatsCount": number,
+        "vulnerabilitiesCount": number,
+        "scenariosCount": number,
+        "risksCount": number,
+        "controlsCount": number
+      }
+    ]
+
+security:
+  - type: jwt-auth
+    requirement: "customerId and personId from JWT token"
+  - type: null-check
+    requirement: "Both customerId and personId must not be NULL"
+
+classification: SUPPORT
+operationType: READ
+aggregator: true
+readOnly: true
+relationsAggregator: true
+
+convergences:
+  - domain: DOM-ACT
+    reason: "Reads all assets, asset groups, base asset types for customer"
+    tables: [sgsi.asset, sgsi.asset_group, sgsi.base_asset_type]
+  - domain: DOM-RSK
+    reason: "Reads all threat-risk relations, scenarios, evaluations, and treatment strategies"
+    tables: [sgsi.asset_threat_risk, sgsi.asset_threat_risk_evaluation, sgsi.ai_asset_risk_suggestions, sgsi.probability_impact_level, sgsi.cia_level, sgsi.risk_treatment]
+  - domain: DOM-SOA
+    reason: "Reads control clauses and their implementation status across all assets"
+    tables: [sgsi.base_control_clauses, sgsi.ai_asset_risk_control_suggestions, sgsi.risk_treatment_control]
+
+notes: |
+  This endpoint provides relations data for the entire customer (all assets).
+  Used by dashboard's RelationsMap component to render threats/vulnerabilities network visualization.
+  Called on every dashboard.tsx render alongside getDashboardByCustomerId.
+  Returns array of RelationData objects (one per asset with relations).
+
+  SCOPE: Full customer data, no filtering by asset.
+
+  No mutations; read-only projection.
+
+externalDependencies: []

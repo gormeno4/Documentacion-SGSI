@@ -1,0 +1,10 @@
+id: EP-SOA-ANALYSIS-CONTROLS-BY-ID
+type: endpoint
+method: GET
+path: /soa/analysis/:analysis_id/controls
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:44
+controller: api-sgsi/src/controllers/soa.ts#getControlsByAnalysis
+model: api-sgsi/src/models/soa.ts#getControlsByAnalysis
+function: FN-V2-SOA-GET-ALL-CONTROLS-BY-ANALYSIS
+status: CONFIRMED

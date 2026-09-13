@@ -1,0 +1,10 @@
+id: EP-SCOPE-CREATE-NEW-VERSION
+type: endpoint
+method: POST
+path: /scope/new-version
+access: admin-or-usuario
+router: api-sgsi/src/routers/scope.ts:20
+controller: api-sgsi/src/controllers/scope.ts#createNewVersion
+model: api-sgsi/src/models/scope.ts#createNewVersion
+function: FN-V2-SCOPE-CREATE-NEW-VERSION
+status: CONFIRMED

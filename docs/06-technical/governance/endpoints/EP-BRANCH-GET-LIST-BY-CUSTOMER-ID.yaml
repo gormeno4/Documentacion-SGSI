@@ -1,0 +1,14 @@
+id: EP-BRANCH-GET-LIST-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /branch/getListByCustomerId
+access: admin-only
+router: api-sgsi/src/routers/branch.ts:7
+controller: api-sgsi/src/controllers/branch.ts#getListByCustomerId
+model: api-sgsi/src/models/branch.ts#getListByCustomerId
+function: FN-V2-BRANCH-GET-LIST-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  Unico endpoint de /branch consumido desde Gobierno (lectura de la Casa Matriz). Los otros 3
+  (POST /branch/upsert, GET /branch/getById, POST /branch/deleteById/:id) son LIVE pero su
+  consumidor es Catalogos -> Sucursales, fuera del alcance de DOM-GOV.

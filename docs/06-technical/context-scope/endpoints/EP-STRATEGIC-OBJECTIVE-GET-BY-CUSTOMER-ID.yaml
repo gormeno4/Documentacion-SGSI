@@ -1,0 +1,15 @@
+id: EP-STRATEGIC-OBJECTIVE-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /strategic-objective/getByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/strategicObjective.ts:17
+controller: api-sgsi/src/controllers/strategicObjective.ts#getByCustomerId
+model: api-sgsi/src/models/strategicObjective.ts#getByCustomerId
+function: FN-V2-STRATEGIC-OBJECTIVE-GET-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  También se invoca con ?onlyActive=true desde kpi.tsx, en cuyo caso el
+  controller delega a getActiveByCustomerId en vez de getByCustomerId (ver
+  EP-STRATEGIC-OBJECTIVE-GET-ACTIVE-BY-CUSTOMER-ID) — mismo path físico, rama
+  por query param.

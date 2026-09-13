@@ -1,0 +1,10 @@
+id: EP-DOC-GET-MY-EDITING-ASSIGNMENTS
+type: endpoint
+method: GET
+path: /document-flow/documents/my-editing-assignments
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:34
+controller: api-sgsi/src/controllers/doc-documents.ts#handleGetMyEditingAssignments
+model: api-sgsi/src/models/doc-documents.ts#getMyEditingAssignments
+function: FN-DOC-GET-MY-EDITING-ASSIGNMENTS
+status: CONFIRMED

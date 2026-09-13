@@ -1,0 +1,11 @@
+id: FN-DOC-VERSIONS-SET-PREVIOUS-OBSOLETE
+type: db-function
+name: sgsi.doc_versions_set_previous_obsolete
+definedIn: funciones_sgsi.sql:4814-4828
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: WRITE }
+notes: >
+  Marca OBSOLETO cualquier otra versión VIGENTE del mismo documento. Invocada desde
+  los 3 modelos upsertPublished*Document, justo después de FN-DOC-UPSERT, como parte
+  de la generación automática de documento al publicar.

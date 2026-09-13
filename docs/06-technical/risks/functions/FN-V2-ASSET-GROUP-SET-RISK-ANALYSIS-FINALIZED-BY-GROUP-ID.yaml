@@ -1,0 +1,14 @@
+id: FN-V2-ASSET-GROUP-SET-RISK-ANALYSIS-FINALIZED-BY-GROUP-ID
+type: db-function
+name: sgsi.v2_asset_group_set_risk_analysis_finalized_by_group_id
+definedIn: funciones_sgsi.sql:10656-10674
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-GET-BY-ID
+tables:
+  - { table: sgsi.asset_group, access: WRITE }
+  - { table: sgsi.asset_group_history, access: WRITE }
+notes: >
+  FN-V2-ASSET-GROUP-GET-BY-ID pertenece al módulo Activos (DOM-ACT), ya documentado
+  en docs/06-technical/assets/functions/FN-V2-ASSET-GROUP-GET-BY-ID.yaml — referencia
+  cruzada entre módulos, no se duplica su definición aquí.

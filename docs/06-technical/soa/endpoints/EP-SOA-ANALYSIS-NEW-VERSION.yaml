@@ -1,0 +1,10 @@
+id: EP-SOA-ANALYSIS-NEW-VERSION
+type: endpoint
+method: POST
+path: /soa/analysis/new-version
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:41
+controller: api-sgsi/src/controllers/soa.ts#createNewVersion
+model: api-sgsi/src/models/soa.ts#createNewVersion
+function: FN-V2-SOA-ANALYSIS-CREATE-NEW-VERSION
+status: CONFIRMED

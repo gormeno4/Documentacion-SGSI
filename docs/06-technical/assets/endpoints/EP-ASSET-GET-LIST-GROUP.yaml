@@ -1,0 +1,10 @@
+id: EP-ASSET-GET-LIST-GROUP
+type: endpoint
+method: GET
+path: /asset/getListGroupByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/asset.ts:28
+controller: api-sgsi/src/controllers/asset.ts#getListGroupByCustomerId
+model: api-sgsi/src/models/asset.ts#getListGroupByCustomerId
+function: FN-V2-ASSET-GROUP-GET-LIST-BY-CUSTOMER-ID
+status: CONFIRMED

@@ -1,0 +1,15 @@
+id: EP-DOCFLOW-GET-PROCESS-BY-ENTITY
+type: endpoint
+method: GET
+path: /document-flow/process/entity/:entityType/:entityId
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:55
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetProcessByEntity
+model: api-sgsi/src/models/doc-flow.ts#getProcessByEntity
+function: FN-DOC-FLOW-GET-PROCESS-BY-ENTITY
+status: CONFIRMED
+notes: >
+  Endpoint polimórfico consumido por múltiples dominios ya documentados (Riesgos, SoA)
+  y otros aún no documentados (Gobierno, Contexto y Alcance, Partes Interesadas), cada
+  uno con su propio entity_type ('RISK_TREATMENT_PLAN', 'SOA', 'CARGO', 'SCOPE', etc.).
+  Ver docs/00-catalog/docflow.md, sección de dependencias entrantes.

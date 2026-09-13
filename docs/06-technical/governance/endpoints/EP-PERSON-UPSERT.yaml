@@ -1,0 +1,15 @@
+id: EP-PERSON-UPSERT
+type: endpoint
+method: POST
+path: /person/upsert
+access: admin-only
+router: api-sgsi/src/routers/person.ts:25
+controller: api-sgsi/src/controllers/person.ts#upsert
+model: api-sgsi/src/models/person.ts#upsert
+function: FN-V2-PERSON-UPSERT
+status: CONFIRMED
+notes: >
+  Ruta con verifyAdminOnly sobre un router montado admin-or-usuario. Convergencia: lo usan la
+  ficha de Personas, el modal de alta manual de Roles y Responsabilidades y el modal equivalente
+  del Wizard. El alta de credenciales y el correo de bienvenida los ejecuta el controller en Node
+  (dependencia externa email).

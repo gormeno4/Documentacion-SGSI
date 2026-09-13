@@ -1,0 +1,15 @@
+id: EP-DOCFLOW-GET-ALL-PROCESSES-BY-TYPE
+type: endpoint
+method: GET
+path: /document-flow/process/entity/:entityType
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:58
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetAllProcessesByType
+model: api-sgsi/src/models/doc-flow.ts#getAllProcessesByType
+function: FN-DOC-FLOW-GET-ALL-PROCESSES-BY-TYPE
+status: CONFIRMED
+notes: >
+  Reclasificado de PARTIAL (Discovery) a LIVE (Diseño/Implementación): 6 consumidores
+  confirmados en app-sgsi, entre ellos Iniciativas, Matriz de Riesgo, Plan de
+  Tratamiento e historial de Riesgos, Cargos (Gobierno), Seguimiento (Contexto y
+  Alcance).

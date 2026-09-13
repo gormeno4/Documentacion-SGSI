@@ -1,0 +1,14 @@
+id: FN-DOC-FLOW-APPROVE-STEP
+type: db-function
+name: sgsi.doc_flow_approve_step
+definedIn: funciones_sgsi.sql:684-770
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: WRITE }
+  - { table: sgsi.document_flow_steps, access: WRITE }
+  - { table: sgsi.doc_versions, access: WRITE }
+notes: >
+  Valida que el step pertenezca al proceso, esté PENDIENTE, asignado al usuario que
+  aprueba, y que no haya un revisor anterior aún pendiente (orden secuencial). Marca el
+  step APROBADO; si no quedan steps PENDIENTE en la iteración, pasa el proceso a
+  PENDIENTE_PUBLICAR (y, si entity_type='DOCUMENT', la versión asociada también).

@@ -1,0 +1,23 @@
+id: FN-V2-CUSTOMER-PERSON-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: corvus.v2_customer_person_get_list_by_customer_id
+definedIn: funciones_corvus.sql:23729-23860
+status: CONFIRMED
+calls:
+  - FN-V2-PERSON-DOCUMENT-GET-BY-PERSON-ID
+  - FN-V2-TRAINING-DOCUMENT-GET-BY-TRAINING-ID
+tables:
+  - { table: corvus.customer_person, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.user, access: READ }
+  - { table: corvus.user_rol, access: READ }
+  - { table: corvus.rol, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.person_staff, access: READ }
+  - { table: sgsi.staff, access: READ }
+  - { table: sgsi.person_training, access: READ }
+  - { table: sgsi.training, access: READ }
+notes: >
+  Version post-sprint5: lee position_id, area_id, is_assistant e is_legal_representative desde
+  corvus.customer_person (por empresa), ya no desde las columnas legacy de corvus.person. Es la
+  fuente del listado de Personas y tambien del arbol que dibuja el Organigrama en pantalla.

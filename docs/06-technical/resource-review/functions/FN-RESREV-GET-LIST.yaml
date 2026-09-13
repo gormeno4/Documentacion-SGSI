@@ -1,0 +1,16 @@
+id: FN-RESREV-GET-LIST
+type: db-function
+schema: sgsi
+name: resource_review_get_list_by_customer_id
+signature: "resource_review_get_list_by_customer_id(p_customer_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:7850-7910
+status: CONFIRMED
+description: "List all reviews for customer"
+
+tables:
+  - table: sgsi.resource_review
+    access: READ
+  - table: sgsi.resource_review_act_type
+    access: READ
+
+notes: "SUPPORT function. Invoked after upsert to refresh list."

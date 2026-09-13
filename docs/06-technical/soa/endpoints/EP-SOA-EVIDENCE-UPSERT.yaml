@@ -1,0 +1,10 @@
+id: EP-SOA-EVIDENCE-UPSERT
+type: endpoint
+method: POST
+path: /soa/evidence/upsert
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:33
+controller: api-sgsi/src/controllers/soa.ts#addEvidence
+model: api-sgsi/src/models/soa.ts#addEvidence
+function: FN-V2-CONTROL-SOA-EVIDENCE-UPSERT
+status: CONFIRMED

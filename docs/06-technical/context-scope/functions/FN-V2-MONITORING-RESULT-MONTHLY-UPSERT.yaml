@@ -1,0 +1,7 @@
+id: FN-V2-MONITORING-RESULT-MONTHLY-UPSERT
+type: db-function
+name: sgsi.v2_monitoring_result_monthly_upsert
+definedIn: funciones_sgsi.sql:21657-21826
+status: CONFIRMED
+tables:
+  - { table: sgsi.monitoring_result_monthly, access: WRITE }

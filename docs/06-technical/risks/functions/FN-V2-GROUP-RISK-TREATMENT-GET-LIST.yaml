@@ -1,0 +1,22 @@
+id: FN-V2-GROUP-RISK-TREATMENT-GET-LIST
+type: db-function
+name: sgsi.v2_group_risk_treatment_get_list
+definedIn: funciones_sgsi.sql:18799-18985
+status: CONFIRMED
+calls:
+  - FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS
+tables:
+  - { table: sgsi.asset_group, access: READ }
+  - { table: sgsi.probability_impact_level, access: READ }
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: sgsi.group_risk_treatment_action, access: READ }
+  - { table: sgsi.group_risk_treatment_control, access: READ }
+  - { table: sgsi.base_control_clauses, access: READ }
+notes: >
+  NO filtra por asset_group_id — siempre retorna TODOS los grupos vigentes del
+  cliente (CROSS JOIN LATERAL por cada grupo vía FN-V2-ASSET-GROUP-THREAT-RISK-GET-SCENARIOS).
+  El frontend decide, según si recibe un groupId, si muestra todas las tarjetas
+  (vista consolidada) o filtra a un solo grupo (vista de detalle) — no hay una
+  variante "por grupo" de esta función. Filtro de visibilidad por permisos
+  (owner/delegado/admin/responsable de alguna acción) aplicado en el WHERE.

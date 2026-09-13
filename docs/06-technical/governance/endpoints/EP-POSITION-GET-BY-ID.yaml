@@ -1,0 +1,17 @@
+id: EP-POSITION-GET-BY-ID
+type: endpoint
+method: GET
+path: /position/getById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/position.ts:22
+controller: api-sgsi/src/controllers/position.ts#getById
+model: api-sgsi/src/models/position.ts#getById
+function: FN-V2-POSITION-GET-BY-ID
+status: CONFIRMED
+notes: >
+  Acceso admin-or-usuario INTENCIONAL: lo consumen PositionPreview.tsx y
+  entity-review-modal.tsx:563 desde /doc-flow/inbox, y doc-flow-configure-page.tsx:642.
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): ni el controller
+  (controllers/position.ts:65-82) ni la funcion SQL filtran por customer_id, asi que cualquier
+  usuario autenticado puede leer la ficha completa de un cargo de otro cliente.

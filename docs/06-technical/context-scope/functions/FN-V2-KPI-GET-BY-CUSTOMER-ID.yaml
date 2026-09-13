@@ -1,0 +1,9 @@
+id: FN-V2-KPI-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_kpi_get_by_customer_id
+definedIn: funciones_sgsi.sql:21019-21124
+status: CONFIRMED
+tables:
+  - { table: sgsi.kpi, access: READ }
+  - { table: sgsi.kpi_analysis, access: READ }
+  - { table: sgsi.kpi_strategic_objective, access: READ }

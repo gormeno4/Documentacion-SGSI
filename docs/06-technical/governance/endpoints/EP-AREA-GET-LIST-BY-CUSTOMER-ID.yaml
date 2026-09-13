@@ -1,0 +1,14 @@
+id: EP-AREA-GET-LIST-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /area/getListByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/area.ts:7
+controller: api-sgsi/src/controllers/area.ts#getListByCustomerId
+model: api-sgsi/src/models/area.ts#getListByCustomerId
+function: FN-V2-AREA-GET-LIST-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  Acceso admin-or-usuario INTENCIONAL: ademas de la pantalla de Areas (admin-only en la UI), lo
+  consume PositionPreview.tsx:42 desde /doc-flow/inbox, que si es accesible para usuarios no
+  admin.

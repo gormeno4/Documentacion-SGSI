@@ -1,0 +1,16 @@
+id: FN-V2-KPI-UPSERT
+type: db-function
+name: sgsi.v2_kpi_upsert
+definedIn: funciones_sgsi.sql:21289-21469
+status: CONFIRMED
+calls:
+  - FN-V2-KPI-GET-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.kpi_analysis, access: WRITE }
+  - { table: sgsi.kpi, access: WRITE }
+  - { table: sgsi.kpi_strategic_objective, access: WRITE }
+notes: >
+  Auto-siembra sgsi.kpi_analysis al guardar el primer KPI. Reemplaza el set
+  completo de sgsi.kpi_strategic_objective del KPI (DELETE+INSERT,
+  funciones_sgsi.sql:21451-21461) — el vínculo N:N a Objetivos Estratégicos no
+  es incremental.

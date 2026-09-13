@@ -1,0 +1,14 @@
+id: EP-AREA-CHECK-DEPENDENCIES
+type: endpoint
+method: GET
+path: /area/dependencies/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/area.ts:10
+controller: api-sgsi/src/controllers/area.ts#checkDependencies
+model: api-sgsi/src/models/area.ts#checkDependencies
+function: FN-CHECK-AREA-DEPENDENCIES
+status: CONFIRMED
+notes: >
+  El controller SI valida tenant antes de responder, via corvus.area_get_customer_id
+  (FN-AREA-GET-CUSTOMER-ID, controllers/area.ts:88-91). HALLAZGO DE SEGURIDAD (authorization, no
+  corregido): sin verifyAdminOnly y sin consumidor no-admin.

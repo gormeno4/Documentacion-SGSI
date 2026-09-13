@@ -1,0 +1,27 @@
+id: FN-GET-CONTROLES-APLICABLES
+type: db-function
+name: sgsi.get_controles_aplicables
+definedIn: funciones_sgsi.sql:5211-5444
+status: CONFIRMED
+tables:
+  - { table: sgsi.iso_control_context, access: WRITE }
+  - { table: sgsi.wizard_general_info, access: READ }
+  - { table: sgsi.wizard_tech_infrastructure, access: READ }
+  - { table: sgsi.wizard_tech_inventory, access: READ }
+  - { table: sgsi.wizard_identity_access, access: READ }
+  - { table: sgsi.wizard_specialized_infra, access: READ }
+  - { table: sgsi.wizard_dev_processes, access: READ }
+  - { table: sgsi.wizard_digital_exposure, access: READ }
+  - { table: sgsi.wizard_compliance, access: READ }
+  - { table: sgsi.iso_control_rules, access: READ }
+notes: >
+  CONSIDERACIÓN TÉCNICA — GET con side-effect: normaliza y persiste (INSERT ... ON
+  CONFLICT DO UPDATE, upsert real) el contexto del cliente en sgsi.iso_control_context
+  a partir de las 8 tablas del cuestionario Wizard, y luego evalúa un motor de reglas
+  interpretado (operadores ALWAYS/IS_TRUE/IS_FALSE/EQ/NEQ/IN/NOT_IN/AND_ALL) contra ese
+  contexto para determinar aplicabilidad sugerida por control. Se alcanza desde
+  endpoints GET (getAllControls, suggested-controls) — un GET puede mutar
+  iso_control_context. Comportamiento real del sistema, no corregido. Pertenece
+  funcionalmente al dominio Wizard/Contexto por las tablas que lee (dependencia externa
+  "wizard" declarada en FLOW-SOA-001), pero la function en sí vive físicamente en el
+  espacio de nombres de controles SOA.

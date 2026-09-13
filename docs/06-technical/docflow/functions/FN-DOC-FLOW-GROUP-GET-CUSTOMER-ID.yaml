@@ -1,0 +1,13 @@
+id: FN-DOC-FLOW-GROUP-GET-CUSTOMER-ID
+type: db-function
+name: sgsi.doc_flow_group_get_customer_id
+definedIn: funciones_sgsi.sql:2185-2190
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_flow_group, access: READ }
+notes: >
+  Helper de ownership: retorna el customer_id de un grupo de visibilidad. Invocada
+  desde controllers/doc-flow-group.ts (getById, deleteById) para verificar que el
+  grupo pertenezca al cliente autenticado antes de exponerlo/borrarlo — patrón
+  distinto al de grupos de aprobadores, que valida customer_id dentro de la propia
+  function SQL.

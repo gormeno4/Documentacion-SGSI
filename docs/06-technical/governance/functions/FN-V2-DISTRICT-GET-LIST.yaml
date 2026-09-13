@@ -1,0 +1,11 @@
+id: FN-V2-DISTRICT-GET-LIST
+type: db-function
+name: sgsi.v2_district_get_list
+definedIn: funciones_sgsi.sql:15481-15501
+status: CONFIRMED
+tables:
+  - { table: corvus.district, access: READ }
+notes: >
+  Catalogo de comunas/distritos, sin parametros. Lo consume el formulario de Personas. Ownership
+  real del catalogo: Corvus. El endpoint hermano GET /district/getById/:id existe pero no tiene
+  consumidor en la UI (ver Hallazgos) y no se nodaliza.

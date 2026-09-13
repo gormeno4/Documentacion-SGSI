@@ -1,0 +1,13 @@
+id: FN-V2-RISK-METHODOLOGY-UPSERT
+type: db-function
+name: sgsi.v2_risk_methodology_upsert
+definedIn: funciones_sgsi.sql:24245-24354
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.risk_methodology_config, access: WRITE }
+notes: >
+  Valida en PL/pgSQL (RAISE EXCEPTION, no solo en el frontend): appetite.threshold
+  entre 1 y 16; zones3x3 con exactamente 3 elementos si viene; rangos de criticidad
+  (ranges4x4/ranges5x5) ordenados, sin solapamiento, continuos de 1 a 16. UPSERT real
+  vía ON CONFLICT (customer_id).

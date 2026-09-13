@@ -1,0 +1,15 @@
+id: FN-V2-SOA-ANALYSIS-GET-ACTIVE
+type: db-function
+name: sgsi.v2_soa_analysis_get_active
+definedIn: funciones_sgsi.sql:26596-26639
+status: CONFIRMED
+tables:
+  - { table: corvus.customer, access: READ }
+  - { table: sgsi.soa_analysis, access: WRITE }
+notes: >
+  CONSIDERACIÓN TÉCNICA — GET con side-effect: función de "obtener" invocada
+  internamente por casi todas las demás functions de este módulo, pero si el cliente no
+  tiene ninguna Declaración activa, la crea (INSERT de auto-siembra, versión 1) como
+  parte de la misma llamada. Se alcanza también desde endpoints HTTP GET (p.ej.
+  GET /soa/getAllControls), por lo que un simple GET puede mutar la base de datos.
+  Comportamiento real del sistema, no corregido.

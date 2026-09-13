@@ -1,0 +1,13 @@
+id: EP-DISTRICT-GET-LIST
+type: endpoint
+method: GET
+path: /district/getList
+access: admin-only
+router: api-sgsi/src/routers/district.ts:7
+controller: api-sgsi/src/controllers/district.ts#getList
+model: api-sgsi/src/models/district.ts#getList
+function: FN-V2-DISTRICT-GET-LIST
+status: CONFIRMED
+notes: >
+  Router montado admin-only (app.ts:54). Catalogo de comunas para el formulario de Personas. El
+  endpoint hermano GET /district/getById/:id no tiene consumidor en la UI (ver Hallazgos).

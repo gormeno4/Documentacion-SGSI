@@ -1,0 +1,10 @@
+id: EP-INBOX-GET-ACTIVITY
+type: endpoint
+method: GET
+path: /inbox/activity
+access: admin-or-usuario
+router: api-sgsi/src/routers/inbox.ts:7
+controller: api-sgsi/src/controllers/inbox.ts#handleGetInboxActivity
+model: api-sgsi/src/models/inbox.ts#getInboxActivity
+function: FN-INBOX-GET-MAIN
+status: CONFIRMED

@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-ACTION-PLANS-BULK
+type: endpoint
+method: POST
+path: /security-events/action-plans/bulk
+access: investigator-or-reviewer
+router: api-sgsi/src/routers/securityEvent.ts:68
+controller: api-sgsi/src/controllers/securityEvent.ts#upsertActionPlansBulk
+model: api-sgsi/src/models/securityEvent.ts#upsertActionPlansBulk
+function: FN-V2-INCIDENT-ACTION-PLANS-UPSERT-BULK
+status: CONFIRMED

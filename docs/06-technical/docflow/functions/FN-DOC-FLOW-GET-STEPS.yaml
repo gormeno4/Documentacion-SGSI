@@ -1,0 +1,15 @@
+id: FN-DOC-FLOW-GET-STEPS
+type: db-function
+name: sgsi.doc_flow_get_steps
+definedIn: funciones_sgsi.sql:2130-2180
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+  - { table: sgsi.position, access: READ }
+  - { table: corvus."user", access: READ }
+notes: >
+  Todos los steps de todas las iteraciones de un proceso, con nombre/cargo del
+  aprobador y de quien respondió (reply) si aplica — usado para mostrar el historial
+  completo de revisión al editor.

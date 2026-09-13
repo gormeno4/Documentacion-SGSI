@@ -1,0 +1,7 @@
+id: FN-V2-PESTEL-DELETE-BY-ID
+type: db-function
+name: sgsi.v2_pestel_delete_by_id
+definedIn: funciones_sgsi.sql:22632-22643
+status: CONFIRMED
+tables:
+  - { table: sgsi.pestel, access: WRITE }

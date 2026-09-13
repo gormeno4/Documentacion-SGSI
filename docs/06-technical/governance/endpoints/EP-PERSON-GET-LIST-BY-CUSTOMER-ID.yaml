@@ -1,0 +1,14 @@
+id: EP-PERSON-GET-LIST-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /person/getListByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/person.ts:22
+controller: api-sgsi/src/controllers/person.ts#getListByCustomerId
+model: api-sgsi/src/models/person.ts#getListByCustomerId
+function: FN-V2-CUSTOMER-PERSON-GET-LIST-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  verifyAdminOrUsuario explicito en la ruta. Es el endpoint mas compartido del dominio: Personas
+  (FLOW-GOV-005), Organigrama (FLOW-GOV-010), Roles y Responsabilidades (FLOW-GOV-003) y varias
+  pantallas del Wizard, Activos y Riesgos.

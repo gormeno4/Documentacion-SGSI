@@ -1,0 +1,9 @@
+id: EP-STK-VERSION-GET
+type: endpoint
+method: GET
+path: /stakeholder/analysis/version/:id
+domain: DOM-STK
+flow: FLOW-STK-004
+function: FN-STK-VERSION-GET
+status: CONFIRMED
+notes: "SECURITY FINDING: Cross-tenant read vulnerability — no customerId validation in endpoint or model layer"

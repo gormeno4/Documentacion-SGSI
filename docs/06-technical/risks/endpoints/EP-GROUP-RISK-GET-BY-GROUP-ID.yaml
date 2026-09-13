@@ -1,0 +1,10 @@
+id: EP-GROUP-RISK-GET-BY-GROUP-ID
+type: endpoint
+method: GET
+path: /asset-group-threat-risk/:assetGroupId
+access: admin-or-usuario
+router: api-sgsi/src/routers/assetGroupThreatRiskRouter.ts
+controller: api-sgsi/src/controllers/assetGroupThreatRiskController.ts#getRisksByGroupId
+model: api-sgsi/src/models/assetGroupThreatRisk.ts#getRisksByGroupId
+function: FN-V2-ASSET-GROUP-THREAT-RISK-GET-LIST-BY-GROUP-ID
+status: CONFIRMED

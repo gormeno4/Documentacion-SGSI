@@ -1,0 +1,10 @@
+id: EP-SCOPE-GET-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /scope/
+access: admin-or-usuario
+router: api-sgsi/src/routers/scope.ts:15
+controller: api-sgsi/src/controllers/scope.ts#getByCustomerId
+model: api-sgsi/src/models/scope.ts#getByCustomerId
+function: FN-V2-SCOPE-GET-BY-CUSTOMER-ID
+status: CONFIRMED

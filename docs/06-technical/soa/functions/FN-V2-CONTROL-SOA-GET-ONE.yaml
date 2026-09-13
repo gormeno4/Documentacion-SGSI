@@ -1,0 +1,25 @@
+id: FN-V2-CONTROL-SOA-GET-ONE
+type: db-function
+name: sgsi.v2_control_soa_get_one
+definedIn: funciones_sgsi.sql:14154-14276
+status: CONFIRMED
+calls:
+  - FN-V2-SOA-ANALYSIS-GET-ACTIVE
+  - FN-GET-CONTROLES-APLICABLES
+  - FN-CONTROL-GET-LINKED-POLICY-DOCUMENTS
+tables:
+  - { table: sgsi.base_control_clauses, access: READ }
+  - { table: sgsi.control_soa, access: READ }
+  - { table: sgsi.control_soa_evidence, access: READ }
+  - { table: sgsi.control_soa_remediation, access: READ }
+  - { table: sgsi.control_soa_governance_policy, access: READ }
+  - { table: sgsi.policies, access: READ }
+  - { table: sgsi.file, access: READ }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: sgsi.risk_domain, access: READ }
+notes: >
+  Viva únicamente de forma interna — invocada por FN-V2-CONTROL-SOA-UPSERT (retorno) y
+  potencialmente por el endpoint HTTP GET /soa/getById/:id, que está huérfano (sin
+  consumidor confirmado en soaStore.ts). No se elimina como function porque su cadena
+  de invocación interna sigue viva.

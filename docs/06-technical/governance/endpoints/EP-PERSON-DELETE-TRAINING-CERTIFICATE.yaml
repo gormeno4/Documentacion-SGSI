@@ -1,0 +1,14 @@
+id: EP-PERSON-DELETE-TRAINING-CERTIFICATE
+type: endpoint
+method: POST
+path: /person/deleteTrainingCertificate/:documentId
+access: admin-only
+router: api-sgsi/src/routers/person.ts:40
+controller: api-sgsi/src/controllers/person.ts#deleteTrainingCertificate
+model: api-sgsi/src/models/person.ts#deleteTrainingCertificate
+function: FN-PERSON-TRAINING-DELETE-CERTIFICATE
+status: CONFIRMED
+notes: >
+  El controller SI valida tenant, via sgsi.person_training_get_customer_id
+  (FN-PERSON-TRAINING-GET-CUSTOMER-ID, controllers/person.ts:381-385). El modelo borra primero el
+  archivo del disco resolviendo su ruta con FN-PERSON-TRAINING-GET-CERTIFICATE-PATH.

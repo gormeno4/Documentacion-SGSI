@@ -1,0 +1,10 @@
+id: EP-KPI-GET-VERSIONS
+type: endpoint
+method: GET
+path: /kpi/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:26
+controller: api-sgsi/src/controllers/kpi.ts#getVersions
+model: api-sgsi/src/models/kpi.ts#getVersions
+function: FN-V2-KPI-ANALYSIS-GET-VERSIONS
+status: CONFIRMED

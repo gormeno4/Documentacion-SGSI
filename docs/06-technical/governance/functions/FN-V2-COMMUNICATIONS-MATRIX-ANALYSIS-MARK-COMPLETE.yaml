@@ -1,0 +1,25 @@
+id: FN-V2-COMMUNICATIONS-MATRIX-ANALYSIS-MARK-COMPLETE
+type: db-function
+name: sgsi.v2_communications_matrix_analysis_mark_complete
+definedIn: funciones_sgsi.sql:13311-13358
+status: CONFIRMED
+tables:
+  - { table: sgsi.communications_matrix_analysis, access: WRITE }
+notes: >
+  Publicacion LOCAL de la version. Overload de 3 argumentos (uuid, uuid, text) - el unico invocado
+  desde el modelo; existe un overload muerto de 2 argumentos en funciones_sgsi.sql:13362-13408
+  (ver Hallazgos).
+
+  Comportamiento real: selecciona la fila por customer_id + is_active = true (NO por el entity_id
+  del proceso Doc-Flow que se esta publicando) y escribe is_complete = true, completed_by =
+  p_user_id, completed_at = now(), updated_by/updated_at y justification =
+  NULLIF(TRIM(p_justification), '').
+
+  REDUNDANCIA CONFIRMADA (no corregida): en la ruta normal de publicacion,
+  sgsi-communications-log.tsx:238-239 llama primero a publishProcess (Doc-Flow) y despues a esta
+  funcion, y ambas escriben las MISMAS 4 columnas de la MISMA fila. sgsi.doc_flow_publish resuelve
+  la justificacion con COALESCE(param, justificacion del paso APROBADO, actual), mientras que esta
+  funcion aplica NULLIF(TRIM(...),'') y puede sobrescribirla con NULL si llegara vacia por API. En
+  la ruta de reintento (proceso ya FINALIZADO pero fila con is_complete = false) esta funcion es
+  el UNICO mecanismo de publicacion, por lo que la redundancia no es eliminable sin decidir antes
+  que pasa con ese camino.

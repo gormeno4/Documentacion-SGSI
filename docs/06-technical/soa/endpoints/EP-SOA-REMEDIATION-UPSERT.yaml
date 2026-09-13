@@ -1,0 +1,10 @@
+id: EP-SOA-REMEDIATION-UPSERT
+type: endpoint
+method: POST
+path: /soa/remediation/upsert
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:35
+controller: api-sgsi/src/controllers/soa.ts#upsertRemediation
+model: api-sgsi/src/models/soa.ts#upsertRemediation
+function: FN-V2-CONTROL-SOA-REMEDIATION-UPSERT
+status: CONFIRMED

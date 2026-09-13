@@ -1,0 +1,14 @@
+id: FN-RESREV-ACT-TYPES
+type: db-function
+schema: sgsi
+name: resource_review_get_act_types
+signature: "resource_review_get_act_types() RETURNS json"
+definedIn: funciones_sgsi.sql:7781-7802
+status: CONFIRMED
+description: "Get catalog of activity types (comité, asamblea, etc.)"
+
+tables:
+  - table: sgsi.resource_review_act_type
+    access: READ
+
+notes: "Support function. Catalog, no tenant filtering."

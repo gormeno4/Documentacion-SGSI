@@ -1,0 +1,12 @@
+id: FN-DOC-FLOW-GET-ALL-PROCESSES-BY-TYPE
+type: db-function
+name: sgsi.doc_flow_get_all_processes_by_type
+definedIn: funciones_sgsi.sql:1397-1433
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Lista todos los procesos de un entity_type creados por un usuario dado (p_created_by)
+  — no filtra por cliente vía el catálogo polimórfico, confía en created_by = userId.

@@ -1,0 +1,8 @@
+id: FN-V2-STRATEGIC-OBJECTIVE-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_strategic_objective_get_by_customer_id
+definedIn: funciones_sgsi.sql:28257-28328
+status: CONFIRMED
+tables:
+  - { table: sgsi.strategic_objective, access: READ }
+  - { table: sgsi.strategic_objective_analysis, access: READ }

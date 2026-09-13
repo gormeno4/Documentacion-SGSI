@@ -1,0 +1,18 @@
+id: FN-DOC-FLOW-REASSIGN-STEP
+type: db-function
+name: sgsi.doc_flow_reassign_step
+definedIn: funciones_sgsi.sql:2555-2624
+status: CONFIRMED
+calls:
+  - FN-DOC-FLOW-ENTITY-BELONGS-TO-CUSTOMER
+tables:
+  - { table: sgsi.document_flow_steps, access: WRITE }
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: corvus.customer_person, access: READ }
+notes: >
+  Variante de 3 argumentos (con p_customer_id) — la única invocada desde Node. Existe
+  un overload de 2 argumentos (funciones_sgsi.sql:2496-2550, sin p_customer_id) que la
+  query TypeScript nunca invoca (siempre pasa 3 args) — dead overload, no documentado
+  como nodo. Solo reasigna steps PENDIENTE, valida que la nueva persona pertenezca al
+  cliente, y retorna si el step reasignado es el activo (primer PENDIENTE por
+  step_order) para disparar o no la notificación por email.

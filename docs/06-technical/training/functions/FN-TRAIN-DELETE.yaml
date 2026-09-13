@@ -1,0 +1,39 @@
+id: FN-TRAIN-DELETE
+type: db-function
+schema: sgsi
+name: v2_training_delete_by_id
+signature: "v2_training_delete_by_id(p_training_id uuid, p_user_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:28962-29012
+status: CONFIRMED
+description: "Soft delete de capacitación con cascada a person_training y evidencia"
+
+parameters:
+  - name: p_training_id
+    type: uuid
+  - name: p_user_id
+    type: uuid
+    description: "Usuario para audit"
+
+returns:
+  type: json
+  description: "Array de capacitaciones actualizadas (excluyendo deleted)"
+
+tables:
+  - table: sgsi.training
+    access: WRITE
+    operations: "SOFT DELETE: deleted_at = NOW()"
+  - table: sgsi.person_training
+    access: WRITE
+    operations: "SOFT DELETE cascada: deleted_at = NOW()"
+  - table: sgsi.training_evidence
+    access: WRITE
+    operations: "SOFT DELETE cascada: deleted_at = NOW()"
+
+audit:
+  - column: updated_by
+  - column: updated_at
+
+notes: |
+  Soft delete nunca borra filas.
+  Cascadas se aplican automáticamente.
+  No valida restricciones FK: error propagated a controller como boom.conflict()

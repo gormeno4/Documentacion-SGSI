@@ -1,0 +1,19 @@
+id: EP-PERSON-UPSERT-DOCUMENT
+type: endpoint
+method: POST
+path: /person/upsertDocument/:personId
+access: admin-or-usuario
+router: api-sgsi/src/routers/person.ts:27
+controller: api-sgsi/src/controllers/person.ts#upsertDocument
+model: api-sgsi/src/models/person.ts#upsertDocument
+function: FN-PERSON-UPSERT-PERSON-DOCUMENTS
+status: CONFIRMED
+notes: >
+  multipart/form-data (upload.single('document')).
+
+  HALLAZGO DE SEGURIDAD DOBLE (no corregido): (1) tenant isolation - el controller
+  (controllers/person.ts:198-252) nunca compara personId con dataUser(req).customerId, asi que
+  permite adjuntar un documento al expediente de una persona de otro cliente, escribiendo
+  sgsi.person_document y sgsi.file con el customer_id del atacante; (2) authorization - es la
+  unica ruta de escritura de /person SIN verifyAdminOnly, y no tiene ningun consumidor no-admin
+  (su unica UI, PersonDocuments.tsx, vive dentro de /governance/persons/[id], admin-only).

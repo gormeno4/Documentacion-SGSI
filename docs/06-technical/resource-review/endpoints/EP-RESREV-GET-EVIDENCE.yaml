@@ -1,0 +1,26 @@
+id: EP-RESREV-GET-EVIDENCE
+type: endpoint
+method: GET
+path: /resource-review/{id}/evidence
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:18
+controller: api-sgsi/src/controllers/resourceReview.ts#getEvidence
+function: FN-RESREV-GET-EVIDENCE
+status: CONFIRMED
+description: "SUPPORT endpoint. Get/download evidence file"
+
+parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+
+responseBody:
+  type: string
+  format: binary
+  description: "Evidence file with Content-Disposition: inline"
+
+securityRules:
+  - "tenant isolation: validates evidence belongs to customer"

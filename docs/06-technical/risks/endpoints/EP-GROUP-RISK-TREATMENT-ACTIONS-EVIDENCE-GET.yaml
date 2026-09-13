@@ -1,0 +1,10 @@
+id: EP-GROUP-RISK-TREATMENT-ACTIONS-EVIDENCE-GET
+type: endpoint
+method: GET
+path: /group-risk-treatment/actions/:actionId/evidence/:evidenceId
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentRouter.ts
+controller: api-sgsi/src/controllers/groupRiskTreatmentController.ts#getEvidencePath
+model: api-sgsi/src/models/groupRiskTreatment.ts#getEvidencePath
+function: FN-GROUP-RISK-TREATMENT-ACTION-EVIDENCE-GET-PATH
+status: CONFIRMED

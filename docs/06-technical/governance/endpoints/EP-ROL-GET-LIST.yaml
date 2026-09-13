@@ -1,0 +1,12 @@
+id: EP-ROL-GET-LIST
+type: endpoint
+method: GET
+path: /rol/getList
+access: admin-or-usuario
+router: api-sgsi/src/routers/rol.ts:7
+controller: api-sgsi/src/controllers/rol.ts#getList
+model: api-sgsi/src/models/rol.ts#getList
+function: FN-V2-ROL-GET-LIST
+status: CONFIRMED
+notes: >
+  Catalogo sin datos de cliente; acceso admin-or-usuario intencional. Ownership real: Corvus/Auth.

@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-EFFECTIVENESS-GET-BY-EVENT-ID
+type: db-function
+name: sgsi.v2_incident_effectiveness_get_by_event_id
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_effectiveness, access: READ }
+notes: "Read effectiveness records for an event."

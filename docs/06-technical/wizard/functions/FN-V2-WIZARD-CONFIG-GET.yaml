@@ -1,0 +1,31 @@
+id: FN-V2-WIZARD-CONFIG-GET
+type: db-function
+name: sgsi.v2_wizard_config_get
+definedIn: funciones_sgsi.sql
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.wizard_phase, access: READ }
+  - { table: sgsi.wizard_step, access: READ }
+  - { table: sgsi.wizard_section, access: READ }
+  - { table: sgsi.wizard_field, access: READ }
+  - { table: sgsi.wizard_field_dependency, access: READ }
+  - { table: sgsi.wizard_field_option, access: READ }
+notes: >
+  Helper técnico. Carga maestros estáticos de configuración del Wizard.
+
+  Retorna JSONB con estructura:
+  {
+    phases: [...],   // fases (Contexto, Management, Formalization)
+    sections: [...], // secciones dentro de pasos
+    fields: [...],   // campos dentro de secciones
+    fieldDependencies: [...],  // dependencias entre campos
+    fieldOptions: [...]        // opciones de select/radio
+  }
+
+  Invocada automáticamente en layout.tsx para:
+  - Configurar validaciones dinámicas
+  - Renderizar estructura de pasos/secciones
+  - Mostrar/ocultar campos según dependencias
+
+  NO es FLOW directo. Es infraestructura de rendering.

@@ -1,0 +1,41 @@
+id: FN-INIT-CHANGE-STATUS
+type: db-function
+schema: sgsi
+name: initiative_change_status
+signature: "initiative_change_status(p_initiative_id uuid, p_company_id uuid, p_new_status varchar, p_justification text, p_user_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:6519-6572
+status: CONFIRMED
+description: "State machine: transition initiative between states with audit logging"
+
+stateMachine:
+  planificada: ["en_curso", "cancelada"]
+  en_curso: ["completada", "cancelada"]
+  completada: ["terminal"]
+  cancelada: ["terminal"]
+
+validations:
+  - "justification must not be null/empty"
+  - "cannot cancel from completada or already-cancelada"
+  - "cannot move backwards (en_curso → planificada)"
+
+tables:
+  - table: sgsi.initiative
+    access: WRITE
+    operations: "UPDATE: status, progress, completed_at, updated_by, updated_at"
+  - table: sgsi.initiative_status_log
+    access: WRITE
+    operations: "INSERT: audit record"
+
+auditTrail:
+  table: sgsi.initiative_status_log
+  fields:
+    - initiative_id
+    - from_status
+    - to_status
+    - justification
+    - created_by
+
+notes: |
+  Completed_at is set automatically when status becomes 'completada'.
+  All state transitions are logged with justification.
+  Terminal states (completada, cancelada) prevent further changes.

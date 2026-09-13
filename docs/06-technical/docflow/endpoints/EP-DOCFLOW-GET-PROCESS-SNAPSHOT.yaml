@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-GET-PROCESS-SNAPSHOT
+type: endpoint
+method: GET
+path: /document-flow/process/:processId/snapshot
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:61
+controller: api-sgsi/src/controllers/doc-flow.ts#handleGetProcessSnapshot
+model: api-sgsi/src/models/doc-flow.ts#getProcessSnapshot
+function: FN-DOC-FLOW-GET-PROCESS-SNAPSHOT
+status: CONFIRMED

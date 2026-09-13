@@ -1,0 +1,17 @@
+id: FN-V2-CUSTOMER-UPSERT
+type: db-function
+name: sgsi.v2_customer_upsert
+definedIn: funciones_sgsi.sql:14875-14999
+status: CONFIRMED
+calls:
+  - FN-V2-CUSTOMER-GET-BY-ID
+tables:
+  - { table: corvus.customer, access: WRITE }
+notes: >
+  Overload (uuid, uuid, text). Existe un segundo overload (uuid, uuid, varchar) en
+  funciones_sgsi.sql:14808-14872 que NO se documenta: la query es SELECT
+  sgsi.v2_customer_upsert($1,$2,$3) con parametros de tipo unknown, y PostgreSQL resuelve al tipo
+  preferido de la categoria string (text), por lo que el overload varchar queda inalcanzable desde
+  api-sgsi (ver Hallazgos del catalogo). Acepta nombres antiguos y nuevos del payload
+  (name/companyName, industry/EconomicActivity, yearFounded/yearOfFoundation). Desde
+  /governance/company solo llegan industry, description y yearFounded.

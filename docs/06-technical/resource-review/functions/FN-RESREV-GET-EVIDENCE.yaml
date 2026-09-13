@@ -1,0 +1,9 @@
+id: FN-RESREV-GET-EVIDENCE
+type: db-function
+schema: sgsi
+name: resource_review_get_evidence_path
+signature: "resource_review_get_evidence_path(...) RETURNS TABLE(...)"
+status: CONFIRMED
+description: "Get evidence file path for serving"
+
+notes: "Support function. File serving helper."

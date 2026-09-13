@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-FINDINGS-SAVE
+type: endpoint
+method: POST
+path: /security-events/findings
+access: investigator
+router: api-sgsi/src/routers/securityEvent.ts:45
+controller: api-sgsi/src/controllers/securityEvent.ts#saveFinding
+model: api-sgsi/src/models/securityEvent.ts#saveFinding
+function: FN-V2-INCIDENT-FINDINGS-INSERT
+status: CONFIRMED

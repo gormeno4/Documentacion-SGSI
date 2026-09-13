@@ -1,0 +1,27 @@
+id: FN-V2-DOCUMENT-WORKFLOW-SNAPSHOT-ORGANIGRAMA
+type: db-function
+name: sgsi.v2_document_workflow_snapshot_organigrama
+definedIn: funciones_sgsi.sql:16806-16884
+status: CONFIRMED
+tables:
+  - { table: sgsi.position, access: READ }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+notes: >
+  Arma el snapshot jsonb del organigrama completo (cargos + personas del cliente) para
+  guardarlo como evidencia al enviar a aprobación. Invocada desde
+  models/doc-flow.ts#submitProcess cuando entity_type='ORGANIGRAMA', tras generar y
+  guardar la imagen del organigrama en disco (utils/organigrama-image.ts +
+  FileModel.upsert, entity_type='organigrama' — dependencia externa `file`).
+
+  DEUDA LEGACY (hallazgo aportado por Gobierno del SGSI, Fase 9 — no corregida): el campo
+  data.persons[].positionId se resuelve leyendo corvus.person.position_id, columna que la
+  migración sprint5 (2_2026-09-07_cargo_persona_functions.sql) dejó de escribir — el cargo
+  por empresa vive ahora en corvus.customer_person.position_id, que es lo que sí usa el
+  organigrama en pantalla (FLOW-GOV-010). Se verificó que HOY no hay impacto funcional:
+  ningún consumidor lee data.persons[] ni metadata del snapshot; tanto OrganigramaPreview
+  (modal e inbox) como document-preview.tsx renderizan únicamente organigramaImageBase64.
+  El campo obsoleto se escribe y nunca se lee. El riesgo es futuro: cuando se ejecute el
+  DROP COLUMN pendiente de sprint5/3_2026-09-07_drops_columnas_obsoletas.sql, esta función
+  fallará y models/doc-flow.ts:148-150 lanzará badImplementation, bloqueando por completo
+  el envío del organigrama a aprobación.

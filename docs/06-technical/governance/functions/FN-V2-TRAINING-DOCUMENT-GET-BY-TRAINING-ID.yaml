@@ -1,0 +1,12 @@
+id: FN-V2-TRAINING-DOCUMENT-GET-BY-TRAINING-ID
+type: db-function
+name: sgsi.v2_training_document_get_by_training_id
+definedIn: funciones_sgsi.sql:29006-29041
+status: CONFIRMED
+tables:
+  - { table: sgsi.person_training, access: READ }
+notes: >
+  Viva unicamente de forma interna: la invocan training_update_training_documents,
+  person_training_delete_certificate y v2_customer_person_get_list_by_customer_id para embeber el
+  estado de los certificados de una capacitacion. Sin endpoint HTTP propio en el alcance de
+  DOM-GOV.

@@ -1,0 +1,11 @@
+id: EP-SECURITY-EVENT-CLOSURE-CATALOG
+type: endpoint
+method: GET
+path: /security-events/closure/catalog
+access: public-authenticated
+router: api-sgsi/src/routers/securityEvent.ts:80
+controller: api-sgsi/src/controllers/securityEvent.ts#getClosureCatalog
+model: api-sgsi/src/models/securityEvent.ts#getClosureCatalog
+function: FN-V2-INCIDENT-CLOSURE-DECISIONS-GET-ALL
+status: CONFIRMED
+notes: "Catalog endpoint — no FLOW, only technical dependency."

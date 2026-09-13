@@ -1,0 +1,10 @@
+id: EP-PESTEL-ANALYSIS-GET-VERSIONS
+type: endpoint
+method: GET
+path: /pestel/analysis/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:26
+controller: api-sgsi/src/controllers/pestel.ts#getVersions
+model: api-sgsi/src/models/pestel.ts#getVersions
+function: FN-V2-PESTEL-ANALYSIS-GET-VERSIONS
+status: CONFIRMED

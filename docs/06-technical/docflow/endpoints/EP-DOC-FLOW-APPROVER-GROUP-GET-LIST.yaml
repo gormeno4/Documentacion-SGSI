@@ -1,0 +1,10 @@
+id: EP-DOC-FLOW-APPROVER-GROUP-GET-LIST
+type: endpoint
+method: GET
+path: /document-flow-approver-group/getListByCustomerId
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow-approver-group.ts:12
+controller: api-sgsi/src/controllers/doc-flow-approver-group.ts#getListByCustomerId
+model: api-sgsi/src/models/doc-flow-approver-group.ts#getListByCustomerId
+function: FN-V2-DOC-FLOW-APPROVER-GROUP-GET-LIST-BY-CUSTOMER-ID
+status: CONFIRMED

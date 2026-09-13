@@ -1,0 +1,8 @@
+id: EP-STK-VERSIONS-LIST
+type: endpoint
+method: GET
+path: /stakeholder/analysis/versions
+domain: DOM-STK
+flow: FLOW-STK-004
+function: FN-STK-VERSIONS-LIST
+status: CONFIRMED

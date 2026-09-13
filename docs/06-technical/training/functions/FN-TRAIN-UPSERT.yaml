@@ -1,0 +1,56 @@
+id: FN-TRAIN-UPSERT
+type: db-function
+schema: sgsi
+name: v2_training_upsert
+signature: "v2_training_upsert(p_user_id uuid, p_customer_id uuid, p_json_string text) RETURNS json"
+definedIn: funciones_sgsi.sql:29233-29350
+status: CONFIRMED
+description: "Insert o update de capacitación con cascada de estado en participantes"
+
+parameters:
+  - name: p_user_id
+    type: uuid
+    description: "User que hace la operación (para audit)"
+  - name: p_customer_id
+    type: uuid
+    description: "Tenant/company"
+  - name: p_json_string
+    type: text
+    description: "JSON con estructura {id?, courseName, institution, ...}"
+
+returns:
+  type: json
+  description: "Array de capacitaciones actualizadas del cliente"
+
+logic:
+  1: "Parsea JSON: extrae id (NULL=NEW), status (default 'planificado')"
+  2: "Si id NULL → INSERT sgsi.training con generated UUID"
+  3: "Si id presente → UPDATE sgsi.training (si existe)"
+  4: "Para cada participante en participants[] → UPSERT sgsi.person_training"
+  5: "Cascada: si status='en curso' (primera vez) → UPDATE person_training SET status='en_curso'"
+  6: "Cascada: si status='cancelado' → UPDATE person_training SET status='cancelado'"
+  7: "Retorna lista actualizada"
+
+tables:
+  - table: sgsi.training
+    access: WRITE
+    operations: "INSERT (NEW), UPDATE (existing)"
+  - table: sgsi.person_training
+    access: WRITE
+    operations: "INSERT/UPDATE (asignaciones), UPDATE (cascada de estado)"
+
+audit:
+  - column: created_by (INSERT)
+  - column: created_at (INSERT)
+  - column: updated_by (UPDATE)
+  - column: updated_at (UPDATE)
+
+businessRules:
+  - "Status transitions: planificado → en curso / finalizado / cancelado"
+  - "Primera vez en_curso: todos los participantes pasan a en_curso"
+  - "Cancelado: todos los participantes pasan a cancelado"
+  - "Sin validaciones de estado restrictivas en update"
+
+notes: |
+  No invoca otras functions.
+  Cascada de estado es responsabilidad crítica: afecta a DOM-GOV via person_training.status.

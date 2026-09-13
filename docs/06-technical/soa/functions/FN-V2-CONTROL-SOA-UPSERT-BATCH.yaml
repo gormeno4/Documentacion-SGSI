@@ -1,0 +1,14 @@
+id: FN-V2-CONTROL-SOA-UPSERT-BATCH
+type: db-function
+name: sgsi.v2_control_soa_upsert_batch
+definedIn: funciones_sgsi.sql:14510-14524
+status: CONFIRMED
+calls:
+  - FN-V2-CONTROL-SOA-UPSERT
+  - FN-V2-SOA-GET-ALL-CONTROLS
+tables: []
+notes: >
+  No toca tablas directamente — itera FN-V2-CONTROL-SOA-UPSERT por cada elemento del
+  payload (jsonb_array_elements) y retorna el catálogo completo actualizado vía
+  FN-V2-SOA-GET-ALL-CONTROLS. Es el único camino real de guardado desde el frontend,
+  incluso para un solo control.

@@ -1,0 +1,13 @@
+id: FN-V2-POSITION-GET-BY-CUSTOMERID
+type: db-function
+name: sgsi.v2_position_get_by_customerid
+definedIn: funciones_sgsi.sql:22985-23000
+status: CONFIRMED
+calls:
+  - FN-V2-POSITION-GET-BY-ID
+tables:
+  - { table: sgsi.position, access: READ }
+notes: >
+  LANGUAGE sql. Agrega el resultado de v2_position_get_by_id por cada cargo activo del cliente: un
+  N+1 real a nivel SQL (una invocacion por fila), registrado como deuda tecnica en el catalogo. Es
+  tambien el valor de retorno de v2_position_delete_by_id.

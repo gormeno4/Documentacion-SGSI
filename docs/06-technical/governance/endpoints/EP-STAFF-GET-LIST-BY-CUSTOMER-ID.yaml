@@ -1,0 +1,13 @@
+id: EP-STAFF-GET-LIST-BY-CUSTOMER-ID
+type: endpoint
+method: GET
+path: /staff/getListByCustomerId
+access: admin-only
+router: api-sgsi/src/routers/staff.ts:12
+controller: api-sgsi/src/controllers/staff.ts#getListByCustomerId
+model: api-sgsi/src/models/staff.ts#getListByCustomerId
+function: FN-V2-STAFF-GET-LIST-BY-CUSTOMER-ID
+status: CONFIRMED
+notes: >
+  Router montado admin-only (app.ts:56). Convergencia: lo consumen la seccion Comites
+  (FLOW-GOV-004), el Organigrama (FLOW-GOV-010) y Catalogos -> Equipos.

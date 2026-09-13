@@ -1,0 +1,7 @@
+id: FN-V2-FODA-ANALYSIS-GET-BY-CUSTOMER-ID
+type: db-function
+name: sgsi.v2_foda_analysis_get_by_customer_id
+definedIn: funciones_sgsi.sql:17899-17932
+status: CONFIRMED
+tables:
+  - { table: sgsi.foda_analysis, access: READ }

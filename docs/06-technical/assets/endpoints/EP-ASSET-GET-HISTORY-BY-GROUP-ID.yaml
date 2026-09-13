@@ -1,0 +1,10 @@
+id: EP-ASSET-GET-HISTORY-BY-GROUP-ID
+type: endpoint
+method: GET
+path: /asset/getHistoryByGroupId/:id
+access: admin-only
+router: api-sgsi/src/routers/asset.ts:36
+controller: api-sgsi/src/controllers/asset.ts#getHistoryByGroupId
+model: api-sgsi/src/models/asset.ts#getHistoryByGroupId
+function: FN-V2-ASSET-GROUP-GET-HISTORY-BY-GROUP-ID
+status: CONFIRMED

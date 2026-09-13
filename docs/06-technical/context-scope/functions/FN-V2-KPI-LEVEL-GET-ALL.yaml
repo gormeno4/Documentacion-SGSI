@@ -1,0 +1,7 @@
+id: FN-V2-KPI-LEVEL-GET-ALL
+type: db-function
+name: sgsi.v2_kpi_level_get_all
+definedIn: funciones_sgsi.sql:21233-21256
+status: CONFIRMED
+tables:
+  - { table: sgsi.kpi_level, access: READ }

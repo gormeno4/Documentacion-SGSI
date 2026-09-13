@@ -1,0 +1,10 @@
+id: EP-GROUP-RISK-TREATMENT-ACTIONS-DELETE
+type: endpoint
+method: DELETE
+path: /group-risk-treatment/actions/:actionId
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentRouter.ts
+controller: api-sgsi/src/controllers/groupRiskTreatmentController.ts#deleteAction
+model: api-sgsi/src/models/groupRiskTreatment.ts#deleteAction
+function: FN-GROUP-RISK-TREATMENT-ACTION-DELETE
+status: CONFIRMED

@@ -1,0 +1,12 @@
+id: FN-V2-BRANCH-GET-LIST-BY-CUSTOMER-ID
+type: db-function
+name: corvus.v2_branch_get_list_by_customer_id
+definedIn: funciones_corvus.sql:23450-23489
+status: CONFIRMED
+tables:
+  - { table: corvus.branch, access: READ }
+  - { table: corvus.district, access: READ }
+notes: >
+  Catalogo de sucursales del cliente. Desde Gobierno se usa en modo lectura para pintar la Casa
+  Matriz (is_headquarters = true); el CRUD completo de sucursales pertenece a Catalogos
+  (/organization/branches), fuera del alcance de DOM-GOV.

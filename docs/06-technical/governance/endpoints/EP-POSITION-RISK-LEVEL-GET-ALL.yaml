@@ -1,0 +1,13 @@
+id: EP-POSITION-RISK-LEVEL-GET-ALL
+type: endpoint
+method: GET
+path: /position/risk-levels
+access: admin-or-usuario
+router: api-sgsi/src/routers/position.ts:23
+controller: api-sgsi/src/controllers/position.ts#getRiskLevels
+model: api-sgsi/src/models/position.ts#getRiskLevels
+function: FN-V2-POSITION-RISK-LEVEL-GET-ALL
+status: CONFIRMED
+notes: >
+  Catalogo global sin parametros ni datos de cliente; acceso admin-or-usuario sin impacto de
+  tenant.

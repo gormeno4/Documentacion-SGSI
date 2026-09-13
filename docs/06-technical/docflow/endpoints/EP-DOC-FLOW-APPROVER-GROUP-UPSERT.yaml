@@ -1,0 +1,10 @@
+id: EP-DOC-FLOW-APPROVER-GROUP-UPSERT
+type: endpoint
+method: POST
+path: /document-flow-approver-group/upsert
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow-approver-group.ts:14
+controller: api-sgsi/src/controllers/doc-flow-approver-group.ts#upsert
+model: api-sgsi/src/models/doc-flow-approver-group.ts#upsert (línea 68)
+function: FN-V2-DOC-FLOW-APPROVER-GROUP-UPSERT
+status: CONFIRMED

@@ -1,0 +1,7 @@
+id: FN-V2-KPI-ANALYSIS-GET-VERSIONS
+type: db-function
+name: sgsi.v2_kpi_analysis_get_versions
+definedIn: funciones_sgsi.sql:20743-20786
+status: CONFIRMED
+tables:
+  - { table: sgsi.kpi_analysis, access: READ }

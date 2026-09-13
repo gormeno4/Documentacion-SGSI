@@ -1,0 +1,10 @@
+id: EP-DOC-UPDATE-CONTENT
+type: endpoint
+method: PUT
+path: /document-flow/documents/versions/:versionId/content
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:38
+controller: api-sgsi/src/controllers/doc-documents.ts#handleUpdateContent
+model: api-sgsi/src/models/doc-documents.ts#updateContent
+function: FN-DOC-UPDATE-CONTENT
+status: CONFIRMED

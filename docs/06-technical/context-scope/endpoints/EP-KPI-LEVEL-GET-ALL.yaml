@@ -1,0 +1,10 @@
+id: EP-KPI-LEVEL-GET-ALL
+type: endpoint
+method: GET
+path: /kpi/levels
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:30
+controller: api-sgsi/src/controllers/kpi.ts#getLevels
+model: api-sgsi/src/models/kpi.ts#getLevels
+function: FN-V2-KPI-LEVEL-GET-ALL
+status: CONFIRMED

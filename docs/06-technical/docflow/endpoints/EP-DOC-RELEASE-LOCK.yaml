@@ -1,0 +1,15 @@
+id: EP-DOC-RELEASE-LOCK
+type: endpoint
+method: DELETE
+path: /document-flow/documents/versions/:versionId/lock
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-documents.ts:41
+controller: api-sgsi/src/controllers/doc-documents.ts#handleReleaseEditLock
+model: api-sgsi/src/models/doc-documents.ts#releaseEditLock
+function: FN-DOC-RELEASE-EDIT-LOCK
+status: CONFIRMED
+notes: >
+  Existe un alias muerto POST /document-flow/documents/versions/:versionId/unlock
+  (routers/doc-documents.ts:42) que apunta al mismo handler (handleReleaseEditLock)
+  pero sin ningún consumidor en app-sgsi (doc-documents.Service.ts solo llama
+  releaseEditLock() -> DELETE .../lock). No se documenta como nodo propio.

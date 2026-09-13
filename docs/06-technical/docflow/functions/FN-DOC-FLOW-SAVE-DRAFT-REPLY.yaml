@@ -1,0 +1,12 @@
+id: FN-DOC-FLOW-SAVE-DRAFT-REPLY
+type: db-function
+name: sgsi.doc_flow_save_draft_reply
+definedIn: funciones_sgsi.sql:2806-2831
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: WRITE }
+notes: >
+  Guarda un borrador de réplica/justificación del editor sobre el step RECHAZADO de la
+  iteración anterior (current_iteration - 1), sin cambiar de estado — permite guardar
+  antes de reenviar formalmente con FN-DOC-FLOW-SUBMIT.

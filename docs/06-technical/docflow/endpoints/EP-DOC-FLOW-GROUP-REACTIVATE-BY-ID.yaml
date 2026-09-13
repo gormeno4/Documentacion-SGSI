@@ -1,0 +1,10 @@
+id: EP-DOC-FLOW-GROUP-REACTIVATE-BY-ID
+type: endpoint
+method: POST
+path: /document-flow-group/reactivateById/:id
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow-group.ts:17
+controller: api-sgsi/src/controllers/doc-flow-group.ts#reactivateById
+model: api-sgsi/src/models/doc-flow-group.ts#reactivateById (línea 151)
+function: FN-V2-DOC-FLOW-GROUP-REACTIVATE-BY-ID
+status: CONFIRMED

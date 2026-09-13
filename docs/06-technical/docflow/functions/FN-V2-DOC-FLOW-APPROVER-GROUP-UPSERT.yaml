@@ -1,0 +1,16 @@
+id: FN-V2-DOC-FLOW-APPROVER-GROUP-UPSERT
+type: db-function
+name: sgsi.v2_doc_flow_approver_group_upsert
+definedIn: funciones_sgsi.sql:15664-15739
+status: CONFIRMED
+calls:
+  - FN-V2-DOC-FLOW-APPROVER-GROUP-GET-BY-ID
+tables:
+  - { table: sgsi.doc_flow_approver_group, access: WRITE }
+  - { table: sgsi.doc_flow_approver_group_member, access: WRITE }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.customer_person, access: READ }
+notes: >
+  Valida que cada personId exista y pertenezca al cliente antes de guardar. Miembros
+  con reemplazo completo (DELETE+INSERT con order_index). Retorna el grupo actualizado
+  vía FN-V2-DOC-FLOW-APPROVER-GROUP-GET-BY-ID.

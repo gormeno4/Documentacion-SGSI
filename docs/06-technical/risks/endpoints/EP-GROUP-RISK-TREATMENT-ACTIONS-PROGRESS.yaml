@@ -1,0 +1,11 @@
+id: EP-GROUP-RISK-TREATMENT-ACTIONS-PROGRESS
+type: endpoint
+method: POST
+path: /group-risk-treatment/actions/progress
+access: admin-or-usuario
+router: api-sgsi/src/routers/groupRiskTreatmentRouter.ts
+controller: api-sgsi/src/controllers/groupRiskTreatmentController.ts#addProgress
+model: api-sgsi/src/models/groupRiskTreatment.ts#addProgress
+function: FN-GROUP-RISK-TREATMENT-ACTION-PROGRESS-ADD
+status: CONFIRMED
+notes: Pasa por middleware multer (uploadEvidenceMiddleware.single("file")) antes del controller.

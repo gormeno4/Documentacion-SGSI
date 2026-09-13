@@ -1,0 +1,16 @@
+id: FN-DOC-GET-DOCUMENT-BY-INVENTORY
+type: db-function
+name: sgsi.doc_get_document_by_inventory
+definedIn: funciones_sgsi.sql:3324-3340
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+  - { table: corvus.area, access: READ }
+notes: >
+  Busca si ya existe un documento "Inventario de Activos" (content_json.sourceType =
+  'ASSET_INVENTORY') para el cliente, para decidir upsert (nueva versión) vs. insert
+  (documento nuevo). Invocada desde
+  models/doc-documents.ts#upsertPublishedAssetInventoryDocument, a su vez invocada
+  desde controllers/doc-flow.ts#handlePublishProcess cuando entity_type =
+  'ASSET_INVENTORY' — ver FLOW-DOCFLOW-006 (generación automática cross-domain).

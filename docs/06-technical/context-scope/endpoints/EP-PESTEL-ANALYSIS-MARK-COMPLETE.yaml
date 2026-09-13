@@ -1,0 +1,10 @@
+id: EP-PESTEL-ANALYSIS-MARK-COMPLETE
+type: endpoint
+method: POST
+path: /pestel/analysis/complete
+access: admin-or-usuario
+router: api-sgsi/src/routers/pestel.ts:22
+controller: api-sgsi/src/controllers/pestel.ts#markComplete
+model: api-sgsi/src/models/pestel.ts#markComplete
+function: FN-V2-PESTEL-ANALYSIS-MARK-COMPLETE
+status: CONFIRMED

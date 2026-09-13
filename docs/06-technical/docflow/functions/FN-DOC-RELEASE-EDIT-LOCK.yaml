@@ -1,0 +1,10 @@
+id: FN-DOC-RELEASE-EDIT-LOCK
+type: db-function
+name: sgsi.doc_release_edit_lock
+definedIn: funciones_sgsi.sql:4482-4518
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_versions, access: WRITE }
+notes: >
+  Libera el lock solo si pertenece al usuario que lo pide (o no hay lock); de lo
+  contrario retorna success=false.

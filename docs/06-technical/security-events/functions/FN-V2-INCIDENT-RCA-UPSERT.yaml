@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-RCA-UPSERT
+type: db-function
+name: sgsi.v2_incident_rca_upsert
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_rca, access: WRITE }
+notes: "UPSERT pattern for RCA analysis. Stores methodology_type (5-porques/ishikawa/brainstorming), methodology_details (JSONB), and failure_category_id."

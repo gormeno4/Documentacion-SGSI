@@ -1,0 +1,14 @@
+id: FN-DOC-FLOW-GET-ACTIVE-PROCESS-INFO
+type: db-function
+name: sgsi.doc_flow_get_active_process_info
+definedIn: funciones_sgsi.sql:1323-1338
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_processes, access: READ }
+notes: >
+  CORRECCIÓN vs. Checkpoint A/B: se había estimado como ORPHAN (sin invocador
+  confirmado en TypeScript). En Implementación se confirmó que SÍ está viva —
+  invocada internamente vía LATERAL JOIN por otras tres functions de este mismo
+  módulo: FN-DOC-GET-MY-DOCUMENTS, FN-DOC-GET-MY-EDITING-ASSIGNMENTS y
+  FN-DOC-GET-INVENTORY-REPORT (todas `LEFT JOIN LATERAL sgsi.doc_flow_get_active_process_info(...)`).
+  Ningún código TypeScript la invoca directamente — es interna a la capa SQL.

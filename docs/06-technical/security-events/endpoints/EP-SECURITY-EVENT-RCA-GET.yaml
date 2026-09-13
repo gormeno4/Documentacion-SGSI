@@ -1,0 +1,10 @@
+id: EP-SECURITY-EVENT-RCA-GET
+type: endpoint
+method: GET
+path: /security-events/rca/:eventId
+access: investigator-or-reviewer-or-controller
+router: api-sgsi/src/routers/securityEvent.ts:63
+controller: api-sgsi/src/controllers/securityEvent.ts#getRcaByEventId
+model: api-sgsi/src/models/securityEvent.ts#getRcaByEventId
+function: FN-V2-INCIDENT-RCA-GET-BY-EVENT-ID
+status: CONFIRMED

@@ -1,0 +1,10 @@
+id: EP-DOCFLOW-REJECT-STEP
+type: endpoint
+method: POST
+path: /document-flow/process/:processId/steps/:stepId/reject
+access: admin-or-usuario
+router: api-sgsi/src/routers/doc-flow.ts:37
+controller: api-sgsi/src/controllers/doc-flow.ts#handleRejectStep
+model: api-sgsi/src/models/doc-flow.ts#rejectStep
+function: FN-DOC-FLOW-REJECT-STEP
+status: CONFIRMED

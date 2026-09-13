@@ -1,0 +1,9 @@
+id: FN-V2-INCIDENT-ACTION-PLANS-GET-ACTION-TYPES
+type: db-function
+name: sgsi.v2_incident_action_plans_get_action_types
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_severities, access: READ }
+notes: "Catalog read: action plan types and verification methods."

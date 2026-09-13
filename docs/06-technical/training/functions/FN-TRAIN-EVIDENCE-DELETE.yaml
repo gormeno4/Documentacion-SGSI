@@ -1,0 +1,11 @@
+id: FN-TRAIN-EVIDENCE-DELETE
+type: db-function
+schema: sgsi
+name: training_evidence_delete_by_id
+signature: "training_evidence_delete_by_id(p_evidence_id uuid, p_customer_id uuid) RETURNS json"
+status: CONFIRMED
+tables:
+  - table: sgsi.training_evidence
+    access: WRITE
+    operations: "SOFT DELETE: deleted_at = NOW()"
+notes: "Support function. Soft delete only, does not remove file from disk."

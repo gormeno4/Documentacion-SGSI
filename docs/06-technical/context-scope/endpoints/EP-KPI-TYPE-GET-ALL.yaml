@@ -1,0 +1,10 @@
+id: EP-KPI-TYPE-GET-ALL
+type: endpoint
+method: GET
+path: /kpi/types
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:29
+controller: api-sgsi/src/controllers/kpi.ts#getTypes
+model: api-sgsi/src/models/kpi.ts#getTypes
+function: FN-V2-KPI-TYPE-GET-ALL
+status: CONFIRMED

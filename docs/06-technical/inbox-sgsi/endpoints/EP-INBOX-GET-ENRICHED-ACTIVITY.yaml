@@ -1,0 +1,10 @@
+id: EP-INBOX-GET-ENRICHED-ACTIVITY
+type: endpoint
+method: GET
+path: /inbox/enriched-activity
+access: admin-or-usuario
+router: api-sgsi/src/routers/inbox.ts:10
+controller: api-sgsi/src/controllers/inbox.ts#handleGetEnrichedInboxActivity
+model: api-sgsi/src/models/inbox.ts#getEnrichedInboxActivity
+function: FN-INBOX-GET-ENRICHED
+status: CONFIRMED

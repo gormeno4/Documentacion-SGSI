@@ -1,0 +1,67 @@
+id: EP-TRAIN-UPLOAD-EVIDENCE
+type: endpoint
+method: POST
+path: /training/{trainingId}/evidence
+access: admin-or-usuario
+router: api-sgsi/src/routers/training.ts:13-17
+controller: api-sgsi/src/controllers/training.ts#uploadEvidence
+model: api-sgsi/src/models/training.ts#upsertEvidence
+query: api-sgsi/src/queries/training.ts#_upsertEvidence
+function: FN-TRAIN-EVIDENCE-UPSERT
+status: CONFIRMED
+description: "Subir o reemplazar archivo de evidencia para una capacitación"
+
+parameters:
+  - name: trainingId
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+    description: "ID de la capacitación"
+
+requestBody:
+  type: multipart/form-data
+  properties:
+    file:
+      type: string
+      format: binary
+      description: "Archivo de evidencia (imagen, PDF, etc.)"
+    evidenceId:
+      type: string
+      format: uuid
+      description: "Si presente, actualiza evidence existente; si vacío, crea nuevo"
+
+responseBody:
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+      path:
+        type: string
+      fileName:
+        type: string
+      mimeType:
+        type: string
+      size:
+        type: integer
+      createdAt:
+        type: string
+        format: date-time
+
+securityRules:
+  - "tenant isolation: validates training.company_id matches dataUser(req).customerId"
+  - "file validation via multer middleware (uploadEvidence)"
+  - "path traversal prevention: validatePathWithinBase()"
+
+storage:
+  - "file saved to disk under runtimeConfig().storagePath"
+  - "relative path stored in sgsi.training_evidence.evidencia_path"
+  - "metadata indexed in sgsi.file with entity_type='training-evidence'"
+
+notes: |
+  SUPPORT endpoint. Invocado desde FLOW-TRAIN-001 detail para adjuntar evidencia.
+  No es FLOW propio, es auxiliar.

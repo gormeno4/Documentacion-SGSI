@@ -1,0 +1,12 @@
+id: FN-V2-SOA-ANALYSIS-MARK-COMPLETE
+type: db-function
+name: sgsi.v2_soa_analysis_mark_complete
+definedIn: funciones_sgsi.sql:26684-26718
+status: CONFIRMED
+calls:
+  - FN-V2-SOA-ANALYSIS-GET-ACTIVE
+tables:
+  - { table: sgsi.soa_analysis, access: WRITE }
+notes: >
+  Si la Declaración activa ya está completa, retorna success:false con mensaje sin
+  lanzar excepción ni modificar nada — publicar dos veces no es un error duro.

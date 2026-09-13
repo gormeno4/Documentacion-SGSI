@@ -1,0 +1,15 @@
+id: EP-RESREV-LIST
+type: endpoint
+method: GET
+path: /resource-review/list
+access: admin-or-usuario
+router: api-sgsi/src/routers/resourceReview.ts:17
+controller: api-sgsi/src/controllers/resourceReview.ts#getListByCustomerId
+function: FN-RESREV-GET-LIST
+status: CONFIRMED
+description: "SUPPORT endpoint. List all reviews for customer"
+
+responseBody:
+  type: array
+  items:
+    $ref: "#/components/schemas/IResourceReview"

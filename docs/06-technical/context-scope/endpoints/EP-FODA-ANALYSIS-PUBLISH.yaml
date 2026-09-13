@@ -1,0 +1,17 @@
+id: EP-FODA-ANALYSIS-PUBLISH
+type: endpoint
+method: POST
+path: /foda/analysis/publish
+access: admin-or-usuario
+router: api-sgsi/src/routers/foda.ts:26
+controller: api-sgsi/src/controllers/foda.ts#publish
+model: api-sgsi/src/models/foda.ts#publish
+function: FN-V2-FODA-ANALYSIS-PUBLISH
+status: CONFIRMED
+notes: >
+  Redundancia real (Technical Debt, ver docs/00-catalog/contexto-alcance.md §
+  Hallazgos): la UI llama primero a Doc-Flow (EP-DOCFLOW-PUBLISH-PROCESS, que
+  ya flipea is_active+is_complete de sgsi.foda_analysis) y recién después a
+  este endpoint. Para entonces la fila objetivo ya no cumple el guard
+  is_complete=false de FN-V2-FODA-ANALYSIS-PUBLISH, que retorna success:false
+  sin modificar nada — no-op real, no solo idempotente.

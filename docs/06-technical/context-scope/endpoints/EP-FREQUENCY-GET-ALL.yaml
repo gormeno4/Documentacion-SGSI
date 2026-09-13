@@ -1,0 +1,10 @@
+id: EP-FREQUENCY-GET-ALL
+type: endpoint
+method: GET
+path: /kpi/frequencies
+access: admin-or-usuario
+router: api-sgsi/src/routers/kpi.ts:31
+controller: api-sgsi/src/controllers/kpi.ts#getFrequencyList
+model: api-sgsi/src/models/kpi.ts#getFrequencyList
+function: FN-V2-FREQUENCY-GET-ALL
+status: CONFIRMED

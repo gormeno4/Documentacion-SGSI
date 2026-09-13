@@ -1,0 +1,21 @@
+id: FN-V2-POSITION-GET-BY-ID
+type: db-function
+name: sgsi.v2_position_get_by_id
+definedIn: funciones_sgsi.sql:23004-23069
+status: CONFIRMED
+tables:
+  - { table: sgsi.position, access: READ }
+  - { table: sgsi.position_profile, access: READ }
+  - { table: sgsi.position_function, access: READ }
+  - { table: sgsi.position_responsibility, access: READ }
+  - { table: sgsi.asset, access: READ }
+notes: >
+  LANGUAGE sql. Devuelve la ficha completa del cargo, incluyendo assetId/assetCode del activo de
+  informacion vinculado (LEFT JOIN sgsi.asset ON la.position_id = pos.id).
+
+  HALLAZGO DE SEGURIDAD (tenant isolation, no corregido): la funcion NO filtra por customer_id y
+  el controller tampoco valida (controllers/position.ts:65-82), por lo que GET
+  /position/getById/:id permite leer la ficha completa de un cargo de otro cliente.
+
+  Convergencia: la consumen la ficha de Cargos de Gobierno y, desde DOM-DOCFLOW, la pantalla de
+  configuracion del flujo y el modal de revision de entidad.

@@ -1,0 +1,12 @@
+id: FN-V2-DOC-FLOW-GROUP-REACTIVATE-BY-ID
+type: db-function
+name: sgsi.v2_doc_flow_group_reactivate_by_id
+definedIn: funciones_sgsi.sql:15888-15934
+status: CONFIRMED
+calls:
+  - FN-V2-DOC-FLOW-GROUP-GET-LIST-BY-CUSTOMER-ID
+tables:
+  - { table: sgsi.doc_flow_group, access: WRITE }
+notes: >
+  Reactiva un grupo eliminado, validando que no exista otro grupo activo con el mismo
+  nombre (case-insensitive). Retorna la lista actualizada.

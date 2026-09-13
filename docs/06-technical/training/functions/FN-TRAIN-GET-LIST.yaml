@@ -1,0 +1,16 @@
+id: FN-TRAIN-GET-LIST
+type: db-function
+schema: sgsi
+name: v2_training_get_list_by_customer_id
+signature: "v2_training_get_list_by_customer_id(p_customer_id uuid) RETURNS json"
+definedIn: funciones_sgsi.sql:29115-29192
+status: CONFIRMED
+description: "Listar capacitaciones por cliente"
+
+tables:
+  - table: sgsi.training
+    access: READ
+  - table: sgsi.person_training
+    access: READ
+
+notes: "Support function. Invocada después de upsert/delete para refrescar lista."

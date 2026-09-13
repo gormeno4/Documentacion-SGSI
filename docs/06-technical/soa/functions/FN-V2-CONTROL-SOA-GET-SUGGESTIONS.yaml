@@ -1,0 +1,16 @@
+id: FN-V2-CONTROL-SOA-GET-SUGGESTIONS
+type: db-function
+name: sgsi.v2_control_soa_get_suggestions
+definedIn: funciones_sgsi.sql:14281-14322
+status: CONFIRMED
+calls:
+  - FN-GET-CONTROLES-APLICABLES
+tables:
+  - { table: sgsi.base_control_clauses, access: READ }
+  - { table: sgsi.ai_asset_risk_suggestions, access: READ }
+  - { table: sgsi.ai_asset_risk_control_suggestions, access: READ }
+notes: >
+  applies = true si aplica por reglas de contexto (FN-GET-CONTROLES-APLICABLES) O si
+  hay una sugerencia de IA para ese control clause — combina ambas fuentes, no
+  documenta cuál de las dos prevalece para la justificación mostrada (usa la de las
+  reglas si aplica=true por ese motivo).

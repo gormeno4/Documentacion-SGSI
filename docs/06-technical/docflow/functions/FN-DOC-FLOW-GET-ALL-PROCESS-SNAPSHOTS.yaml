@@ -1,0 +1,15 @@
+id: FN-DOC-FLOW-GET-ALL-PROCESS-SNAPSHOTS
+type: db-function
+name: sgsi.doc_flow_get_all_process_snapshots
+definedIn: funciones_sgsi.sql:1343-1392
+status: CONFIRMED
+tables:
+  - { table: sgsi.document_flow_snapshots, access: READ }
+  - { table: sgsi.document_flow_processes, access: READ }
+  - { table: sgsi.document_flow_steps, access: READ }
+  - { table: corvus."user", access: READ }
+  - { table: corvus.person, access: READ }
+notes: >
+  Todas las iteraciones/snapshots históricas de un proceso, con un estado calculado por
+  iteración (DEVUELTO/APROBADO/estado actual del proceso) según los steps de esa
+  iteración.

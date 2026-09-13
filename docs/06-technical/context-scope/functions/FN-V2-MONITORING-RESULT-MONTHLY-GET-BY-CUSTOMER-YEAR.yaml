@@ -1,0 +1,7 @@
+id: FN-V2-MONITORING-RESULT-MONTHLY-GET-BY-CUSTOMER-YEAR
+type: db-function
+name: sgsi.v2_monitoring_result_monthly_get_by_customer_year
+definedIn: funciones_sgsi.sql:21617-21652
+status: CONFIRMED
+tables:
+  - { table: sgsi.monitoring_result_monthly, access: READ }

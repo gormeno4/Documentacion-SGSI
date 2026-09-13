@@ -1,0 +1,17 @@
+id: FN-V2-USER-UPSERT-WITH-ROLES
+type: db-function
+name: corvus.v2_user_upsert_with_roles
+definedIn: funciones_corvus.sql:24411-24594
+status: CONFIRMED
+tables:
+  - { table: corvus.user, access: WRITE }
+  - { table: corvus.customer_user, access: WRITE }
+  - { table: corvus.user_rol, access: WRITE }
+  - { table: corvus.person, access: READ }
+  - { table: corvus.rol, access: READ }
+notes: >
+  Sin endpoint propio: la invoca v2_person_upsert cuando el payload de la persona trae un array
+  'roles'. Crea o actualiza el usuario de login, lo vincula al customer (corvus.customer_user) y
+  reemplaza sus roles (corvus.user_rol). El alta de credenciales y el correo de bienvenida NO
+  ocurren aqui: los hace el controller en Node (controllers/person.ts, dependencia externa email).
+  Contiene RAISE NOTICE de depuracion en el codigo desplegado.

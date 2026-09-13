@@ -1,0 +1,39 @@
+id: EP-TRAIN-DELETE-EVIDENCE
+type: endpoint
+method: DELETE
+path: /training/{trainingId}/evidence/{evidenceId}
+access: admin-or-usuario
+router: api-sgsi/src/routers/training.ts:25
+controller: api-sgsi/src/controllers/training.ts#deleteEvidence
+model: api-sgsi/src/models/training.ts#deleteEvidence
+query: api-sgsi/src/queries/training.ts#_deleteEvidence
+function: FN-TRAIN-EVIDENCE-DELETE
+status: CONFIRMED
+description: "Eliminar archivo de evidencia (soft delete)"
+
+parameters:
+  - name: trainingId
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+  - name: evidenceId
+    in: path
+    required: true
+    schema:
+      type: string
+      format: uuid
+
+responseBody:
+  type: object
+  properties:
+    success:
+      type: boolean
+
+securityRules:
+  - "tenant isolation: validates evidenceId belongs to customer"
+
+notes: |
+  SUPPORT endpoint. Soft delete: marks training_evidence.deleted_at = NOW()
+  Does NOT delete file from disk (file cleanup is responsibility of garbage collection)

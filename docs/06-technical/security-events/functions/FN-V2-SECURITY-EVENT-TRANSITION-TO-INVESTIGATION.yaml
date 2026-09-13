@@ -1,0 +1,9 @@
+id: FN-V2-SECURITY-EVENT-TRANSITION-TO-INVESTIGATION
+type: db-function
+name: sgsi.v2_security_event_transition_to_investigation
+definedIn: funciones_sgsi.sql:XXXXX-XXXXX
+status: CONFIRMED
+calls: []
+tables:
+  - { table: sgsi.incident_details, access: WRITE }
+notes: "Explicit transition from incident_confirmed to in_investigation. Not automatic."

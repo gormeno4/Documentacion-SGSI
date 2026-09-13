@@ -1,0 +1,13 @@
+id: FN-V2-CONTROL-SOA-GOVERNANCE-POLICIES-UPSERT
+type: db-function
+name: sgsi.v2_control_soa_governance_policies_upsert
+definedIn: funciones_sgsi.sql:14327-14393
+status: CONFIRMED
+tables:
+  - { table: sgsi.control_soa_governance_policy, access: WRITE }
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+notes: >
+  Reemplazo completo por alcance (gov_scope): DELETE de las políticas anteriores de ese
+  scope, luego INSERT de las nuevas (con ON CONFLICT DO NOTHING por duplicado exacto) —
+  no incremental dentro del mismo alcance.

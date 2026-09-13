@@ -1,0 +1,10 @@
+id: EP-SOA-UPSERT-BATCH
+type: endpoint
+method: POST
+path: /soa/upsertBatch
+access: admin-only
+router: api-sgsi/src/routers/soa.ts:31
+controller: api-sgsi/src/controllers/soa.ts#upsertBatch
+model: api-sgsi/src/models/soa.ts#upsertBatch
+function: FN-V2-CONTROL-SOA-UPSERT-BATCH
+status: CONFIRMED

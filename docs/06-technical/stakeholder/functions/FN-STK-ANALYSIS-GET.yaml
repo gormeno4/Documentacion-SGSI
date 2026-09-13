@@ -1,0 +1,7 @@
+id: FN-STK-ANALYSIS-GET
+type: db-function
+name: sgsi.v2_stakeholder_analysis_get_by_customer_id
+domain: DOM-STK
+status: CONFIRMED
+tables:
+  - { table: sgsi.stake_holder_analysis, access: READ }

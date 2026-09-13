@@ -1,0 +1,15 @@
+id: FN-DOC-GET-DOCUMENT-ID-BY-CUSTOMER-AND-TITLE
+type: db-function
+name: sgsi.doc_get_document_id_by_customer_and_title
+definedIn: funciones_sgsi.sql:3388-3401
+status: CONFIRMED
+tables:
+  - { table: sgsi.doc_documents, access: READ }
+  - { table: sgsi.doc_versions, access: READ }
+notes: >
+  CORRECCIÓN vs. Checkpoint A/B: se había estimado como ORPHAN (sin invocador
+  TypeScript confirmado, ni consumidor de la query dedicada `_getDocumentId...` que sí
+  existe en un router de Catálogos). En Implementación se confirmó que SÍ está viva —
+  invocada internamente al inicio de FN-DOC-UPSERT para impedir títulos duplicados por
+  cliente (RAISE EXCEPTION ERRCODE 'DT001' si ya existe, capturado por el controller
+  como 409 DOCUMENT_TITLE_EXISTS).

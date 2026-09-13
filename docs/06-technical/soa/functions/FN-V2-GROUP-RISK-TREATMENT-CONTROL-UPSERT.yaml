@@ -1,0 +1,19 @@
+id: FN-V2-GROUP-RISK-TREATMENT-CONTROL-UPSERT
+type: db-function
+name: sgsi.v2_group_risk_treatment_control_upsert
+definedIn: funciones_sgsi.sql:18736-18766
+status: CONFIRMED
+tables:
+  - { table: sgsi.group_risk_treatment, access: READ }
+  - { table: sgsi.group_risk_treatment_control, access: WRITE }
+notes: >
+  Variante de 3 argumentos (p_group_risk_treatment_id, p_id_base_control_clause,
+  p_customer_id) — la única alcanzable desde el frontend (la query TypeScript siempre
+  pasa 3 argumentos). Valida que el tratamiento exista y pertenezca al cliente antes de
+  vincular (EXISTS contra group_risk_treatment). Vínculo incremental
+  (INSERT ... ON CONFLICT DO UPDATE), no reemplaza otros vínculos existentes.
+  group_risk_treatment_control es tabla física de DOM-RSK, escrita aquí por ownership
+  funcional de DOM-SOA (ver FLOW-SOA-006 y la nota en docs/00-catalog/riesgos.md).
+  Existe un overload de 2 argumentos (sin p_customer_id, funciones_sgsi.sql:18771-18794)
+  que NO se documenta como nodo — es inalcanzable desde el frontend actual (overload
+  muerto).

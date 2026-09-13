@@ -1,0 +1,10 @@
+id: EP-SOA-ANALYSIS-VERSIONS
+type: endpoint
+method: GET
+path: /soa/analysis/versions
+access: admin-or-usuario
+router: api-sgsi/src/routers/soa.ts:42
+controller: api-sgsi/src/controllers/soa.ts#getVersions
+model: api-sgsi/src/models/soa.ts#getVersions
+function: FN-V2-SOA-ANALYSIS-GET-VERSIONS
+status: CONFIRMED

@@ -1,0 +1,15 @@
+id: EP-RISK-TREATMENT-GET-STRATEGIES
+type: endpoint
+method: GET
+path: /risk-treatment/strategies
+access: admin-or-usuario
+router: api-sgsi/src/routers/riskTreatment.ts
+controller: api-sgsi/src/controllers/riskTreatment.ts#getStrategies
+model: api-sgsi/src/models/riskTreatment.ts#getStrategies
+function: FN-RISK-TREATMENT-STRATEGY-GET-LIST
+status: CONFIRMED
+notes: >
+  Único endpoint de /risk-treatment con consumidor confirmado dentro de
+  Riesgos (catálogo de estrategias en el formulario de tratamiento,
+  individual y grupo). El resto del router (upsert + 7 endpoints de
+  actions/*) está huérfano — ver docs/00-catalog/riesgos.md.
